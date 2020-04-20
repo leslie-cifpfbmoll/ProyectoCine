@@ -22,7 +22,7 @@ class CreateDirectoresTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idDirector');
+            $table->increments('id');
             $table->string('nombre', 45);
             $table->string('apellido', 45);
         });

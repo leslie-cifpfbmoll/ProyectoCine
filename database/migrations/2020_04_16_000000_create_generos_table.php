@@ -22,7 +22,7 @@ class CreateGenerosTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idGenero');
+            $table->increments('id');
             $table->string('nombre', 45);
         });
     }

@@ -22,7 +22,7 @@ class CreateCarteleraTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idCartelera');
+            $table->increments('id');
             $table->integer('idPelicula')->unsigned()->nullable();
             $table->integer('idSala')->unsigned()->nullable();
             $table->date('horario');
@@ -31,8 +31,13 @@ class CreateCarteleraTable extends Migration
             $table->index(["idPelicula"], 'idPelicula_idx');
             $table->index(["idSala"], 'idSala_idx');
 
-            $table->foreign('idPelicula', 'idPelicula_idx')->references('idPelicula')->on('peliculas')->onDelete('set null')->onUpdate('set null');
-            $table->foreign('idSala', 'idSala_idx')->references('idSala')->on('sala')->onDelete('set null')->onUpdate('set null');
+            $table->foreign('idPelicula', 'idPelicula_idx')->references('id')->on('peliculas')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
+            
+            $table->foreign('idSala', 'idSala_idx')->references('id')->on('sala')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
         });
     }
 
