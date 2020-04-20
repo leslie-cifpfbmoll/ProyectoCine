@@ -65,11 +65,14 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            @if (Route::has('login'))  
+            <!-- Pregunta si existe la ruta login  -->
                 <div class="top-right links">
                     @auth
+                    <!-- Si iniciamos  -->
                         <a href="{{ url('/home') }}">Home</a>
                     @else
+                          <!-- si no es asi   -->
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
