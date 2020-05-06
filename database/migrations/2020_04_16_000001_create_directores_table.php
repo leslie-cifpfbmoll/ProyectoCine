@@ -25,6 +25,7 @@ class CreateDirectoresTable extends Migration
             $table->increments('id');
             $table->string('nombre', 45);
             $table->string('apellido', 45);
+            $table->timestamps();
         });
     }
 

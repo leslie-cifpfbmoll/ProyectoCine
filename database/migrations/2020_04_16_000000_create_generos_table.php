@@ -24,6 +24,7 @@ class CreateGenerosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre', 45);
+            $table->timestamps();
         });
     }
 

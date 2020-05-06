@@ -25,6 +25,7 @@ class CreateSalaTable extends Migration
             $table->increments('id');
             $table->integer('numFilas');
             $table->integer('numColumnas');
+            $table->timestamps();
         });
     }
 

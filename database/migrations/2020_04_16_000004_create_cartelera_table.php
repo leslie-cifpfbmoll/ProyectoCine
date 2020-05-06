@@ -27,6 +27,8 @@ class CreateCarteleraTable extends Migration
             $table->integer('idSala')->unsigned()->nullable();
             $table->date('horario');
             $table->integer('precio');
+            $table->timestamps();
+            
 
             $table->index(["idPelicula"], 'idPelicula_idx');
             $table->index(["idSala"], 'idSala_idx');

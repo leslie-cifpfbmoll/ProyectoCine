@@ -29,7 +29,8 @@ class CreatePeliculasTable extends Migration {
             $table->string('duracion', 45);
             $table->string('sinopsis', 100);
             $table->string('imagen', 45);
-
+            $table->timestamps();
+            
             $table->index(["idDirector"], 'idDirector_idx');
 
             $table->index(["idGenero"], 'idGenero_idx');
