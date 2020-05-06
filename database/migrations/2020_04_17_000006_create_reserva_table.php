@@ -24,7 +24,7 @@ class CreateReservaTable extends Migration {
             $table->integer('idUsuario')->unsigned()->nullable();
             $table->integer('idCartelera')->unsigned()->nullable();
             $table->integer('cantidad');
-
+            $table->timestamps();
             $table->index(["idCartelera"], 'idCartelera_idx');
             $table->index(["idUsuario"], 'idUsuario_idx');
 
