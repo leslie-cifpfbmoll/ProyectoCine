@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $user=Auth::user();
+    
+    if($user && $user->esAdmin()){
+        echo "Administrador";
+    }else{
+        echo "Usuario";
+    }
+    
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
