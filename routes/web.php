@@ -26,7 +26,7 @@ Route::get('/admin', function() {
 })->middleware(['auth', 'auth.admin']);
 
 
-Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function() {
+Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
     Route::resource('users', 'UserController', ['except' => ['show']]);
     Route::resource('generos', 'GenerosController', ['except' => ['show']]);
     Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);

@@ -14,8 +14,8 @@ class CreateDirectoresPeliculasTable extends Migration {
     public function up() {
         Schema::create('directores_peliculas', function (Blueprint $table) {
             $table->id();
-            $table->integer('directores_id');
-            $table->integer('peliculas_id');
+            $table->bigInteger('directores_id')->unsigned();
+            $table->bigInteger('peliculas_id')->unsigned();
             $table->timestamps();
 
             

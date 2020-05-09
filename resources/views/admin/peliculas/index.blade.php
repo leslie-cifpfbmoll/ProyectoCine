@@ -53,7 +53,7 @@
                                 <th>
                                     {{ $pelicula->sinopsis }}</th>
                                  <th>
-                                    <a href="{{route('admin.peliculas.edit', $pelicula->id) }}">
+                                    <a href="{{route('admin.peliculas.edit', $pelicula->id) }}" class="float-left">
                                         <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                     </a>  
                                     <form action="{{ route('admin.peliculas.destroy', ['pelicula' => $pelicula->id]) }}" method="POST">

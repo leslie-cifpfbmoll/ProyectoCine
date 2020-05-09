@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,30 +18,55 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('admin.users.index')->with('users', User::paginate(10));
+        $users = User::paginate(10);
+        return view('admin.users.index')->with('users', $users);
     }
 
-    public function edit($id) {
+    public function edit(Request $request, $id) {
+
+
+        $user = User::find($id);
+        $roles = Role::all();
         if (Auth::user()->id == $id) {
+            $request->session()->flash('warning', 'No puedes editar tu propio usuario.');
             return redirect()->route('admin.users.index');
         }
-        return view('admin.users.edit')->with(['user' => User::find($id), 'roles' => Role::all()]);
+        return view('admin.users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, $id) {
         $user = User::find($id);
+        $roles = Role::all();
+
+        if (!$request->roles || !$request->name || !$request->email) {
+            $request->session()->flash('error', 'Rellena todos los campos.');
+            return view('admin.users.edit')->with(['user' => $user, 'roles' => $roles]);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->roles()->sync($request->roles);
+
+        if ($user->save()) {
+            $request->session()->flash('success', 'Usuario actualizado correctamente.');
+        } else {
+            $request->session()->flash('error', 'No ha sido posible actualizar el usuario.');
+        }
 
         return redirect()->route('admin.users.index');
     }
 
     public function create() {
-        return view('admin.users.create')->with(['roles' => Role::all()]);
+        $roles = Role::all();
+        return view('admin.users.create')->with(['roles' => $roles]);
     }
 
     public function store(Request $request) {
+        $roles = Role::all();
+
         if (!$request->roles || !$request->name || !$request->email || !$request->password) {
-            return view('admin.users.create')->with(['roles' => Role::all()]);
+            $request->session()->flash('error', 'Rellena todos los campos.');
+            return view('admin.users.create')->with(['roles' => $roles]);
         }
         $user = User::create([
                     'name' => $request->name,
@@ -50,6 +76,7 @@ class UserController extends Controller {
 
         $user->roles()->sync($request->roles);
 
+        $request->session()->flash('success', 'Usuario creado correctamente.');
         return redirect()->route('admin.users.index');
     }
 
@@ -59,12 +86,14 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy(Request $request, $id) {
         $user = User::find($id);
-        if ($user) {
-            $user->roles()->detach();
-            $user->delete();
+        if ($user->delete()) {
+
+            $request->session()->flash('success', 'Usuario borrado correctamente.');
             return redirect()->route('admin.users.index');
+        } else {
+            $request->session()->flash('error', 'No ha sido posible borrar el usuario.');
         }
 
 

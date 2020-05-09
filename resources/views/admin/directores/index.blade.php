@@ -39,7 +39,7 @@
                                 <th>
                                 {{ $director->apellido }}</th>
                                  <th>
-                                     <a href="{{route('admin.directores.edit', $director->id) }}">
+                                     <a href="{{route('admin.directores.edit', $director->id) }}" class="float-left">
                                          <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                      </a>  
                                      <form action="{{ route('admin.directores.destroy', ['directore' => $director->id]) }}" method="POST">

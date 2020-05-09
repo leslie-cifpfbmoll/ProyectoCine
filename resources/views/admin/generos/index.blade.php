@@ -40,7 +40,7 @@
                                 <th>
                                 {{ $genero->nombre }}</th>
                                  <th>
-                                     <a href="{{route('admin.generos.edit', $genero->id) }}">
+                                     <a href="{{route('admin.generos.edit', $genero->id) }}" class="float-left">
                                          <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                      </a>  
                                     <form action="{{ route('admin.generos.destroy', ['genero' => $genero->id]) }}" method="POST">

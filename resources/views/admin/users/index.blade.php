@@ -42,7 +42,7 @@
                                 <th>
                                     {{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</th>
                                 <th>
-                                    <a href="{{route('admin.users.edit', $user->id) }}">
+                                    <a href="{{route('admin.users.edit', $user->id) }}" class="float-left" >
                                         <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                     </a>  
                                     <form action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="POST">

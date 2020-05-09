@@ -43,7 +43,7 @@
                                  <th>
                                 {{ $sala->numColumnas }}</th>
                                  <th>
-                                     <a href="{{route('admin.salas.edit', $sala->id) }}">
+                                     <a href="{{route('admin.salas.edit', $sala->id) }}" class="float-left">
                                          <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                      </a>  
                                     <form action="{{ route('admin.salas.destroy', ['sala' => $sala->id]) }}" method="POST">

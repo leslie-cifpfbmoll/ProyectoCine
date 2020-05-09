@@ -33,23 +33,9 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto ">
-                            @hasrole('admin')
-                            <li class="nav-item mr-auto ml-2">
-                                <a href="{{ route ('admin.users.index')}}"> Users</a>
-                            </li>
-                            <li class="nav-item mr-auto ml-2">
-                                <a href="{{ route ('admin.generos.index')}}"> Géneros</a>
-                            </li>
-                            <li class="nav-item mr-auto ml-2">
-                                <a href="{{ route ('admin.directores.index')}}"> Directores</a>
-                            </li>
-                            <li class="nav-item mr-auto ml-2">
-                                <a href="{{ route ('admin.salas.index')}}"> Salas</a>
-                            </li>
-                            <li class="nav-item mr-auto ml-2">
-                                <a href="{{ route ('admin.peliculas.index')}}"> Peliculas</a>
-                            </li>
-                            @endhasrole
+                            
+                           
+                    
                         </ul>
 
                         <!-- Right Side Of Navbar -->
@@ -76,7 +62,13 @@
     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    @can('administrar')
+                                    <a class="dropdown-item" href="{{ route ('admin.users.index')}}"> Users</a>
+                                    <a class="dropdown-item" href="{{ route ('admin.generos.index')}}"> Géneros</a>
+                                     <a class="dropdown-item" href="{{ route ('admin.directores.index')}}"> Directores</a>
+                                     <a class="dropdown-item" href="{{ route ('admin.salas.index')}}"> Salas</a>
+                                     <a class="dropdown-item" href="{{ route ('admin.peliculas.index')}}"> Peliculas</a>
+                                    @endcan
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -89,8 +81,10 @@
             </nav>
 
             <main class="py-4">
-
+                <div class="container">
+                @include('partials.alerts')
                 @yield('content')
+                </div>
             </main>
         </div>
     </body>

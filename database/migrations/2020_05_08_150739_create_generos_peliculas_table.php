@@ -15,8 +15,8 @@ class CreateGenerosPeliculasTable extends Migration
     {
         Schema::create('generos_peliculas', function (Blueprint $table) {
             $table->id();
-            $table->integer('generos_id');
-            $table->integer('peliculas_id');
+            $table->bigInteger('generos_id')->unsigned();
+            $table->bigInteger('peliculas_id')->unsigned();
             $table->timestamps();
          
             
