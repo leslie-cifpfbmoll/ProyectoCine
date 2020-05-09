@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
-class EsAdmin
+use Auth;
+class AccessAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,11 @@ class EsAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        
+        if(Auth::user()->hasAnyRole('admin')){
+            return $next($request);
+        }else{
+            return redirect()->to('/');
+        };
     }
 }
