@@ -33,6 +33,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto ">
+                            @hasrole('admin')
                             <li class="nav-item mr-auto ml-2">
                                 <a href="{{ route ('admin.users.index')}}"> Users</a>
                             </li>
@@ -48,6 +49,7 @@
                             <li class="nav-item mr-auto ml-2">
                                 <a href="{{ route ('admin.peliculas.index')}}"> Peliculas</a>
                             </li>
+                            @endhasrole
                         </ul>
 
                         <!-- Right Side Of Navbar -->
