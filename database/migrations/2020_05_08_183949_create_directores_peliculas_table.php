@@ -13,12 +13,21 @@ class CreateDirectoresPeliculasTable extends Migration {
      */
     public function up() {
         Schema::create('directores_peliculas', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('directores_id')->unsigned();
-            $table->bigInteger('peliculas_id')->unsigned();
+             $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->integer('directores_id')->unsigned();
+            $table->integer('peliculas_id')->unsigned();
             $table->timestamps();
 
-            
+        });
+        Schema::table('directores_peliculas', function(Blueprint $table) {
+            $table->foreign('directores_id')
+                    ->references('id')->on('directores')
+                    ->onDelete('cascade');
+
+            $table->foreign('peliculas_id')
+                    ->references('id')->on('peliculas')
+                    ->onDelete('cascade');
         });
     }
 

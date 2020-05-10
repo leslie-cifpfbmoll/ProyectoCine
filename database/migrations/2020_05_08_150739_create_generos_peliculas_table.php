@@ -14,12 +14,21 @@ class CreateGenerosPeliculasTable extends Migration
     public function up()
     {
         Schema::create('generos_peliculas', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('generos_id')->unsigned();
-            $table->bigInteger('peliculas_id')->unsigned();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->integer('generos_id')->unsigned();
+            $table->integer('peliculas_id')->unsigned();
             $table->timestamps();
          
-            
+        });
+        Schema::table('generos_peliculas', function(Blueprint $table) {
+            $table->foreign('generos_id')
+                    ->references('id')->on('generos')
+                    ->onDelete('cascade');
+
+            $table->foreign('peliculas_id')
+                    ->references('id')->on('peliculas')
+                    ->onDelete('cascade');
         });
     }
 
