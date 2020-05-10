@@ -12,17 +12,24 @@
                         @csrf
 
                         <div class="form-check">
-                            <label for="fname">Título</label>
-                            <input id="fname" type="text" name="nombre">
-                            <label for="festreno">Estreno </label>
-                            <input id="festreno" type="date" name="estreno">
-                            <label for="fduracion">Duración (min.)</label>
-                            <input id="fduracion" type="integer" name="duracion">
-                            <label for="fduracion">Sinópsis</label>
-                            <input id="fduracion" type="text" name="sinopsis">
-
                             <div class="form-group">
-                                <label for="fgenero">Género:</label>
+                                <label for="fname">Título</label>
+                                <input id="fname" type="text" name="nombre" value="{{old('nombre')}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="festreno">Estreno </label>
+                                <input id="festreno" type="date" name="estreno" value="{{old('estreno')}}">
+                            </div>  
+                            <div class="form-group">
+                                <label for="fduracion">Duración (min.)</label>
+                                <input id="fduracion" type="integer" name="duracion" value="{{old('duracion')}}">
+                            </div> 
+                            <div class="form-group">
+                                <label for="fduracion">Sinópsis</label>
+                                <input id="fduracion" type="text" name="sinopsis" value="{{old('sinpsis')}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="fgenero">Géneros:</label><br>
 
                                 @foreach($generos as $genero)
                                 <input type="checkbox" name="generos[]" value="{{ $genero->id }}">
@@ -36,6 +43,7 @@
                                     @foreach($directores as $director)
                                     <option value="{{$director->id}}">{{$director->nombre}} {{$director->apellido}}</option>                                                  
                                     @endforeach
+
                                 </select>
                             </div>
                             <div class="form-group">
@@ -52,6 +60,7 @@
 
 
                 </div>
+                </html>
             </div>
         </div>
     </div>
