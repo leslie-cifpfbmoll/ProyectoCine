@@ -9,7 +9,8 @@ use App\Generos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 class PeliculasController extends Controller {
 
     public function index() {
@@ -32,7 +33,7 @@ class PeliculasController extends Controller {
 
             $request->session()->flash('error', 'Rellena todos los campos.');
 
-            return view('admin.peliculas.create')->with(['generos' => $generos])->with(['directores' => $directores])->with(['peliculas' => $peliculas]);
+            return back()->withInput($request->all);
         }
         $cover = $request->file('imagen');
         $extension = $cover->getClientOriginalExtension();
@@ -66,22 +67,23 @@ class PeliculasController extends Controller {
         $generos = Generos::all();
         $directores = Directores::all();
         $pelicula = Peliculas::find($id);
-        
-        $cover = $request->file('imagen');
-        $extension = $cover->getClientOriginalExtension();
-        Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
+        if ($request->hasfile('imagen')) {
+            $cover = $request->file('imagen');
+            $extension = $cover->getClientOriginalExtension();
+            Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
+            $pelicula->mime = $cover->getClientMimeType();
+            $pelicula->original_filename = $cover->getClientOriginalName();
+            $pelicula->filename = $cover->getFilename() . '.' . $extension;
+        }
 
         $pelicula->nombre = $request->nombre;
         $pelicula->estreno = $request->estreno;
         $pelicula->duracion = $request->duracion;
         $pelicula->sinopsis = $request->sinopsis;
-        $pelicula->mime = $cover->getClientMimeType();
-        $pelicula->original_filename = $cover->getClientOriginalName();
-        $pelicula->filename = $cover->getFilename() . '.' . $extension;
-        
+
         $pelicula->generos()->sync($request->generos);
         $pelicula->directores()->sync($request->director);
-        
+
         if ($pelicula->save()) {
             $request->session()->flash('success', 'Película actualizado correctamente.');
         } else {
