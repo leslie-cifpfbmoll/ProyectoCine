@@ -83,28 +83,28 @@ class CreatePeliculasTable extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre', 45);
-            $table->integer('idGenero')->unsigned()->nullable();
-            $table->integer('idDirector')->unsigned()->nullable();
+            //$table->integer('idGenero')->unsigned()->nullable();
+            //$table->integer('idDirector')->unsigned()->nullable();
             $table->date('estreno');
             $table->string('duracion', 45);
-            $table->string('sinopsis', 100);
+            $table->string('sinopsis', 1500);
             $table->string('imagen', 45);
             $table->timestamps();
             
-            $table->index(["idDirector"], 'idDirector_idx');
+           // $table->index(["idDirector"], 'idDirector_idx');
 
-            $table->index(["idGenero"], 'idGenero_idx');
+           // $table->index(["idGenero"], 'idGenero_idx');
 
 
-            $table->foreign('idDirector', 'idDirector_idx')
-                    ->references('id')->on('directores')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
+            //$table->foreign('idDirector', 'idDirector_idx')
+                   // ->references('id')->on('directores')
+                   // ->onDelete('set null')
+                   // ->onUpdate('cascade');
 
-            $table->foreign('idGenero', 'idGenero_idx')
-                    ->references('id')->on('generos')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
+          //  $table->foreign('idGenero', 'idGenero_idx')
+               //     ->references('id')->on('generos')
+                //    ->onDelete('set null')
+                  //  ->onUpdate('cascade');
         });
     }
 
