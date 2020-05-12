@@ -22,7 +22,7 @@
                             </div>  
                             <div class="form-group">
                                 <label for="fduracion">Duración (min.)</label>
-                                <input id="fduracion" type="integer" name="duracion" value="{{old('duracion')}}">
+                                <input id="fduracion" type="number" name="duracion" value="{{old('duracion')}}">
                             </div> 
                             <div class="form-group">
                                 <label for="fduracion">Sinópsis</label>

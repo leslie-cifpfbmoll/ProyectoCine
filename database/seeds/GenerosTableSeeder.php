@@ -13,8 +13,6 @@ class GenerosTableSeeder extends Seeder
     {
        DB::table('generos')->delete();
         
-        
-        
         Generos::create([
            'nombre' => 'Aventura',
         ]); 

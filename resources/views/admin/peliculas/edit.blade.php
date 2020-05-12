@@ -21,7 +21,7 @@
                         <label for="festreno">Estreno</label>
                         <input id="festreno" type="date" name="estreno" value="{{$pelicula->estreno}}">
                         <label for="fduracion">Duración (min.)</label>
-                        <input id="fduracion" type="integer" name="duracion" value="{{$pelicula->duracion}}">
+                        <input id="fduracion" type="number" name="duracion" value="{{$pelicula->duracion}}">
 
 
                         <div class="form-group">
