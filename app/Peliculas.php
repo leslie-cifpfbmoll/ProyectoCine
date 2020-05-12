@@ -23,4 +23,8 @@ class Peliculas extends Model {
         return $this->belongsToMany(Directores::class);
     }
 
+    public function carteleras() {
+        return $this->belongsTo('\App\Carteleras');
+    }
+
 }
