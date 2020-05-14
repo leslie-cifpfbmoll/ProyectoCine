@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fecha">fecha</label>
-                            <input id="fecha" type="date" name="fecha">
+                            <input id="fecha" type="date" name="fecha" value="{{date("Y-m-d")}}">
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>

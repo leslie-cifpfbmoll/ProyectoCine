@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carteleras extends Model {
 
     protected $table = 'cartelera';
-    protected $fillable = array('idPelicula', 'idSala', 'fecha', 'precio');
+    protected $fillable = array( 'fecha', 'precio');
 
     public function peliculas() {
         return $this->belongsToMany(Peliculas::class);

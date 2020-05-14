@@ -12,18 +12,18 @@ use Illuminate\Http\Request;
 
 class CartelerasController extends Controller {
 
-    public function index() {
-        $fecha = date("Y-m-d");
+    public function index(Request $request) {
+        
+        if ($request->has('dias') && !empty($request->input('dias'))) {
+            $fecha = $request->input('dias');
+           
+        } else {
+             $fecha = date("Y-m-d");
+        }
         $carteleras = Carteleras::where('fecha', $fecha)->get();
         return view('admin.carteleras.index')->with(['carteleras' => $carteleras]);
     }
 
-    public function find() {
-        $fecha = "2020-05-13";
-        $carteleras = Carteleras::where('fecha', $fecha)->get();
-
-        return view('admin.carteleras.find')->with(['carteleras' => $carteleras]);
-    }
 
     public function create() {
         $carteleras = Carteleras::all();
