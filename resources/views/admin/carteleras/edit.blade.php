@@ -22,8 +22,9 @@
                                 </option>
 
                                 @foreach($peliculas as $pelicula)
-                                 <option value="{{$pelicula->id}}">{{$pelicula->nombre}} </option>                                                                                                
-
+                                @if (  implode(', ', $carteleras->peliculas()->get()->pluck('nombre')->toArray()) !== $pelicula->nombre )
+                                <option value="{{$pelicula->id}}">{{$pelicula->nombre}} </option>
+                                @endif
                                 @endforeach
 
                             </select>
@@ -31,22 +32,25 @@
                         <div class="form-group">
                             <label for="fsala">Sala:</label>
                             <select class="form-control" name="sala" id="fsala">
-                                 <option selected="selected">
+                                <option selected="selected">
                                     {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
                                 </option>
                                 @foreach($salas as $sala)
+                                @if (  implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) !== $sala->id )
+                                <option value="{{$sala->id}}">{{$sala->id}} </option>      @endif
 
-                                <option value="{{$sala->id}}">{{$sala->id}} </option>                                                  
                                 @endforeach
 
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="fhorario">Horario: </label>
-
+         
                             @foreach($horarios as $horario)
-                            <input type="checkbox" name="horarios[]" value="{{ $horario->id }}">
-                            <label>{{$horario->hora}} </label>                                              
+                            <input type="checkbox" name="horarios[]" value="{{ $horario->id }}"
+                            @if($carteleras->horarios->pluck('id')->contains($horario->id)) checked @endif>
+                            <label>{{$horario->hora}} </label> 
+                                                                     
                             @endforeach
 
                         </div>

@@ -32,16 +32,25 @@
                             <label for="fgenero">Género:</label>
 
                             @foreach($generos as $genero)
-                            <input type="checkbox" name="generos[]" value="{{ $genero->id }}">
-                            <label>{{$genero->nombre}} </label>                                              
+                            <input type="checkbox" name="generos[]" value="{{ $genero->id }}"
+                             @if($pelicula->generos->pluck('id')->contains($genero->id)) checked @endif>
+                            <label>{{$genero->nombre}} </label>                                            
                             @endforeach
 
                         </div>
                         <div class="form-group">
                             <label for="fdirector">Director:</label>
                             <select class="form-control" name="director" id="fdirector">
+                                 <option selected="selected">
+                                    {{ implode(', ', $pelicula->directores()->get()->pluck('nombre')->toArray()) }}
+                                    {{ implode(', ', $pelicula->directores()->get()->pluck('apellido')->toArray()) }}
+                                </option>
+
                                 @foreach($directores as $director)
+                                @if (  implode(', ',  $pelicula->directores()->get()->pluck('nombre')->toArray()) !== $director->nombre )
+                               
                                 <option value="{{$director->id}}">{{$director->nombre}} {{$director->apellido}}</option>                                                  
+                                 @endif
                                 @endforeach
                             </select>
                         </div>
