@@ -7,30 +7,33 @@ use \App\Carteleras;
 use \App\Peliculas;
 use App\Horarios;
 use \App\Salas;
+use App\view;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class CartelerasController extends Controller {
 
     public function index(Request $request) {
-        
+
         if ($request->has('dias') && !empty($request->input('dias'))) {
             $fecha = $request->input('dias');
-           
         } else {
-             $fecha = date("Y-m-d");
+            $fecha = date("Y-m-d");
         }
         $carteleras = Carteleras::where('fecha', $fecha)->get();
-        return view('admin.carteleras.index')->with(['carteleras' => $carteleras]);
+        return view('admin.carteleras.index', compact('fecha'))->with(['carteleras' => $carteleras]);
     }
 
+    public function create(Request $request) {
 
-    public function create() {
+        $fecha = $request->input('fecha');
         $carteleras = Carteleras::all();
         $peliculas = Peliculas::all();
         $salas = Salas::all();
         $horarios = Horarios::all();
-        return view('admin.carteleras.create')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
+        $horarios_disponibles = DB::select('SELECT * FROM horarios_disponibles hd where ROW(hd.hora, hd.id,hd.horario_id) not in (select hora,salas_id,id from horarios_o where horarios_o.fecha=:fecha) UNION ALL SELECT ho.hora,ho.salas_id,ho.id from horarios_o ho where ROW(ho.hora,ho.salas_id,ho.id) not in ( SELECT hora,id,horario_id from horarios_disponibles) order by id,', ['fecha' => $fecha]);
+        return view('admin.carteleras.create', compact('fecha'))->with(['horarios_disponibles' => $horarios_disponibles])->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
     }
 
     public function store(Request $request) {

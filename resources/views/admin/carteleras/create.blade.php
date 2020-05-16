@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -20,32 +21,50 @@
 
                             </select>
                         </div>
+
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sala</th>
+                                    <th scope="col">Horarios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach($horarios_disponibles as $horario_disponible)
+                                <tr>
+                                    <th>
+                                        {{ $horario_disponible-> id }}</th>
+                                    <th>
+                                        <input name="sala" type="hidden" value="{{$horario_disponible->id}}">
+                                        <input type="checkbox" name="horarios[]" value="{{ $horario_disponible->horario_id }}">
+                                        <label>{{ $horario_disponible->hora }} </label>   
+                                    </th>
+                                </tr>
+
+                                @endforeach
+                            </tbody>
+                        </table>
+
+
+
                         <div class="form-group">
                             <label for="fsala">Sala:</label>
                             <select class="form-control" name="sala" id="fsala">
                                 @foreach($salas as $sala)
-                                <option value="{{$sala->id}}">{{$sala->id}} </option>                                                  
+                                <option value="{{$sala->id}}" >{{$sala->id}} </option>                                                  
                                 @endforeach
 
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="fhorario">Horario: </label>
-
-                            @foreach($horarios as $horario)
-                            <input type="checkbox" name="horarios[]" value="{{ $horario->id }}">
-                            <label>{{$horario->hora}} </label>                                              
-                            @endforeach
-
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha">fecha</label>
-                            <input id="fecha" type="date" name="fecha" value="{{date("Y-m-d")}}">
+                            <label for="fecha">Fecha</label>
+                            <input id="fecha" type="date" name="fecha" value={{$fecha}}>
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>
-                            <input id="precio" type="number" name="precio">
+                            <input id="precio"  type="number" name="precio">
                         </div>
 
                         <button type="submite" class="btn btn-primary">
