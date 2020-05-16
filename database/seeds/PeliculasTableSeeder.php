@@ -30,7 +30,7 @@ class PeliculasTableSeeder extends Seeder {
                     'estreno' => '1993-10-30',
                     'duracion' => '127',
                     'sinopsis' => 'Tres expertos y otras personas son invitados a un parque de diversiones, donde se encuentran dinosaurios creados en base al ADN.',
-                    'filename' => 'phpC8C2.tmp.jpg',
+                    'filename' => 'php17D5.tmp.jpg',
                     'mime' => 'image/jpeg',
                     'original_filename' => 'null',
         ]);
@@ -39,7 +39,7 @@ class PeliculasTableSeeder extends Seeder {
                     'estreno' => '2007-10-26',
                     'duracion' => '108',
                     'sinopsis' => 'Una mujer seductora engaña a dos hermanos con problemas económicos, los lleva a experimentar una vida criminal y provoca una gran rivalidad entre ellos.',
-                    'filename' => 'php3BCF.tmp.jpg',
+                    'filename' => 'php3A00.tmp.jpg',
                     'mime' => 'image/jpeg',
                     'original_filename' => 'null',
         ]);
