@@ -19,7 +19,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-         </head>
+    </head>
     <body>
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -69,8 +69,8 @@
                                     <a class="dropdown-item" href="{{ route ('admin.directores.index')}}"> Directores</a>
                                     <a class="dropdown-item" href="{{ route ('admin.salas.index')}}"> Salas</a>
                                     <a class="dropdown-item" href="{{ route ('admin.peliculas.index')}}"> Peliculas</a>
-                                    <a class="dropdown-item" href="{{ route ('admin.carteleras.index')}}"> Cartelera</a>
                                     @endcan
+                                    <a class="dropdown-item" href="{{ route ('admin.carteleras.index')}}"> Cartelera</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

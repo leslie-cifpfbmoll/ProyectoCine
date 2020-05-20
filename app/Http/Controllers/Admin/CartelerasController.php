@@ -32,7 +32,7 @@ class CartelerasController extends Controller {
         $peliculas = Peliculas::all();
         $salas = Salas::all();
         $horarios = Horarios::all();
-        $horarios_disponibles = DB::select('SELECT * FROM horarios_disponibles hd where ROW(hd.hora, hd.id,hd.horario_id) not in (select hora,salas_id,id from horarios_o where horarios_o.fecha=:fecha) UNION ALL SELECT ho.hora,ho.salas_id,ho.id from horarios_o ho where ROW(ho.hora,ho.salas_id,ho.id) not in ( SELECT hora,id,horario_id from horarios_disponibles) order by id,', ['fecha' => $fecha]);
+        $horarios_disponibles = DB::select('SELECT * FROM horarios_disponibles hd where ROW(hd.hora, hd.id,hd.horario_id) not in (select hora,salas_id,id from horarios_o where horarios_o.fecha=:fecha) UNION ALL SELECT ho.hora,ho.salas_id,ho.id from horarios_o ho where ROW(ho.hora,ho.salas_id,ho.id) not in ( SELECT hora,id,horario_id from horarios_disponibles) order by id,hora', ['fecha' => $fecha]);
         return view('admin.carteleras.create', compact('fecha'))->with(['horarios_disponibles' => $horarios_disponibles])->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
     }
 

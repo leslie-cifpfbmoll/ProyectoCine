@@ -21,22 +21,21 @@ class CreateReservaTable extends Migration {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('idUsuario')->unsigned()->nullable();
-            $table->integer('idCartelera')->unsigned()->nullable();
+            // $table->integer('idUsuarii8o')->unsigned()->nullable();
+            // $table->integer('idCartelera')->unsigned()->nullable();
             $table->integer('cantidad');
             $table->timestamps();
-            $table->index(["idCartelera"], 'idCartelera_idx');
-            $table->index(["idUsuario"], 'idUsuario_idx');
-
-            $table->foreign('idCartelera', 'idCartelera_idx')
-                    ->references('id')->on('cartelera')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
-            
-            $table->foreign('idUsuario', 'idUsuario_idx')
-                    ->references('id')->on('users')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
+            // $table->index(["idCartelera"], 'idCartelera_idx');
+            // $table->index(["idUsuario"], 'idUsuario_idx');
+            //  $table->foreign('idCartelera', 'idCartelera_idx')
+            //         ->references('id')->on('cartelera')
+            //          ->onDelete('set null')
+            //          ->onUpdate('cascade');
+            //  
+            //  $table->foreign('idUsuario', 'idUsuario_idx')
+            //          ->references('id')->on('users')
+            //           ->onDelete('set null')
+            //        ->onUpdate('cascade');
         });
     }
 

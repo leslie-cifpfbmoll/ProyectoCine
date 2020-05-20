@@ -32,7 +32,12 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
+    
+});
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
+    Route::resource('reservas', 'ReservasController', ['except' => ['show','index']]);
+    Route::post('/reservas/index/{id}', 'ReservasController@index')->name('reservas.index');
     
 });
 
