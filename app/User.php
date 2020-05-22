@@ -48,6 +48,6 @@ class User extends Authenticatable
         return null !== $this->roles()->where('name', $role)->first();
     }
      public function reservas(){
-        return $this->belongsTo('\App\Resevras');
+        return $this->belongsTo('\App\Reservas');
     }
 }

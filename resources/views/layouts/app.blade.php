@@ -75,7 +75,7 @@
                                     <a class="dropdown-item" href="{{ route ('admin.peliculas.index')}}"> Peliculas</a>
                                     @endcan
                                     <a class="dropdown-item" href="{{ route ('admin.carteleras.index')}}"> Cartelera</a>
-                                  
+                                    <a class="dropdown-item" href="{{ route ('admin.perfil.index')}}"> Mi perfil</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
