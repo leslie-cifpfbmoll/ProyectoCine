@@ -23,8 +23,6 @@ class UserController extends Controller {
     }
 
     public function edit(Request $request, $id) {
-
-
         $user = User::find($id);
         $roles = Role::all();
         if (Auth::user()->id == $id) {

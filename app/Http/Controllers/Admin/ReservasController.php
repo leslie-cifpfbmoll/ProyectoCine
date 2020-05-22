@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use \App\Reservas;
 use App\Carteleras;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservasController extends Controller {
 
@@ -29,17 +30,16 @@ class ReservasController extends Controller {
 
     public function reservar($id, $cantidad) {
         $user = Auth::user();
-        $user = $user->id;
-        $cartelera = Cartelera::find($id);
-        
-        $director->nombre = $request->nombre;
-        $director->apellido = $request->apellido;
-        if ($director->save()) {
-            $request->session()->flash('success', 'Director actualizado correctamente.');
-        } else {
-            $request->session()->flash('error', 'No ha sido posible actualizar el director.');
-        }
-        return redirect()->route('admin.directores.index');
+        $cartelera = Carteleras::find($id);
+
+        $reserva = Reservas::create([
+                    'cantidad' => $cantidad,
+        ]);
+        $reserva->usuarios()->sync($user);
+        $reserva->carteleras()->sync($cartelera);
+
+        session()->flash('success', 'Reserva creada correctamente.');
+        return redirect()->route('admin.carteleras.index');
     }
 
 }
