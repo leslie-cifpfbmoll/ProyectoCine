@@ -1,9 +1,10 @@
- var duracion;
+
+var duracion;
  var fecha = $("#fecha").val();
  var selectedSala;
  var horafin;
  var checkbox;
- var ajaxurl = "http://localhost/ProyectoCine/public/admin/carteleras/";
+ var ajaxurl = "http://127.0.0.1:8000/admin/carteleras/";
  var id_ocupados = [];
 
  $(document).ready(function() {
@@ -38,7 +39,6 @@
  }
  //quitar los horarios ocupados
  function comprobar(idhora, hora) {
-     alert();
      var hidecheck;
      var hidelavel;
      checkbox = document.getElementById(idhora);

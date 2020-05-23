@@ -21,7 +21,7 @@
                                     <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
                                         @csrf
                                         {{method_field('POST')}}
-                                        <a> <button type="submit"  class="btn-link">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }} </button></a>
+                                        <button type="submit"  class="btn-link">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }} </button>
                                     </form></li>
                                 <li class="breadcrumb-item active">Pagar</li>
                             </ol>
