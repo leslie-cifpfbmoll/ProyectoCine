@@ -31,7 +31,9 @@ class CartelerasController extends Controller {
         $carteleras = Carteleras::all();
         $peliculas = Peliculas::all();
         $salas = Salas::all();
+
         return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
+
     }
     public function getHorarios(Request $request){
         $fecha=$request->fecha;

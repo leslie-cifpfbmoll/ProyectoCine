@@ -19,7 +19,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
 
-                            <div class="col-md-6">
+                            
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -27,7 +27,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
-                            </div>
+                            
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>

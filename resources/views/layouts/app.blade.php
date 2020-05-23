@@ -16,11 +16,12 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+        <!--Boostrap-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        
     </head>
     <body>
         <div id="app">
@@ -71,8 +72,9 @@
                                     <a class="dropdown-item" href="{{ route ('admin.directores.index')}}"> Directores</a>
                                     <a class="dropdown-item" href="{{ route ('admin.salas.index')}}"> Salas</a>
                                     <a class="dropdown-item" href="{{ route ('admin.peliculas.index')}}"> Peliculas</a>
-                                    <a class="dropdown-item" href="{{ route ('admin.carteleras.index')}}"> Cartelera</a>
                                     @endcan
+                                    <a class="dropdown-item" href="{{ route ('admin.carteleras.index')}}"> Cartelera</a>
+                                    <a class="dropdown-item" href="{{ route ('admin.perfil.index')}}"> Mi perfil</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -91,5 +93,8 @@
                 </div>
             </main>
         </div>
+
+
+
     </body>
 </html>

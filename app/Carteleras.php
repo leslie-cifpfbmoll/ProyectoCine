@@ -20,5 +20,7 @@ class Carteleras extends Model {
     public function horarios() {
         return $this->belongsToMany(Horarios::class);
     }
-
+     public function reservas(){
+        return $this->belongsTo('\App\Reservas');
+    }
 }

@@ -12,12 +12,14 @@
                             <a class="card-body"> Dashboard</a>
                         </div>
                         <div class="card invisible"></div>
+                        @can('administrar')
                         <div class="card border-light text-right"> 
                             <form action="{{ route('admin.carteleras.create') }}" method="GET">
                                 <input name="fecha" type="hidden" value={{$fecha}}>
                                     <button type="submit" type='button' class="btn btn-primary btn-sm">Add</button>
                             </form>
                         </div>
+                        @endif
                     </div>
                 </div>
 
@@ -62,33 +64,43 @@
                                 <div class="card-body">
 
                                     <h5 class="card-title">{{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</h5>
-                                    <br>
-                                        <p class="card-title"> Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</p><br>
-                                            <p class="card-text"> Duración: {{ implode(', ', $cartelera->peliculas()->get()->pluck('duracion')->toArray()) }} min. </p>
 
-                                            <p class="card-text">Horarios: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</p>
-                                            <div class="d-flex justify-content-end">
-                                                <a href="{{route('admin.carteleras.edit', $cartelera->id) }}" class="float-left">
-                                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                                </a>  
-                                                <form action="{{ route('admin.carteleras.destroy', ['cartelera' => $cartelera->id]) }}" method="POST">
-                                                    @csrf
-                                                    {{method_field('DELETE')}}
-                                                    <button type="sumbite" class="btn btn-danger btn-sm">Remove</button>
-                                                </form>
-                                            </div>
+                                    <p class="card-title"> Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</p>
+                                    <p class="card-text"> Duración: {{ implode(', ', $cartelera->peliculas()->get()->pluck('duracion')->toArray()) }} min. </p>
+
+                                    <p class="card-text">Horarios: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</p>
+                                    
+                                   <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
+                                            @csrf
+                                            {{method_field('POST')}}
+                                            <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
+                                        </form>
 
 
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>
 
-                                            @endforeach
+                                    @can('administrar')
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{route('admin.carteleras.edit', $cartelera->id) }}" class="float-left">
+                                            <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                        </a>  
+                                        <form action="{{ route('admin.carteleras.destroy', ['cartelera' => $cartelera->id]) }}" method="POST">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button type="sumbite" class="btn btn-danger btn-sm">Remove</button>
+                                        </form>
+                                    </div>
+                                    @endif
 
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            @endsection
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

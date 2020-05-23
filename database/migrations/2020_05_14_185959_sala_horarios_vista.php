@@ -13,7 +13,7 @@ class SalaHorariosVista extends Migration
      */
     public function up()
     {
-       DB::statement( 'CREATE VIEW horarios_disponibles as select sala.id, horarios.id as horario_id,horarios.hora from sala,horarios order by sala.id' );
+       DB::statement( 'CREATE VIEW horarios_disponibles AS select sala.id, horarios.id as horario_id, horarios.hora from sala, horarios order by sala.id' );
     }
 
     /**
