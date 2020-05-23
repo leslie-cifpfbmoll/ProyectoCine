@@ -31,11 +31,23 @@ class CartelerasController extends Controller {
         $carteleras = Carteleras::all();
         $peliculas = Peliculas::all();
         $salas = Salas::all();
-        $horarios = Horarios::all();
-        $horarios_disponibles = DB::select('SELECT * FROM horarios_disponibles hd where ROW(hd.hora, hd.id,hd.horario_id) not in (select hora,salas_id,id from horarios_o where horarios_o.fecha=:fecha) UNION ALL SELECT ho.hora,ho.salas_id,ho.id from horarios_o ho where ROW(ho.hora,ho.salas_id,ho.id) not in ( SELECT hora,id,horario_id from horarios_disponibles) order by id,hora', ['fecha' => $fecha]);
-        return view('admin.carteleras.create', compact('fecha'))->with(['horarios_disponibles' => $horarios_disponibles])->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
-    }
 
+        return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
+
+    }
+    public function getHorarios(Request $request){
+        $fecha=$request->fecha;
+        $horarios_disponibles = DB::select('SELECT * FROM horarios_disponibles hd 
+            where ROW(hd.hora, hd.id,hd.horario_id) not in (select hora,salas_id,id 
+            from horarios_o where horarios_o.fecha=:fecha)order by id,hora', ['fecha'=>$fecha]);
+        return response()->json($horarios_disponibles);
+    }
+   public function getDuracion(Request $request){
+        $id=$request->id;
+        $duracion = DB::select('select * from peliculas where id = :id', ['id' => $id]);
+        return response()->json($duracion);
+    }
+  
     public function store(Request $request) {
         $horarios = Horarios::all();
         $peliculas = Peliculas::all();
@@ -46,7 +58,7 @@ class CartelerasController extends Controller {
                     'precio' => $request->precio,
         ]);
         $cartelera->peliculas()->sync($request->pelicula);
-        $cartelera->salas()->sync($request->sala);
+        $cartelera->salas()->sync($request->sala_id);
         $cartelera->horarios()->sync($request->horarios);
         $request->session()->flash('success', 'Proyección creada correctamente.');
         return redirect()->route('admin.carteleras.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
@@ -73,7 +85,7 @@ class CartelerasController extends Controller {
         $cartelera->fecha = $request->fecha;
         $cartelera->precio = $request->precio;
         $cartelera->peliculas()->sync($request->pelicula);
-        $cartelera->salas()->sync($request->sala);
+        $cartelera->salas()->sync($request->sala_id);
         $cartelera->horarios()->sync($request->horarios);
         if ($cartelera->save()) {
             $request->session()->flash('success', 'Cartelera actualizado correctamente.');

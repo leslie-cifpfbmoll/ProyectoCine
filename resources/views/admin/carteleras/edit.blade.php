@@ -17,7 +17,7 @@
                             <label for="fpelicula">Pelicula:</label>
 
                             <select class="form-control" name="pelicula" id="fpelicula" >
-                                <option selected="selected">
+                                <option selected="selected" value="{{implode(', ', $carteleras->peliculas()->get()->pluck('id')->toArray())}}">
                                     {{ implode(', ', $carteleras->peliculas()->get()->pluck('nombre')->toArray()) }}
                                 </option>
 
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fsala">Sala:</label>
-                            <select class="form-control" name="sala" id="fsala">
+                            <select class="form-control" name="sala_id" id="fsala">
                                 <option selected="selected">
                                     {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
                                 </option>
