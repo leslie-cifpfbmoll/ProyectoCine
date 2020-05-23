@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label for="fdirector">Director:</label>
                             <select class="form-control" name="director" id="fdirector">
-                                 <option selected="selected">
+                                 <option selected="selected" value=" {{ implode(', ', $pelicula->directores()->get()->pluck('id')->toArray()) }}">
                                     {{ implode(', ', $pelicula->directores()->get()->pluck('nombre')->toArray()) }}
                                     {{ implode(', ', $pelicula->directores()->get()->pluck('apellido')->toArray()) }}
                                 </option>

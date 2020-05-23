@@ -32,7 +32,10 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
-    
+    Route::get('carteleras/get-horarios', 'CartelerasController@getHorarios')->name('carteleras.getHorarios');
+    Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
+    Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
+
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
