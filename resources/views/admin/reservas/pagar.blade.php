@@ -17,11 +17,11 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                                 <li class="breadcrumb-item"><a href="/admin/carteleras">Cartelera</a></li>
-                                <li class="breadcrumb-item">
+                                <li class="breadcrumb-item ">
                                     <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
                                         @csrf
                                         {{method_field('POST')}}
-                                        <button type="submit"  class="btn-link">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }} </button>
+                                        <a> <button type="submit"  class="btn-link">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }} </button></a>
                                     </form></li>
                                 <li class="breadcrumb-item active">Pagar</li>
                             </ol>
