@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -31,9 +32,7 @@
 
                             </select>
                         </div>
-                        <div class="form-group" id="duracion">
-                           
-                        </div>
+                      
                         <div class="form-group" id="horarios">
                            
                         </div>
