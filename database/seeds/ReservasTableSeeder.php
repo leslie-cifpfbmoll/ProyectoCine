@@ -33,7 +33,7 @@ class ReservasTableSeeder extends Seeder {
         $reserva->carteleras()->attach($cartelera);
         // $reserva1->usuarios()->attach($usuario1);
         // $reserva1->carteleras()->attach($cartelera1);
-        
+
     }
 
 }

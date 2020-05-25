@@ -21,8 +21,6 @@ class ReservasController extends Controller {
         } else {
             $sitio = $numTotal;
         }
-
-
         return view('admin.reservas.index')->with('cartelera', $cartelera)->with('sitio', $sitio);
     }
 

@@ -37,9 +37,11 @@ class CartelerasController extends Controller {
     }
     public function getHorarios(Request $request){
         $fecha=$request->fecha;
-        $horarios_disponibles = DB::select('SELECT * FROM horarios_disponibles hd 
-            where ROW(hd.hora, hd.id,hd.horario_id) not in (select hora,salas_id,id 
-            from horarios_o where horarios_o.fecha=:fecha)order by id,hora', ['fecha'=>$fecha]);
+        $horarios_disponibles = DB::select('SELECT DISTINCT hd.* FROM horarios_disponibles hd
+            where ROW(hd.id,hd.horario_id,hd.hora) not in (SELECT h_d.* FROM 
+            horarios_disponibles h_d, horarios_o ho where ho.fecha=:fecha and 
+            TIME_FORMAT(h_d.hora, "%H:%i:%s")>ho.h_ocupada and TIME_FORMAT(h_d.hora, "%H:%i:%s")<ho.h_fin 
+                and h_d.id=ho.salas_id) order by id,hora', ['fecha'=>$fecha]);
         return response()->json($horarios_disponibles);
     }
    public function getDuracion(Request $request){
