@@ -94,9 +94,10 @@
                                     <thead class="thead-dark">
                                     <th scope="col">Película</th>
                                     <th scope="col">Día</th>
-                                     <th scope="col">Hora</th>
+                                    <th scope="col">Hora</th>
                                     <th scope="col">Sala</th>
                                     <th scope="col">Nº entradas</th>
+                                    <th scope="col"></th>
                                     </thead>
                                     <tbody>
 
@@ -107,6 +108,14 @@
                                             <td>{{$reserva->hora}}</td>
                                             <td>{{$reserva->sala}}</td>
                                             <td>{{$reserva->cantidad}}</td>
+                                            <td>
+                                                <form action="{{ route('admin.reservas.destroy', ['reserva' => $reserva->id]) }}" method="POST">
+                                                    @csrf
+                                                    {{method_field('DELETE')}}
+                                                    <button type="sumbite" class="btn btn-danger btn-sm">Eliminar reserva</button>
+                                                </form>
+
+                                            </td>
                                         </tr>
 
                                         @endforeach
