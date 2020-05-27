@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/js/miapp.js</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/layouts/app.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/CartelerasController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/includes/head.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/welcome.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/public/css/app.css</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/sass/app.scss</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/includes/footer.blade.php</file>
         </group>
     </open-files>
 </project-private>

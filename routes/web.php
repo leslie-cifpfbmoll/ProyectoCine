@@ -21,6 +21,7 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/welcome', 'welcomeController@index')->name('welcome');
 Route::get('/admin', function() {
     return 'you are admin';
 })->middleware(['auth', 'auth.admin']);
