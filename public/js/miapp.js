@@ -1,3 +1,4 @@
+
 var duracion;
 var fecha = $("#fecha").val();
 var selectedSala;
@@ -9,8 +10,7 @@ var id_ocupados = [];
 $(document).ready(function () {
     $("select#fpelicula").change(duracion_pelicula);
     $("select#fsala").change(horarios_sala);
-
-});
+ });
 //duración de la película seleccionada
 function duracion_pelicula() {
     var id = $("#fpelicula").val();
