@@ -13,8 +13,6 @@ class DirectoresTableSeeder extends Seeder
     {
         DB::table('directores')->delete();
         
-        
-        
         Directores::create([
            'nombre' => 'Woody',
            'apellido' => 'Allen'
@@ -22,6 +20,14 @@ class DirectoresTableSeeder extends Seeder
         Directores::create([
            'nombre' => 'Steven',
            'apellido' => 'Spielberg'
+        ]);
+        Directores::create([
+           'nombre' => 'Cate',
+           'apellido' => 'Shortland'
+        ]);
+        Directores::create([
+           'nombre' => 'Joseph',
+           'apellido' => 'Kosinski'
         ]);
     }
 }

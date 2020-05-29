@@ -13,7 +13,7 @@ class HorariosOcupadosVista extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE VIEW horarios_o AS select c.fecha,cs.salas_id,h.id,h.hora,ADDDATE(h.hora, INTERVAL p.duracion minute) as h_fin DATE_SUB(h.hora, INTERVAL p.duracion minute) as h_ocupada from cartelera c inner join carteleras_salas cs on cs.carteleras_id=c.id INNER join carteleras_horarios ch on ch.carteleras_id=c.id inner join carteleras_peliculas cp on cp.carteleras_id=c.id,horarios h,peliculas p where h.id=ch.horarios_id and p.id=cp.peliculas_id');
+        DB::statement('CREATE VIEW horarios_o AS select c.fecha,cs.salas_id,h.id,h.hora,ADDDATE(h.hora, INTERVAL p.duracion minute) as h_fin, DATE_SUB(h.hora, INTERVAL p.duracion minute) as h_ocupada from cartelera c inner join carteleras_salas cs on cs.carteleras_id=c.id INNER join carteleras_horarios ch on ch.carteleras_id=c.id inner join carteleras_peliculas cp on cp.carteleras_id=c.id,horarios h,peliculas p where h.id=ch.horarios_id and p.id=cp.peliculas_id');
     }
 
     /**
