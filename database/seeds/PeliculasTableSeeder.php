@@ -24,6 +24,8 @@ class PeliculasTableSeeder extends Seeder {
 
         $directorUno = Directores::where('nombre', 'Woody')->first();
         $directorDos = Directores::where('nombre', 'Steven')->first();
+        $directorTres = Directores::where('nombre', 'Joseph')->first();
+        $directorCuatro = Directores::where('nombre', 'Cate')->first();
 
         $peliculaUno = Peliculas::create([
                     'nombre' => 'Parque Jurásico',
@@ -43,11 +45,33 @@ class PeliculasTableSeeder extends Seeder {
                     'mime' => 'image/jpeg',
                     'original_filename' => 'null',
         ]);
-
+        $peliculaTres = Peliculas::create([
+                    'nombre' => 'Top Gun',
+                    'estreno' => '2020-12-26',
+                    'duracion' => '128',
+                    'sinopsis' => 'Treinta años más tarde, veremos al aviador de élite de la Marina de los Estados Unidos después de haberse convertido en uno de los mejores pilotos de la escuela de vuelo.',
+                    'filename' => 'top_gun.jpg',
+                    'mime' => 'image/jpeg',
+                    'original_filename' => 'null',
+        ]);      
+        $peliculaCuatro = Peliculas::create([
+                    'nombre' => 'Viuda Negra',
+                    'estreno' => '2020-10-30',
+                    'duracion' => '120',
+                    'sinopsis' => 'Natasha Romanoff, alias Viuda Negra, se enfrenta a los capítulos más oscuros de su historia cuando surge una peligrosa conspiración relacionada con su pasado. Perseguida por una fuerza que no se detendrá ante nada para acabar con ella.',
+                    'filename' => 'viuda_negra.jpg',
+                    'mime' => 'image/jpeg',
+                    'original_filename' => 'null',
+        ]);
+        
         $peliculaUno->generos()->attach($aventuraGen);
         $peliculaUno->directores()->attach($directorDos);
         $peliculaDos->generos()->attach($documentalGen);
         $peliculaDos->directores()->attach($directorUno);
+        $peliculaTres->generos()->attach($aventuraGen);
+        $peliculaTres->directores()->attach($directorTres);
+        $peliculaCuatro->generos()->attach($aventuraGen);
+        $peliculaCuatro->directores()->attach($directorCuatro);
     }
 
 }

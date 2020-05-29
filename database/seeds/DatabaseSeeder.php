@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(GenerosTableSeeder::class);
         $this->call(PeliculasTableSeeder::class);
         $this->call(HorariosTableSeeder::class);
+        $this->call(CarouselSeeder::class);
         //$this->call(ReservasTableSeeder::class);
     }
 
