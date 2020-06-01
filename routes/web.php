@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Auth::routes(['verify' => true]);
-
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/', 'welcomeController@index')->name('welcome');
 Route::get('/admin', function() {
@@ -30,14 +29,18 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
+    Route::resource('administrar', 'AdministrarController', ['only' => ['index']]);
+    Route::get('administrar/usuarios', 'AdministrarController@getUsuarios')->name('administrar.getUsuarios');
+    Route::get('administrar/peliculas', 'AdministrarController@getPeliculas')->name('administrar.getPeliculas');
+    Route::get('administrar/directores', 'AdministrarController@getDirectores')->name('administrar.getDirectores');
+    Route::get('administrar/salas', 'AdministrarController@getSalas')->name('administrar.getSalas');
     Route::get('carteleras/get-horarios', 'CartelerasController@getHorarios')->name('carteleras.getHorarios');
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
-
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
-    Route::resource('reservas', 'ReservasController', ['except' => ['show','index']]);
+    Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
     Route::post('/reservas/index/{id}', 'ReservasController@index')->name('reservas.index');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');

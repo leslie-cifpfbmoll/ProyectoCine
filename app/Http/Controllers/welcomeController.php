@@ -12,7 +12,7 @@ class welcomeController extends Controller {
          $fecha = date("Y-m-d");
         $carousel = DB::select('select * from carousel' );
         $carteleras = Carteleras::where('fecha', $fecha)->get();
-        $estrenos = DB::select('select * from peliculas where peliculas.estreno >"2020-05-28" ' );
+        $estrenos = DB::select('select * from peliculas where peliculas.estreno > "'.$fecha.'"' );
         
         return view('welcome', compact('fecha'))->with(['carteleras' => $carteleras])->with(['carousel' => $carousel])->with(['estrenos' => $estrenos]);
     }

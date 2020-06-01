@@ -26,7 +26,7 @@ class DirectoresController extends Controller {
             'apellido' => $request->subname,
         ]);
         $request->session()->flash('success', 'Director creado correctamente.');
-        return redirect()->route('admin.directores.index');
+        return redirect()->route('admin.administrar.getDirectores');
     }
 
     public function edit($id) {
@@ -44,7 +44,7 @@ class DirectoresController extends Controller {
         } else {
             $request->session()->flash('error', 'No ha sido posible actualizar el director.');
         }
-        return redirect()->route('admin.directores.index');
+        return redirect()->route('admin.administrar.getDirectores');
     }
 
     public function destroy(Request $request, $id) {
@@ -54,7 +54,7 @@ class DirectoresController extends Controller {
         } else {
             $request->session()->flash('error', 'No ha sido posible borrar el director.');
         }
-        return redirect()->route('admin.directores.index');
+        return redirect()->route('admin.administrar.getDirectores');
     }
 
 }

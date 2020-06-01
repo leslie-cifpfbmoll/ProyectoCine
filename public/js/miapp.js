@@ -10,7 +10,8 @@ var id_ocupados = [];
 $(document).ready(function () {
     $("select#fpelicula").change(duracion_pelicula);
     $("select#fsala").change(horarios_sala);
- });
+    $("#horarios").hide();
+});
 //duración de la película seleccionada
 function duracion_pelicula() {
     var id = $("#fpelicula").val();
@@ -25,19 +26,21 @@ function duracion_pelicula() {
 }
 //sala seleccionada y sus horarios disponibles
 function horarios_sala() {
-    if(duracion="undefined"){
-       duracion_pelicula();
+    if (duracion = "undefined") {
+        duracion_pelicula();
     }
     selectedSala = $("#fsala").val();
-    $("#horarios").empty();
+    $("#disponibles").empty();
+    
     $.get(ajaxurl + "get-horarios?fecha=" + fecha, function (res, status) {
         if (status == 'success') {
             for (var i = 0; i < res.length; i++) {
                 if (res[i].id == selectedSala) {
-                    $("#horarios").append('<input type="checkbox" id="' + res[i].horario_id + '" onclick=horarios_libres(' + res[i].horario_id + ',"' + res[i].hora + '") name="horarios[]" value="' + res[i].horario_id + '"><label id="' + res[i].horario_id + 'lavel"> ' + res[i].hora + '</label>');
+                    $("#disponibles").append('<input type="checkbox" id="' + res[i].horario_id + '" onclick=horarios_libres(' + res[i].horario_id + ',"' + res[i].hora + '") name="horarios[]" value="' + res[i].horario_id + '"> <label id="' + res[i].horario_id + 'lavel"> ' + res[i].hora + '</label> ');
                 }
             }
         }
+        $("#horarios").show();
     });
 }
 
@@ -73,13 +76,13 @@ function horarios_libres(idhora, hora) {
 
 }
 /*function uncheck(idhora, hora) {
-    if ($('#'+idhora).prop("checked")) {
-        alert(" checked.");
-    } else{
-        alert("unchecked.");
-    }
-
-}*/
+ if ($('#'+idhora).prop("checked")) {
+ alert(" checked.");
+ } else{
+ alert("unchecked.");
+ }
+ 
+ }*/
 
 //pasar horas a min
 function horamin(hora) {

@@ -29,7 +29,7 @@ class CartelerasController extends Controller {
 
         $fecha = $request->input('fecha');
         $carteleras = Carteleras::all();
-        $peliculas = Peliculas::all();
+        $peliculas= DB::select('select * from peliculas where peliculas.estreno <= "'.$fecha.'"' );
         $salas = Salas::all();
 
         return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
@@ -63,7 +63,7 @@ class CartelerasController extends Controller {
         $cartelera->salas()->sync($request->sala_id);
         $cartelera->horarios()->sync($request->horarios);
         $request->session()->flash('success', 'Proyección creada correctamente.');
-        return redirect()->route('admin.carteleras.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
+        return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
     }
 
     public function get($id) {
@@ -94,7 +94,7 @@ class CartelerasController extends Controller {
         } else {
             $request->session()->flash('error', 'No ha sido posible actualizar la proyección.');
         }
-        return redirect()->route('admin.carteleras.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
+        return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
     }
 
     public function destroy(Request $request, $id) {
@@ -105,7 +105,7 @@ class CartelerasController extends Controller {
         } else {
             $request->session()->flash('error', 'No ha sido posible borrar la proyección.');
         }
-        return redirect()->route('admin.carteleras.index');
+        return redirect()->route('admin.administrar.index');
     }
 
 }

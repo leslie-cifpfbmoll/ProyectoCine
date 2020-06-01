@@ -1,36 +1,36 @@
 @extends('layouts.app')
-    
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Manage {{$director->nombre}} {{$director->apellido}}</div>
+                <div class="card-header"><h5>Editar Director</h5></div>
                 <div class="card-body">
                     <form action="{{route('admin.directores.update', ['directore' => $director->id])}}" method="POST">
-                         @csrf
+                        @csrf
                         {{method_field('PUT')}}
-                       
-                       
-                        <div class="form-check">
-                            <label for="fname">Nombre</label>
-                            <input id="fname" type="text" name="nombre" value="{{$director->nombre}}">
-                            <label for="fname">Apellido</label>
-                            <input id="fname" type="text" name="apellido" value="{{$director->apellido}}">
+                        <div class="form-group row">
+                            <label for="fname" class="col-form-label">Nombre</label>
+                            <input id="fname" class="form-control" type="text" name="name" value="{{$director->nombre}}">
                         </div>
-                        
+                        <div class="form-group row">
+                            <label for="fsubname" class="col-form-label">Apellido</label>  
+                            <input id="fsubname" class="form-control" type="text" name="subname"value="{{$director->apellido}}">
+                        </div>
+
                         <button type="submite" class="btn btn-primary">
-                           Edit
+                            Edit
                         </button>
-                    
+
                     </form>
-                  
-                
+
+
                 </div>
 
-                
+
             </div>
         </div>
     </div>
 </div>
-    @endsection
+@endsection
