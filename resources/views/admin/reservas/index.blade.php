@@ -9,7 +9,7 @@
                 <div class="card-header ">
                     <div class="card-columns">
                         <div class="card border-light"> 
-                            <a class="card-body">Reservar {{$cartelera->id}}</a>
+                            <a class="card-body">Reservar</a>
                         </div>
 
 
@@ -18,14 +18,15 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item"><a href="/admin/carteleras">Cartelera</a></li>
+
                             <li class="breadcrumb-item active" aria-current="page">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
                         </ol>
                     </nav>
 
                 </div>
                 <div class="card-body">
-                      <form action="{{ route('admin.reservas.pagar', $cartelera->id) }}" method="POST" enctype="multipart/form-data">
-                         @csrf
+                    <form action="{{ route('admin.reservas.pagar', $cartelera->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         {{method_field('POST')}}
                         <ul class="list-group">
                             <li class="list-group-item">Película: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
@@ -34,7 +35,6 @@
                             <li class="list-group-item">Día: {{ $cartelera->fecha }}</li>
                             <li class="list-group-item">Precio: {{ $cartelera->precio }} €</li>
                         </ul>
-
 
 
                         <div class="form-group">

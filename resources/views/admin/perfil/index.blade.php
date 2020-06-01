@@ -1,139 +1,180 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        @include('includes.head')
+    </head>
+    <body>
+        <div class="d-flex justify-content-center" >
+            <div class="container">
+                @include('includes.header')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="card">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
+                                <div class="card-header ">
 
-                <div class="card-header ">
-                    <div class="card-columns">
-                        <div class="card border-light"> 
-                            <a class="card-body">Mi perfil: {{$user->name}}</a>
-                        </div>
-                        <div class="card invisible"></div>
+                                    <div class="row">   
+                                        <div class="col-2 card border-light"> 
+                                            <img src="/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">
 
-                    </div>
-                </div>
+                                        </div>
 
-                <div class="card-body">
+                                        <div class="col-4">
+                                            <ul class="list-group-flush ">
+                                                <li class="list-group-item">Nombre: {{$user->name}}</li>
+                                                <li class="list-group-item">Correo: {{$user->email}}</li>
+                                                <li class="list-group-item">Usuario desde: {{$user->created_at}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6"></div>
+                                    </div>
 
 
-                    <div class="container">
+                                </div>
 
-                        <br>
-                        <!-- Nav pills -->
-                        <ul class="nav nav-pills" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#home">Información de usuario</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu1">Modificar usuario</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu2">Reservas</a>
-                            </li>
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div id="home" class="container tab-pane active"><br>
-                                <ul class="list-group">
-                                    <li class="list-group-item">Nombre: {{$user->name}}</li>
-                                    <li class="list-group-item">Correo: {{$user->email}}</li>
-                                    <li class="list-group-item">Usuario desde: {{$user->created_at}}</li>
-                                </ul>
-                            </div>
-                            <div id="menu1" class="container tab-pane fade"><br>
                                 <div class="card-body">
-                                    <form action="{{ route('admin.perfil.update', ['perfil' => $user->id]) }}" method="POST">
-                                        @csrf
-                                        {{method_field('PUT')}}
 
-                                        <div class="form-group row">
-                                            <label for="name" class="col-md-2 col-form-label text-md-right">Nombre</label>
 
-                                            <div class="col-md-6">
-                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
+                                    <div class="container">
 
-                                                @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
+                                        <br>
+                                        <!-- Nav pills -->
+                                        <ul class="nav nav-pills" role="tablist">
+                                            <li class="nav-item ">
+                                                <a class="nav-link active" data-toggle="pill" href="#menu1">Modificar usuario</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="pill" href="#menu2">Reservas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="pill" href="#menu3">Editar foto de perfil</a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+
+                                            <div id="menu1" class="container tab-pane active">
+                                                <div class="card-body">
+                                                    <form action="{{ route('admin.perfil.update', ['perfil' => $user->id]) }}" method="POST">
+                                                        @csrf
+                                                        {{method_field('PUT')}}
+
+                                                        <div class="form-group row">
+                                                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+
+                                                            <div class="col-md-6">
+                                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" required autocomplete="name" autofocus>
+
+                                                                @error('name')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
+
+                                                            <div class="col-md-6">
+                                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" required autocomplete="email">
+
+                                                                @error('email')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                       <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{$user->password}}" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                                                        <button type="submite" class="btn btn-primary">
+                                                            Edit
+                                                        </button>
+
+                                                    </form>
+
+
+                                                </div>
+                                            </div>
+                                            <div id="menu2" class="container tab-pane fade">
+                                                <table class="table">
+                                                    <thead class="thead-dark">
+                                                    <th scope="col">Película</th>
+                                                    <th scope="col">Día</th>
+                                                    <th scope="col">Hora</th>
+                                                    <th scope="col">Sala</th>
+                                                    <th scope="col">Nº entradas</th>
+                                                    <th scope="col"></th>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        @foreach ($reservas as $reserva)
+                                                        <tr>
+                                                            <td>{{$reserva->nombre}}</td>
+                                                            <td>{{$reserva->fecha}}</td>
+                                                            <td>{{$reserva->hora}}</td>
+                                                            <td>{{$reserva->sala}}</td>
+                                                            <td>{{$reserva->cantidad}}</td>
+                                                            <td>
+                                                                <form action="{{ route('admin.reservas.destroy', ['reserva' => $reserva->id]) }}" method="POST">
+                                                                    @csrf
+                                                                    {{method_field('DELETE')}}
+                                                                    <button type="sumbite" class="btn btn-danger btn-sm">Eliminar reserva</button>
+                                                                </form>
+
+                                                            </td>
+                                                        </tr>
+
+                                                        @endforeach
+
+
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                            <div id="menu3" class="container tab-pane fade">
+                                                <div class="card-body">
+                                                    <form enctype="multipart/form-data" action="/admin/perfil" method="POST">
+                                                        <img src="/uploads/avatars/{{$user->avatar}}" style="width:150px; height: 150px; float:bottom; border-radius: 50%;margin-right: 25px;">
+                                                        <input type="file" name="avatar">
+                                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                        <input type="submit" class="pull-right btn btn-sm btn-primary">
+
+                                                    </form>
+
+
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-md-2 col-form-label text-md-right">Correo</label>
+                                    </div>
 
-
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus size="5">
-
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="fpass" class="col-md-2 col-form-label text-md-right">Password</label>
-                                            <input id="fpass" type="password" name="password" value="{{$user->password}}">
-                                        </div>
-                                        <button type="submite" class="btn btn-primary">
-                                            Edit
-                                        </button>
-
-                                    </form>
 
 
                                 </div>
                             </div>
-                            <div id="menu2" class="container tab-pane fade"><br>
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                    <th scope="col">Película</th>
-                                    <th scope="col">Día</th>
-                                    <th scope="col">Hora</th>
-                                    <th scope="col">Sala</th>
-                                    <th scope="col">Nº entradas</th>
-                                    <th scope="col"></th>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($reservas as $reserva)
-                                        <tr>
-                                            <td>{{$reserva->nombre}}</td>
-                                            <td>{{$reserva->fecha}}</td>
-                                            <td>{{$reserva->hora}}</td>
-                                            <td>{{$reserva->sala}}</td>
-                                            <td>{{$reserva->cantidad}}</td>
-                                            <td>
-                                                <form action="{{ route('admin.reservas.destroy', ['reserva' => $reserva->id]) }}" method="POST">
-                                                    @csrf
-                                                    {{method_field('DELETE')}}
-                                                    <button type="sumbite" class="btn btn-danger btn-sm">Eliminar reserva</button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-
-
-                            </div>
                         </div>
                     </div>
-
-
-
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                <footer>
+                    @include('includes.footer')
+
+                </footer>
+
+                <!-- Footer -->
+                </html>
