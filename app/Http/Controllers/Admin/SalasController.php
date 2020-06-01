@@ -29,7 +29,7 @@ class SalasController extends Controller {
         ]);
         $request->session()->flash('success', 'Sala creada correctamente.');
 
-        return redirect()->route('admin.salas.index');
+        return redirect()->route('admin.administrar.getSalas');
     }
 
     public function edit($id) {
@@ -46,7 +46,7 @@ class SalasController extends Controller {
             $request->session()->flash('success', 'Sala actualizado correctamente.');
         } else {
             $request->session()->flash('error', 'No ha sido posible actualizar la sala.');
-        }return redirect()->route('admin.salas.index');
+        }return redirect()->route('admin.administrar.getSalas');
     }
 
     public function destroy(Request $request, $id) {
@@ -57,7 +57,7 @@ class SalasController extends Controller {
             $request->session()->flash('error', 'No ha sido posible borrar la sala.');
         }
 
-        return redirect()->route('admin.salas.index');
+        return redirect()->route('admin.administrar.getSalas');
     }
 
 }

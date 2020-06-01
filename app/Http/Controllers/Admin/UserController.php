@@ -53,7 +53,7 @@ class UserController extends Controller {
             $request->session()->flash('error', 'No ha sido posible actualizar el usuario.');
         }
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.administrar.getUsuarios');
     }
 
     public function create() {
@@ -77,7 +77,7 @@ class UserController extends Controller {
         $user->roles()->sync($request->roles);
 
         $request->session()->flash('success', 'Usuario creado correctamente.');
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.administrar.getUsuarios');
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller {
 
 
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.administrar.getUsuarios');
     }
     public function update_avatar(Request $request){
         $user = Auth::user();

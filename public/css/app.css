@@ -11069,12 +11069,16 @@ body {
   }
 }
 
-.register li {
+.register.links li {
   list-style: none;
 }
 
 .fab {
   color: #ff7c30;
+}
+
+#admpeliculas .card-body {
+  padding-bottom: 0px !important;
 }
 
 #cartelera {
@@ -11167,5 +11171,17 @@ footer .container a {
 
 footer .container hr {
   border-top: 1px solid #ffffff;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+  display: none;
+}
+
+.table-dark {
+  background-color: #43515e !important;
+}
+
+.bg-dark {
+  background-color: #43515e !important;
 }
 

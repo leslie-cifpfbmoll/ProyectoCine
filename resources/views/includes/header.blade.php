@@ -17,7 +17,7 @@
                     </a>
                     @can('administrar')
 
-                    <a class="dropdown-item" href="}"> <i class="fas fa-cogs"></i> Administrar</a>
+                    <a class="dropdown-item" href="{{ route ('admin.administrar.index')}}"> <i class="fas fa-cogs"></i> Administrar</a>
                     <!-- <a class="dropdown-item" href="{{ route ('admin.users.index')}}"> Users</a>
                      <a class="dropdown-item" href="{{ route ('admin.generos.index')}}"> Géneros</a>
                      <a class="dropdown-item" href="{{ route ('admin.directores.index')}}"> Directores</a>
@@ -47,7 +47,7 @@
     <div class="col-md-12">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{ route ('welcome')}}">
-                <img  src="../../uploads/logo.png" alt="logo" height="40px"></a>
+                <img src="http://localhost/ProyectoCine/public/uploads/logo.png" alt="logo" height="40px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

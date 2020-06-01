@@ -53,7 +53,7 @@ class PeliculasController extends Controller {
         $pelicula->generos()->sync($request->generos);
 
         $request->session()->flash('success', 'Película creada correctamente.');
-        return redirect()->route('admin.peliculas.index')->with(['generos' => $generos])->with(['directores' => $directores])->with(['peliculas' => $peliculas]);
+        return redirect()->route('admin.administrar.getPeliculas')->with(['generos' => $generos])->with(['directores' => $directores])->with(['peliculas' => $peliculas]);
     }
 
     public function edit($id) {
@@ -89,7 +89,7 @@ class PeliculasController extends Controller {
         } else {
             $request->session()->flash('error', 'No ha sido posible actualizar la película.');
         }
-        return redirect()->route('admin.peliculas.index')->with(['generos' => $generos])->with(['directores' => $directores])->with(['peliculas' => $pelicula]);
+        return redirect()->route('admin.administrar.getPeliculas')->with(['generos' => $generos])->with(['directores' => $directores])->with(['peliculas' => $pelicula]);
     }
 
     public function destroy(Request $request, $id) {
@@ -102,7 +102,7 @@ class PeliculasController extends Controller {
         }
 
 
-        return redirect()->route('admin.peliculas.index');
+        return redirect()->route('admin.administrar.getPeliculas');
     }
 
 }
