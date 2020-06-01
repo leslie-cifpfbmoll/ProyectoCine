@@ -6,7 +6,7 @@
     <body>
         <div class="d-flex justify-content-center" >
             <div class="container">
-                @include('includes.header')
+               @include('includes.header')
                 <div class="row">
 
                     <div id="carousel-example-2" class="carousel slide carousel-fade col-md-12" data-ride="carousel">

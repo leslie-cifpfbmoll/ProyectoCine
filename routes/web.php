@@ -17,11 +17,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::get('/', 'welcomeController@index')->name('welcome');
-Route::get('/admin', function() {
-    return 'you are admin';
-})->middleware(['auth', 'auth.admin']);
+
+Route::get('', 'welcomeController@index')->name('welcome');
+
 
 
 Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
@@ -39,6 +37,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
     Route::resource('reservas', 'ReservasController', ['except' => ['show','index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
+    Route::post('perfil', 'UserController@update_avatar');
     Route::post('/reservas/index/{id}', 'ReservasController@index')->name('reservas.index');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     Route::post('/reservas/reservar/{id}/{cantidad}', 'ReservasController@reservar')->name('reservas.reservar');
