@@ -55,7 +55,7 @@
                                         <div class="container_img">
                                             <img src="{{url('uploads/'.(implode(', ', $cartelera->peliculas()->get()->pluck('filename')->toArray())))}}" alt="Avatar" class="image" style="width:100%">
                                             <div class="middle">
-                                                <div class="text">{{ implode(' ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</div>
+                                                <div class="text">{{ implode(' ', $cartelera->horario()->get()->pluck('hora')->toArray()) }}</div>
                                             </div>
                                             @if ($loop->index == 4) 
                                             <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif

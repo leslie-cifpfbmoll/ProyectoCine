@@ -39,9 +39,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
     Route::post('perfil', 'UserController@update_avatar');
-    Route::post('/reservas/index/{id}', 'ReservasController@index')->name('reservas.index');
+    Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
-    Route::post('/reservas/reservar/{id}/{cantidad}', 'ReservasController@reservar')->name('reservas.reservar');
+    Route::post('/reservas/reservar/{id}/{cantidad}/{horario}', 'ReservasController@reservar')->name('reservas.reservar');
 });
 
 

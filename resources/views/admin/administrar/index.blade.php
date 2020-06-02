@@ -101,7 +101,7 @@
                                                     <td>
                                                         {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</td>
                                                     <td>
-                                                        {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }} </td>
+                                                        {{ implode(', ', $cartelera->horario()->get()->pluck('hora')->toArray()) }} </td>
                                                     <td>
                                                         <a href="{{route('admin.carteleras.edit', $cartelera->id) }}" class="float-left" >
                                                             <button type="button" class="btn btn-primary btn-sm">Edit</button>

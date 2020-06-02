@@ -32,6 +32,7 @@
                                 <div class="col-sm-10 col-md-11">
                                     <select name="pelicula" id="fpelicula" class="custom-select" required>
                                          <option value="" id="pselect" selected disabled>Select</option>
+                                         
                                         @foreach($peliculas as $pelicula)
                                         <option value="{{$pelicula->id}}">{{$pelicula->nombre}} </option>                                                  
                                         @endforeach
@@ -44,7 +45,7 @@
                                     <select name="sala_id" id="fsala" class="custom-select" required>
                                        <option value="" id="sselect" selected disabled>Select</option>
                                         @foreach($salas as $sala)
-                                        <option id="sala" value="{{$sala->id}}" onclick="sala()">{{$sala->id}} </option>                                                  
+                                        <option id="sala" value="{{$sala->id}}">{{$sala->id}} </option>                                                  
                                         @endforeach
 
                                     </select>

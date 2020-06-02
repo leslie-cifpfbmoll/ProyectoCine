@@ -18,7 +18,7 @@
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                                 <li class="breadcrumb-item"><a href="/admin/carteleras">Cartelera</a></li>
                                 <li class="breadcrumb-item ">
-                                    <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
+                                    <form action="{{ route('admin.reservas.index', [$cartelera->id, $horario]) }}" method="POST">
                                         @csrf
                                         {{method_field('POST')}}
                                         <button type="submit"  class="btn-link">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }} </button>
@@ -121,7 +121,7 @@
                                 </div>
 
                                 <div class="form-actions">
-                                    <form action="{{ route('admin.reservas.reservar', ['id' => $cartelera->id, 'cantidad' => $cantidad]) }}" method="POST">
+                                    <form action="{{ route('admin.reservas.reservar', ['id' => $cartelera->id, 'cantidad' => $cantidad, 'horario' => $horario]) }}" method="POST">
                                         @csrf
                                         {{method_field('POST')}}
                                         <button type="submit" class="btn btn-primary">Pagar </button>

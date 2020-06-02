@@ -81,7 +81,7 @@
                                                 <p class="card-title"> Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</p>
                                                 <p class="card-text"> Duración: {{ implode(', ', $cartelera->peliculas()->get()->pluck('duracion')->toArray()) }} min. </p>
 
-                                                <p class="card-text">Horarios: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</p>
+                                                <p class="card-text">Horarios: {{ implode(', ', $cartelera->horario()->get()->pluck('hora')->toArray()) }}</p>
 
                                                 <p> <div class="row">   
 
@@ -93,7 +93,7 @@
                                                     </div>  
                                                     @endif
                                                     <div class="col">
-                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
+                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id, $cartelera->horario()->get()->pluck('id')]) }}" method="POST">
                                                             @csrf
                                                             {{method_field('POST')}}
                                                             <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>

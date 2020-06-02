@@ -31,7 +31,21 @@
                         <ul class="list-group">
                             <li class="list-group-item">Película: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
                             <li class="list-group-item">Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</li>
-                            <li class="list-group-item">Hora: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</li>
+                            <li class="list-group-item">
+                                <label for="precio">Elige hora: </label>
+                                @php $horarios = $cartelera->horario()->get() @endphp
+
+                                <select class="form-control" name="horario">
+                                    @foreach($horarios as $horario)
+                                   
+                                    <option value="{{$horario->id}}"> {{ $horario->hora }} {{$horario->id}}</option>
+                                    @endforeach
+
+                                </select>
+
+
+
+                            </li>
                             <li class="list-group-item">Día: {{ $cartelera->fecha }}</li>
                             <li class="list-group-item">Precio: {{ $cartelera->precio }} €</li>
                         </ul>

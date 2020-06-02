@@ -61,7 +61,7 @@ class CartelerasController extends Controller {
         ]);
         $cartelera->peliculas()->sync($request->pelicula);
         $cartelera->salas()->sync($request->sala_id);
-        $cartelera->horarios()->sync($request->horarios);
+        $cartelera->horario()->sync($request->horarios);
         $request->session()->flash('success', 'Proyección creada correctamente.');
         return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
     }
