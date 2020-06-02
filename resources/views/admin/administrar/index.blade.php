@@ -55,20 +55,20 @@
                                         @php
                                         date_default_timezone_set('Europe/Madrid');
                                         setlocale(LC_TIME, 'spanish');
-                                        $mañana=date("Y-m-d", strtotime("+1 days"));
-                                        $day3=date("Y-m-d", strtotime("+2 days"));
-                                        $day4=date("Y-m-d", strtotime("+3 days"));
-                                        $day5=date("Y-m-d", strtotime("+4 days"));
+                                        $mañana=date("d/m/Y", strtotime("+1 days"));
+                                        $day3=date("d/m/Y", strtotime("+2 days"));
+                                        $day4=date("d/m/Y", strtotime("+3 days"));
+                                        $day5=date("d/m/Y", strtotime("+4 days"));
                                         @endphp
                                         <form action="{{ route('admin.administrar.index') }}" method="GET">
                                             <div class='input-group pull-left w-30-pct'>
                                                 <!-- onchange="this.form.submit()" -->
                                                 <select name="dias" class="form-control" id="fecha" > 
-                                                    <option value={{date("Y-m-d")}}>Hoy</option>
-                                                    <option value={{$mañana}} @if(isset($fecha) && $fecha==$mañana){{"selected"}} @endif >Mañana</option>
-                                                    <option value={{$day3}} @if(isset($fecha) && $fecha==$day3){{"selected"}} @endif >{{strftime("%A", strtotime($day3))}}</option>
-                                                    <option value={{$day4}} @if(isset($fecha) && $fecha==$day4){{"selected"}} @endif>{{strftime("%A", strtotime($day4))}}</option>
-                                                    <option value={{$day5}} @if(isset($fecha) && $fecha==$day5){{"selected"}} @endif>{{strftime("%A", strtotime($day5))}}</option>
+                                                    <option value={{date("Y-m-d")}}>{{date("d/m/Y")}}</option>
+                                                    <option value={{$mañana}} @if(isset($fecha) && $fecha==$mañana){{"selected"}} @endif >{{$mañana}}</option>
+                                                    <option value={{$day3}} @if(isset($fecha) && $fecha==$day3){{"selected"}} @endif >{{$day3}}</option>
+                                                    <option value={{$day4}} @if(isset($fecha) && $fecha==$day4){{"selected"}} @endif>{{$day4}}</option>
+                                                    <option value={{$day5}} @if(isset($fecha) && $fecha==$day5){{"selected"}} @endif>{{$day5}}</option>
                                                 </select>
                                                 <span class='input-group-btn'>
                                                     <button type='submit' class='btn btn-default' type='button'>

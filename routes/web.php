@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Auth::routes(['verify' => true]);
-
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'welcomeController@index')->name('welcome');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->name('admin.')->group(function() {

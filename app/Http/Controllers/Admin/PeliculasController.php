@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 class PeliculasController extends Controller {
 
     public function index() {
-        $peliculas = Peliculas::paginate(10);
+        $peliculas = Peliculas::paginate(5);
         return view('admin.peliculas.index')->with('peliculas', $peliculas);
     }
 
