@@ -13,23 +13,22 @@
                         <div class="col-md-12">
 
                             <div class="card-header ">
-
                                 <div class="container">
-                                    <div class="row mb-2">
+                                    <div class="row justify-content-center">
+                                        <div class="col-10">
                                         @php
-                                        $mañana=date("Y-m-d", strtotime("+1 days"));
-                                        $day3=date("Y-m-d", strtotime("+2 days"));
-                                        $day4=date("Y-m-d", strtotime("+3 days"));
-                                        $day5=date("Y-m-d", strtotime("+4 days"));
+                                        $mañana=date("d/m/Y", strtotime("+1 days"));
+                                        $day3=date("d/m/Y", strtotime("+2 days"));
+                                        $day4=date("d/m/Y", strtotime("+3 days"));
+                                        $day5=date("d/m/Y", strtotime("+4 days"));
                                         @endphp
                                         
-                                      <h5 class="mr-2 col-3">Mostrar día </h5>
-                                        <form  class="col-4"  action="{{ route('admin.carteleras.index') }}" method="GET">
+                                        <form  action="{{ route('admin.carteleras.index') }}" method="GET">
                                             <div class='input-group pull-left w-30-pct'>
                                                 <!-- onchange="this.form.submit()" -->
                                                
                                                 <select name="dias" class="form-control" id="fecha" > 
-                                                    <option type="submit" value={{date("Y-m-d")}}>{{date("Y-m-d")}}</option>
+                                                    <option type="submit" value={{date("d/m/Y")}}>{{date("d/m/Y")}}</option>
                                                     <option type="submit" value={{$mañana}} @if(isset($fecha) && $fecha==$mañana){{"selected"}} @endif >{{$mañana}}</option>
                                                     <option type="submit" value={{$day3}} @if(isset($fecha) && $fecha==$day3){{"selected"}} @endif >{{$day3}}</option>
                                                     <option type="submit" value={{$day4}} @if(isset($fecha) && $fecha==$day4){{"selected"}} @endif>{{$day4}}</option>
@@ -47,14 +46,7 @@
                                             </div>
                                         </form>
                                     
-                                        @can('administrar')
-
-                                        <form  class="col-4" action="{{ route('admin.carteleras.create') }}" method="GET">
-                                            <input name="fecha" type="hidden" value={{$fecha}}>
-                                            <button type="submit" type='button' class="btn btn-primary btn-sm">Agregar película nueva</button>
-                                        </form>
-
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -84,14 +76,6 @@
                                                 <p class="card-text">Horarios: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</p>
 
                                                 <p> <div class="row">   
-
-                                                    @can('administrar')
-                                                    <div class="col">
-                                                        <a href="{{route('admin.carteleras.edit', $cartelera->id) }}">
-                                                            <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                                                        </a>  
-                                                    </div>  
-                                                    @endif
                                                     <div class="col">
                                                         <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
                                                             @csrf
@@ -99,15 +83,6 @@
                                                             <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
                                                         </form>
                                                     </div>
-                                                    @can('administrar')
-                                                    <div class="col">
-                                                        <form action="{{ route('admin.carteleras.destroy', ['cartelera' => $cartelera->id]) }}" method="POST">
-                                                            @csrf
-                                                            {{method_field('DELETE')}}
-                                                            <button type="sumbite" class="btn btn-danger btn-sm">Borrar</button>
-                                                        </form>
-                                                    </div>
-                                                    @endif
                                                 </div>
                                                 </p>
                                             </div>
