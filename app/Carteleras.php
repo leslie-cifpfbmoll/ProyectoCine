@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carteleras extends Model {
 
     protected $table = 'cartelera';
-    protected $fillable = array( 'fecha', 'precio');
+    protected $fillable = array('fecha', 'precio');
 
     public function peliculas() {
         return $this->belongsToMany(Peliculas::class);
@@ -17,10 +17,16 @@ class Carteleras extends Model {
         return $this->belongsToMany(Salas::class);
     }
 
+    public function precios() {
+        return $this->belongsToMany(Precios::class);
+    }
+
     public function horarios() {
         return $this->belongsToMany(Horarios::class);
     }
-     public function reservas(){
+
+    public function reservas() {
         return $this->belongsTo('\App\Reservas');
     }
+
 }

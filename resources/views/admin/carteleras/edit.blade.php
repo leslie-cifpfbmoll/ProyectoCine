@@ -45,7 +45,7 @@
                                     </option>
                                 </select>
                             </div>
-                              <input  id="fecha"  name="fecha" type="hidden"  value="{{$carteleras->fecha}}" >
+                            <input  id="fecha"  name="fecha" type="hidden"  value="{{$carteleras->fecha}}" >
                         </div>
                         <div class="form-group row">
                             <label for="fhorario"  class="col-sm-2 col-form-label">Horario: </label>
@@ -59,20 +59,28 @@
                                 @endif
                                 @endforeach
                             </div>
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="fhorario"  class="col-sm-2 col-form-label">Horarios Disponibles: </label>
                             <div class="col-sm-10" id="disponibles" ><i onclick='horarios_sala()' class='far fa-plus-square'></i>
-                         </div>                         
+                            </div>                         
                         </div>
-                        
-                        <div class="form-group row">
-                            <label for="precio" class="col-sm-2 col-form-label">Precio</label>
-                             <div class="col-sm-10">
-                            <input id="precio" type="number" name="precio" value="{{$carteleras->precio}}">
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-2  pt-0">Precio</legend>
+                                <div class="col-sm-10 ">
+                                    <div class="form-check">
+                                        @foreach($precios as $precio)
+                                        <input class="form-check-input" name="precio" type="radio" id="precio" value="{{$precio->id}}"   @if($carteleras->precios->pluck('id')->contains($precio->id)) checked @endif>
+                                               <label class="form-check-label" for="precio">
+                                            {{$precio->precio}}€
+                                        </label><br>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </fieldset>
                         <button type="submite" class="btn btn-primary">
                             Edit
                         </button>

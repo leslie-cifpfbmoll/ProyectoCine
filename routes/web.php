@@ -25,6 +25,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
+    Route::resource('precios', 'PreciosController', ['except' => ['show']]);
     Route::resource('administrar', 'AdministrarController', ['only' => ['index']]);
     Route::get('administrar/usuarios', 'AdministrarController@getUsuarios')->name('administrar.getUsuarios');
     Route::get('administrar/peliculas', 'AdministrarController@getPeliculas')->name('administrar.getPeliculas');

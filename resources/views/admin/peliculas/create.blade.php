@@ -25,7 +25,7 @@
                         <div class="form-group row">
                             <label for="fduracion" class="col-sm-3 col-md-2 col-form-label">Duración (min.)</label>
                             <div class="col-sm-9 col-md-10">
-                                <input id="fduracion" type="number" name="duracion" class="form-control" value="{{old('duracion')}}" required>
+                                <input id="fduracion" type="number" min="1" name="duracion" class="form-control" value="{{old('duracion')}}" required>
                             </div>  
                         </div> 
                         <div class="form-group row">

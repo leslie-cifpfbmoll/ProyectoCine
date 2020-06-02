@@ -16,12 +16,12 @@ class SalasTableSeeder extends Seeder
         
         
         Salas::create([
-           'numFilas' => '20',
-           'numColumnas' => '15'
+           'numSala' => '1',
+           'aforo' => '15'
         ]);
         Salas::create([
-           'numFilas' => '28',
-           'numColumnas' => '30'
+           'numSala' => '2',
+           'aforo' => '30'
         ]);
     }
 }

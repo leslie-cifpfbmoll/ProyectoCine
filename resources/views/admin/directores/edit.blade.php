@@ -12,11 +12,10 @@
                         {{method_field('PUT')}}
                         <div class="form-group row">
                             <label for="fname" class="col-form-label">Nombre</label>
-                            <input id="fname" class="form-control" type="text" name="name" value="{{$director->nombre}}">
-                        </div>
+                            <input id="fname" type="text" class="form-control" name="nombre" value="{{$director->nombre}}">  </div>
                         <div class="form-group row">
                             <label for="fsubname" class="col-form-label">Apellido</label>  
-                            <input id="fsubname" class="form-control" type="text" name="subname"value="{{$director->apellido}}">
+                             <input id="fsubname" type="text" class="form-control" name="apellido" value="{{$director->apellido}}">
                         </div>
 
                         <button type="submite" class="btn btn-primary">

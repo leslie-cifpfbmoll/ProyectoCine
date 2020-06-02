@@ -72,8 +72,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Número de Sala</th>
-                                                    <th scope="col">Número de filas</th>
-                                                    <th scope="col">Número de columnas</th>
+                                                     <th scope="col">Asientos</th>
                                                     <th scope="col">Actions</th>
 
 
@@ -84,11 +83,9 @@
                                                 @foreach($salas as $sala)
                                                 <tr>
                                                     <td>
-                                                        {{ $sala-> id }}</td>
-                                                    <td>
-                                                        {{ $sala->numFilas }}</td>
-                                                    <td>
-                                                        {{ $sala->numColumnas }}</td>
+                                                        {{ $sala-> numSala }}</td>
+                                                    
+                                                     <td>   {{ $sala->aforo }}</td>
                                                     <td>
                                                         <a href="{{route('admin.salas.edit', $sala->id) }}" class="float-left">
                                                             <button type="button" class="btn btn-primary btn-sm">Edit</button>

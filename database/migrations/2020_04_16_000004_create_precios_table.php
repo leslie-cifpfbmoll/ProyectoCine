@@ -1,20 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSalaTable extends Migration
+class CreatePreciosTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
-    public $tableName = 'sala';
-
+     public $tableName = 'precios';
     /**
      * Run the migrations.
-     * @table sala
      *
      * @return void
      */
@@ -23,8 +17,8 @@ class CreateSalaTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('numSala');
-            $table->integer('aforo');
+            $table->string('tipo', 40);
+            $table->integer('precio');
             $table->timestamps();
         });
     }
@@ -34,8 +28,8 @@ class CreateSalaTable extends Migration
      *
      * @return void
      */
-     public function down()
-     {
-       Schema::dropIfExists($this->tableName);
-     }
+    public function down()
+    {
+        Schema::dropIfExists('precios');
+    }
 }

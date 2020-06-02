@@ -13,15 +13,15 @@
                         {{method_field('PUT')}}
                        
                        <div class="form-group row">
-                               <label for="ffilas" class=" col-sm-3 col-form-label">Número de Filas</label>      
+                               <label for="fnumSala" class=" col-sm-3 col-form-label">Número de Sala</label>
                              <div class="col-sm-9">
-                                 <input id="ffilas" class="form-control" type="integer" name="numFilas" value="{{$sala->numFilas}}">
+                                 <input id="fnumSala" class="form-control" type="integer" name="numSala" value="{{$sala->numSala}}">
                             </div>
                          </div>
                          <div class="form-group row">
-                             <label for="fcolum" class=" col-sm-3 col-form-label">Número de Columnas</label>
+                             <label for="faforo" class=" col-sm-3 col-form-label">Aforo</label>
                              <div class="col-sm-9">
-                                 <input id="fcolum" class="form-control" type="integer" name="numColumnas" value="{{$sala->numColumnas}}">
+                                 <input id="faforo" class="form-control" type="integer" name="aforo" value="{{$sala->aforo}}">
                              </div>
                          </div>
                         <button type="submite" class="btn btn-primary">

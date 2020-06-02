@@ -22,85 +22,77 @@
                             </div>
                         </div>
                     </div>
-                     </div>
-                    <div class="card-body">
+                </div>
+                <div class="card-body">
 
-                        <form action="{{ route('admin.carteleras.store')}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="fpelicula" class="col-sm-2 col-md-1 col-form-label">Película:</label>
+                    <form action="{{ route('admin.carteleras.store')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="fpelicula" class="col-sm-2 col-md-1 col-form-label">Película:</label>
+                            <div class="col-sm-10 col-md-11">
+                                <select name="pelicula" id="fpelicula" class="custom-select" required>
+                                    <option value="" id="pselect" selected disabled>Select</option>
+                                    @foreach($peliculas as $pelicula)
+                                    <option value="{{$pelicula->id}}">{{$pelicula->nombre}} </option>                                                  
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fsala" class="col-sm-2 col-md-1 col-form-label">Sala:</label>
+                            <div class="col-sm-10 col-md-11">
+                                <select name="sala_id" id="fsala" class="custom-select" required>
+                                    <option value="" id="sselect" selected disabled>Select</option>
+                                    @foreach($salas as $sala)
+                                    <option id="sala" value="{{$sala->id}}" onclick="sala()">{{$sala->id}} </option>                                                  
+                                    @endforeach
+
+                                </select>
+                                <input  id="fecha"  name="fecha" type="hidden" value={{$fecha}}>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="horarios">
+                            <label class="col-sm-2 col-md-1 col-form-label">Horarios:</label>
+                            <div class="col-sm-10 col-md-11">
+                                <div id="disponibles">
+                                </div>
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-2 col-md-1 pt-0">Precio</legend>
                                 <div class="col-sm-10 col-md-11">
-                                    <select name="pelicula" id="fpelicula" class="custom-select" required>
-                                         <option value="" id="pselect" selected disabled>Select</option>
-                                        @foreach($peliculas as $pelicula)
-                                        <option value="{{$pelicula->id}}">{{$pelicula->nombre}} </option>                                                  
+                                    <div class="form-check">
+                                        @foreach($precios as $precio)
+                                        <input class="form-check-input" type="radio" name="precio" id="precio" value="{{$precio->id}}" >
+                                        <label class="form-check-label" for="precio">
+                                            {{$precio->precio}}€
+                                        </label>
+                                        <br>
                                         @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="fsala" class="col-sm-2 col-md-1 col-form-label">Sala:</label>
-                                <div class="col-sm-10 col-md-11">
-                                    <select name="sala_id" id="fsala" class="custom-select" required>
-                                       <option value="" id="sselect" selected disabled>Select</option>
-                                        @foreach($salas as $sala)
-                                        <option id="sala" value="{{$sala->id}}" onclick="sala()">{{$sala->id}} </option>                                                  
-                                        @endforeach
-
-                                    </select>
-                                    <input  id="fecha"  name="fecha" type="hidden" value={{$fecha}}>
-                                </div>
-                            </div>
-                            <div class="form-group row" id="horarios">
-                                <label class="col-sm-2 col-md-1 col-form-label">Horarios:</label>
-                                <div class="col-sm-10 col-md-11">
-                                    <div id="disponibles">
                                     </div>
+
                                 </div>
                             </div>
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <legend class="col-form-label col-sm-2 col-md-1 pt-0">Precio</legend>
-                                    <div class="col-sm-10 col-md-11">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="precio" id="precio" value="5" >
-                                            <label class="form-check-label" for="precio">
-                                                5€
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio"  name="precio" id="precio" value="7" checked>
-                                            <label class="form-check-label" for="precio">
-                                                7€
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="precio" id="precio" value="10">
-                                            <label class="form-check-label" for="precio">
-                                                10€
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
+                        </fieldset>
 
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button type="submite" class="btn btn-primary">
-                                        Añadir
-                                    </button>
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="submite" class="btn btn-primary">
+                                    Añadir
+                                </button>
                             </div>
-                        </form>
+                        </div>
+                    </form>
 
-
-                    </div>
 
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
-    @endsection
+@endsection
 
 

@@ -33,7 +33,7 @@
                             <li class="list-group-item">Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</li>
                             <li class="list-group-item">Hora: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</li>
                             <li class="list-group-item">Día: {{ $cartelera->fecha }}</li>
-                            <li class="list-group-item">Precio: {{ $cartelera->precio }} €</li>
+                            <li class="list-group-item">Precio: {{ implode(', ', $cartelera->precios()->get()->pluck('precio')->toArray()) }} €</li>
                         </ul>
 
 

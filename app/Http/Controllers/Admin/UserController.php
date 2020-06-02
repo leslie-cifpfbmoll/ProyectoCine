@@ -29,7 +29,7 @@ class UserController extends Controller {
         $roles = Role::all();
         if (Auth::user()->id == $id) {
             $request->session()->flash('warning', 'No puedes editar tu propio usuario.');
-            return redirect()->route('admin.users.index');
+            return redirect()->route('admin.administrar.getUsuarios');
         }
         return view('admin.users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
