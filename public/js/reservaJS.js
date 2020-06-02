@@ -1,1 +1,1 @@
-var ajaxurl = "http://127.0.0.1:8000/admin/carteleras/";
+var ajaxurl = "http://3.22.174.23/admin/carteleras/";
