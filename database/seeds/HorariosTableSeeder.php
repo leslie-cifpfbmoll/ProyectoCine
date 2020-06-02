@@ -12,16 +12,16 @@ class HorariosTableSeeder extends Seeder {
      */
     public function run() {
         DB::table('horarios')->delete();
-        horarios::create([
+        Horarios::create([
             'hora' => '11:00:00',
         ]);
-        horarios::create([
+        Horarios::create([
             'hora' => '12:00:00',
         ]);
-        horarios::create([
+        Horarios::create([
             'hora' => '13:00:00',
         ]);
-        horarios::create([
+        Horarios::create([
             'hora' => '14:00:00',
         ]);
        
