@@ -28,6 +28,7 @@ class CreatePeliculasTable extends Migration {
             //$table->integer('idDirector')->unsigned()->nullable();
             $table->date('estreno');
             $table->string('duracion', 45);
+            $table->string('trailer', 200);
             $table->string('sinopsis', 1500);
             $table->string('filename')->nullable();
             $table->string('mime')->nullable();

@@ -9,7 +9,7 @@ use App\Directores;
 class Peliculas extends Model {
 
     protected $table = 'peliculas';
-    protected $fillable = array('nombre', 'idGenero', 'idDirector', 'estreno', 'duracion', 'sinopsis', 'mime', 'priginal_filename', 'filename');
+    protected $fillable = array('nombre', 'idGenero', 'idDirector', 'estreno', 'duracion','trailer', 'sinopsis', 'mime', 'priginal_filename', 'filename');
 
     public function getImageAttribute() {
         return $this->imagen;

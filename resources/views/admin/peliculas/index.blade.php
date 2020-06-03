@@ -7,7 +7,19 @@
             <div class="card">
 
                 <div class="card-header ">
-                    <h3>Películas</h3>
+                    <form action="{{ route('admin.peliculas.index') }}" method="GET">
+                        <div class='input-group pull-left w-30-pct'>
+                            <!-- onchange="this.form.submit()" -->
+                            <input name="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
+
+                            <span class='input-group-btn'>
+                                <button type='submit' class='btn btn-default' type='button'>
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </span>
+
+                        </div>
+                    </form>  
                 </div>
 
                 <div class="card-body">
@@ -16,8 +28,10 @@
                     <div class="card">
                         <div class="row no-gutters">
                             <div class="col-md-3 "> 
+                                <a href="{{route('admin.peliculas.show', $pelicula->id) }}"> 
+                                    <img  height="300px" src="{{url('uploads/'.$pelicula->filename)}}" alt="Card image cap" role="img"></img>
+                                </a>
 
-                                <img  height="300px" src="{{url('uploads/'.$pelicula->filename)}}" alt="Card image cap" role="img"></img>
 
                             </div>
                             <div class="col-md-8">
@@ -29,10 +43,10 @@
                                     <p class="card-text">Estreno: {{ $pelicula->estreno }}</p>
                                     <p class="card-text">Duración: {{ $pelicula->duracion }}(min.)</p>
                                     <p class="card-text">Sinopsis: {{ $pelicula->sinopsis }}</p>
-				   @can('administrar')
+                                    @can('administrar')
                                     <p class="card-text"><small class="text-muted">Last updated: {{ $pelicula->updated_at }}</small></p>
-	                           @endcan        
-				</div>
+                                    @endcan        
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -31,6 +31,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.administrar.getSalas') }}" aria-selected="false">Salas</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.precios.index') }}" aria-selected="false">Precios</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.col-md-4 -->

@@ -27,6 +27,13 @@
                                 <input id="fduracion" type="number" class="form-control" name="duracion" value="{{$pelicula->duracion}}">
                             </div>  
                         </div> 
+                        
+                        <div class="form-group row">
+                            <label for="ftrailer" class="col-sm-3 col-md-2 col-form-label">Tráiler</label>
+                            <div class="col-sm-9 col-md-10">
+                                <input class="form-control" id="ftrailer" type="text" name="trailer"  value="{{$pelicula->trailer}}" required>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="fsinopsis" class="col-sm-3 col-md-2 col-form-label">Sinopsis</label>
                             <div class="col-sm-9 col-md-10">
