@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Salas extends Model {
-
-    protected $table = 'sala';
-    protected $fillable = array('numSala', 'aforo');
+class Precios extends Model
+{
+    protected $table = 'precios';
+    protected $fillable = array('tipo', 'precio');
 
     public function carteleras() {
         return $this->belongsTo('\App\Carteleras');
     }
-
 }

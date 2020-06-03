@@ -18,14 +18,14 @@ class SalasController extends Controller {
     }
 
     public function store(Request $request) {
-        if (!$request->numFilas || !$request->numColumnas) {
+        if (!$request->numSala || !$request->aforo) {
 
             $request->session()->flash('error', 'Rellena todos los campos.');
             return view('admin.salas.create');
         }
         Salas::create([
-            'numFilas' => $request->numFilas,
-            'numColumnas' => $request->numColumnas
+            'numSala' => $request->numSala,
+            'aforo' => $request->aforo
         ]);
         $request->session()->flash('success', 'Sala creada correctamente.');
 
@@ -40,8 +40,8 @@ class SalasController extends Controller {
 
     public function update(Request $request, $id) {
         $sala = Salas::find($id);
-        $sala->numFilas = $request->numFilas;
-        $sala->numColumnas = $request->numColumnas;
+        $sala->numSala = $request->numSala;
+        $sala->aforo = $request->aforo;
         if ($sala->save()) {
             $request->session()->flash('success', 'Sala actualizado correctamente.');
         } else {

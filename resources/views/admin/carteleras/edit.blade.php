@@ -29,64 +29,59 @@
                         <div class="form-group row">
                             <label for="fpelicula" class="col-sm-2 col-form-label">Pelicula:</label>
                             <div class="col-sm-10">
-                              {{ implode(', ', $carteleras->peliculas()->get()->pluck('nombre')->toArray()) }}
-			<input type="hidden" name="pelicula" value="{{implode(', ', $carteleras->peliculas()->get()->pluck('id')->toArray())}}"></input>
-
+                                <select class="custom-select" name="pelicula" id="fpelicula" >
+                                    <option selected="selected" value="{{implode(', ', $carteleras->peliculas()->get()->pluck('id')->toArray())}}">
+                                        {{ implode(', ', $carteleras->peliculas()->get()->pluck('nombre')->toArray()) }}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fsala" class="col-sm-2 col-form-label">Sala:</label>
                             <div class="col-sm-10">
-                                                                      {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
-				<input type="hidden" name="sala_id" value="{{implode(', ', $carteleras->salas()->get()->pluck('id')->toArray())}}"></input>
+                                <select  class="custom-select" name="sala_id" id="fsala">
+                                    <option  id="sselect" selected="selected">
+                                        {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
+                                    </option>
+                                </select>
                             </div>
-                              <input  id="fecha"  name="fecha" type="hidden"  value="{{$carteleras->fecha}}" >
+                            <input  id="fecha"  name="fecha" type="hidden"  value="{{$carteleras->fecha}}" >
                         </div>
                         <div class="form-group row">
                             <label for="fhorario"  class="col-sm-2 col-form-label">Horario: </label>
 
                             <div class="col-sm-10" >
                                 @foreach($horarios as $horario)
-                                @if($carteleras->horario->pluck('id')->contains($horario->id))
+                                @if($carteleras->horarios->pluck('id')->contains($horario->id))
                                 <input type="checkbox" name="horarios[]" id="{{ $horario->id }}"  value="{{ $horario->id }}"
-                                       @if($carteleras->horario->pluck('id')->contains($horario->id)) checked @endif>
+                                       @if($carteleras->horarios->pluck('id')->contains($horario->id)) checked @endif>
                                        <label>{{$horario->hora}} </label>    
                                 @endif
                                 @endforeach
                             </div>
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="fhorario"  class="col-sm-2 col-form-label">Horarios Disponibles: </label>
                             <div class="col-sm-10" id="disponibles" ><i onclick='horarios_sala()' class='far fa-plus-square'></i>
-                         </div>                         
+                            </div>                         
                         </div>
-                        
-                       <fieldset class="form-group">
+                        <fieldset class="form-group">
                             <div class="row">
-                                <legend class="col-form-label col-sm-2 pt-0">Precio</legend>
-                                <div class="col-sm-10">
+                                <legend class="col-form-label col-sm-2  pt-0">Precio</legend>
+                                <div class="col-sm-10 ">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="precio" id="precio" value="5"  @if($carteleras->precio==5) checked @endif>
+                                        @foreach($precios as $precio)
+                                        <input class="form-check-input" name="precio" type="radio" id="precio" value="{{$precio->id}}"   @if($carteleras->precios->pluck('id')->contains($precio->id)) checked @endif>
                                                <label class="form-check-label" for="precio">
-                                            5
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio"  name="precio" id="precio" value="7" @if($carteleras->precio==7) checked @endif>
-                                               <label class="form-check-label" for="precio">
-                                            7
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="precio" id="precio" value="10" @if($carteleras->precio==10) checked @endif>
-                                               <label class="form-check-label" for="precio">
-                                            10
-                                        </label>
+                                            {{$precio->precio}}€
+                                        </label><br>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>                        <button type="submite" class="btn btn-primary">
+                        </fieldset>
+                        <button type="submite" class="btn btn-primary">
                             Edit
                         </button>
                     </form>

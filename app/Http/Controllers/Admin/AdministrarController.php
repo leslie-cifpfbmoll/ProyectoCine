@@ -38,7 +38,7 @@ class AdministrarController extends Controller {
 
     public function getDirectores(Request $request) {
         $nombre = $request->input('buscar');
-        $directores = Directores::where('nombre', 'like', '%' . $nombre . '%')->orderBy('nombre')->paginate(10);
+        $directores = Directores::where('nombre', 'like', '%' . $nombre . '%')->orderBy('apellido')->paginate(10);
         return view('admin.administrar.directores')->with('directores', $directores);
     }
 

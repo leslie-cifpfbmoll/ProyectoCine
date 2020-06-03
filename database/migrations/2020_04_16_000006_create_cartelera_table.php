@@ -23,7 +23,6 @@ class CreateCarteleraTable extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->date('fecha');
-            $table->integer('precio');
             $table->timestamps();
         
         });

@@ -15,8 +15,9 @@ class ReservasController extends Controller {
     public function index($id, $horario_id) {     
         $cartelera = Carteleras::find($id);
         $sala_id = DB::select(DB::raw("SELECT salas_id FROM carteleras_salas where carteleras_id LIKE '$id'"));
-        $numTotal = DB::select(DB::raw("SELECT sum(numFilas * numColumnas) as sitios FROM sala where id LIKE :sala_id"), array('sala_id' => $sala_id[0]->salas_id));
-        $numReservado = DB::select(DB::raw("SELECT sum(DISTINCT r.cantidad) as sitios FROM sala s, reserva r, horarios h, cartelera c, carteleras_salas cs, carteleras_reservas cr, horarios_reservas hr, carteleras_horarios ch WHERE s.id LIKE '$id' AND r.id=cr.reservas_id AND s.id=cs.salas_id AND h.id='$horario_id' AND ch.horarios_id= h.id AND cs.carteleras_id = c.id AND cr.carteleras_id = c.id"));
+
+        $numTotal = DB::select(DB::raw("SELECT aforo as sitios FROM sala where id LIKE :sala_id"), array('sala_id' => $sala_id[0]->salas_id));
+        $numReservado = DB::select(DB::raw("SELECT sum(r.cantidad) as sitios FROM reserva r, carteleras_reservas cr, carteleras_salas cs where cs.id='$id' AND r.id=cr.carteleras_id AND cr.carteleras_id=cs.id"));
         if ($numReservado[0]->sitios !== null) {
             $sitio = DB::select(DB::raw("SELECT :numTotal - :numReservado as sitios FROM reserva"), array('numTotal' => $numTotal[0]->sitios, 'numReservado' => $numReservado[0]->sitios));
         } else {
@@ -27,9 +28,10 @@ class ReservasController extends Controller {
 
     public function pagar(Request $request, $id) {
         $cartelera = Carteleras::find($id);
+        $precio = DB::select(DB::raw("SELECT p.precio FROM precios p, cartelera c, carteleras_precios cp where c.id LIKE '$id' AND cp.carteleras_id LIKE c.id AND cp.precios_id LIKE p.id"));
         $horario = $request->horario;
         $cantidad = $request->cantidad;
-        $total = $cantidad * $cartelera->precio;
+        $total = $cantidad * $precio[0]->precio;
         return view('admin.reservas.pagar')->with('total', $total)->with('cartelera', $cartelera)->with('cantidad', $cantidad)->with('horario', $horario);
     }
 

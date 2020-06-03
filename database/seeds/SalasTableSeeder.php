@@ -14,24 +14,13 @@ class SalasTableSeeder extends Seeder
         DB::table('sala')->delete();
         
         Salas::create([
-           'numFilas' => '20',
-           'numColumnas' => '15'
+           'numSala' => '1',
+           'aforo' => '150'
         ]);
         Salas::create([
-           'numFilas' => '20',
-           'numColumnas' => '21'
+           'numSala' => '2',
+           'aforo' => '300'
         ]);
-        Salas::create([
-           'numFilas' => '18',
-           'numColumnas' => '15'
-        ]);
-        Salas::create([
-           'numFilas' => '10',
-           'numColumnas' => '30'
-        ]);
-        Salas::create([
-           'numFilas' => '18',
-           'numColumnas' => '20'
-        ]);
+
     }
 }

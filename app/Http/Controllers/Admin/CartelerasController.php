@@ -8,6 +8,7 @@ use \App\Peliculas;
 use App\Horarios;
 use \App\Salas;
 use App\view;
+use App\Precios;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -29,41 +30,48 @@ class CartelerasController extends Controller {
 
         $fecha = $request->input('fecha');
         $carteleras = Carteleras::all();
-        $peliculas= DB::select('select * from peliculas where peliculas.estreno <= "'.$fecha.'"' );
+        $peliculas = DB::select('select * from peliculas where peliculas.estreno <= "' . $fecha . '"');
         $salas = Salas::all();
+        $precios = Precios::all();
 
-        return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras])->with(['fecha' => $fecha]);
+
+        return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras])->with(['precios' => $precios]);
 
     }
-    public function getHorarios(Request $request){
-        $fecha=$request->fecha;
+
+    public function getHorarios(Request $request) {
+        $fecha = $request->fecha;
         $horarios_disponibles = DB::select('SELECT DISTINCT hd.* FROM horarios_disponibles hd
             where ROW(hd.id,hd.horario_id,hd.hora) not in (SELECT h_d.* FROM 
             horarios_disponibles h_d, horarios_o ho where ho.fecha=:fecha and 
             TIME_FORMAT(h_d.hora, "%H:%i:%s")>ho.h_ocupada and TIME_FORMAT(h_d.hora, "%H:%i:%s")<ho.h_fin 
-                and h_d.id=ho.salas_id) order by id,hora', ['fecha'=>$fecha]);
+                and h_d.id=ho.salas_id) order by id,hora', ['fecha' => $fecha]);
         return response()->json($horarios_disponibles);
     }
-   public function getDuracion(Request $request){
-        $id=$request->id;
+
+    public function getDuracion(Request $request) {
+        $id = $request->id;
         $duracion = DB::select('select * from peliculas where id = :id', ['id' => $id]);
         return response()->json($duracion);
     }
-  
+
     public function store(Request $request) {
         $horarios = Horarios::all();
         $peliculas = Peliculas::all();
         $salas = Salas::all();
+        $precios = Precios::all();
         $carteleras = Carteleras::all();
         $cartelera = Carteleras::create([
                     'fecha' => $request->fecha,
-                    'precio' => $request->precio,
         ]);
         $cartelera->peliculas()->sync($request->pelicula);
         $cartelera->salas()->sync($request->sala_id);
-        $cartelera->horario()->sync($request->horarios);
+
+        $cartelera->horarios()->sync($request->horarios);
+        $cartelera->precios()->sync($request->precio);
+
         $request->session()->flash('success', 'Proyección creada correctamente.');
-        return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
+        return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['precios' => $precios])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
     }
 
     public function get($id) {
@@ -75,26 +83,29 @@ class CartelerasController extends Controller {
         $cartelera = Carteleras::find($id);
         $peliculas = Peliculas::all();
         $salas = Salas::all();
+        $precios = Precios::all();
         $horarios = Horarios::all();
-        return view('admin.carteleras.edit')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
+        return view('admin.carteleras.edit')->with(['peliculas' => $peliculas])->with(['precios' => $precios])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
     }
 
     public function update(Request $request, $id) {
         $cartelera = Carteleras::find($id);
         $peliculas = Peliculas::all();
         $salas = Salas::all();
+        $precios = Precios::all();
         $horarios = Horarios::all();
-        $cartelera->fecha = $request->fecha;
-        $cartelera->precio = $request->precio;
         $cartelera->peliculas()->sync($request->pelicula);
         $cartelera->salas()->sync($request->sala_id);
-        $cartelera->horario()->sync($request->horarios);
+
+        $cartelera->horarios()->sync($request->horarios);
+        $cartelera->precios()->sync($request->precio);
+
         if ($cartelera->save()) {
             $request->session()->flash('success', 'Cartelera actualizado correctamente.');
         } else {
             $request->session()->flash('error', 'No ha sido posible actualizar la proyección.');
         }
-        return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
+        return redirect()->route('admin.administrar.index')->with(['peliculas' => $peliculas])->with(['precios' => $precios])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
     }
 
     public function destroy(Request $request, $id) {
