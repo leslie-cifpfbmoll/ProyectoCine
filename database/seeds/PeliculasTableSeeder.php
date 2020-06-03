@@ -31,6 +31,7 @@ class PeliculasTableSeeder extends Seeder {
                     'nombre' => 'Parque Jurásico',
                     'estreno' => '1993-10-30',
                     'duracion' => '127',
+                    'trailer' => 'https://www.youtube-nocookie.com/embed/nFMqT3f-3XU',
                     'sinopsis' => 'Tres expertos y otras personas son invitados a un parque de diversiones, donde se encuentran dinosaurios creados en base al ADN.',
                     'filename' => 'php17D5.tmp.jpg',
                     'mime' => 'image/jpeg',
@@ -40,6 +41,7 @@ class PeliculasTableSeeder extends Seeder {
                     'nombre' => 'El sueño de Cassandra',
                     'estreno' => '2007-10-26',
                     'duracion' => '108',
+                    'trailer' => 'https://www.youtube.com/embed/I7Gkrem5vPE',
                     'sinopsis' => 'Una mujer seductora engaña a dos hermanos con problemas económicos, los lleva a experimentar una vida criminal y provoca una gran rivalidad entre ellos.',
                     'filename' => 'php3A00.tmp.jpg',
                     'mime' => 'image/jpeg',
@@ -49,21 +51,23 @@ class PeliculasTableSeeder extends Seeder {
                     'nombre' => 'Top Gun',
                     'estreno' => '2020-12-26',
                     'duracion' => '128',
+                    'trailer' => 'https://www.youtube-nocookie.com/embed/9DAIhp6SoX8',
                     'sinopsis' => 'Treinta años más tarde, veremos al aviador de élite de la Marina de los Estados Unidos después de haberse convertido en uno de los mejores pilotos de la escuela de vuelo.',
                     'filename' => 'top_gun.jpg',
                     'mime' => 'image/jpeg',
                     'original_filename' => 'null',
-        ]);      
+        ]);
         $peliculaCuatro = Peliculas::create([
                     'nombre' => 'Viuda Negra',
                     'estreno' => '2020-10-30',
                     'duracion' => '120',
+                    'trailer' => 'https://www.youtube-nocookie.com/embed/2zHzRBDlWxk',
                     'sinopsis' => 'Natasha Romanoff, alias Viuda Negra, se enfrenta a los capítulos más oscuros de su historia cuando surge una peligrosa conspiración relacionada con su pasado. Perseguida por una fuerza que no se detendrá ante nada para acabar con ella.',
                     'filename' => 'viuda_negra.jpg',
                     'mime' => 'image/jpeg',
                     'original_filename' => 'null',
         ]);
-        
+
         $peliculaUno->generos()->attach($aventuraGen);
         $peliculaUno->directores()->attach($directorDos);
         $peliculaDos->generos()->attach($documentalGen);

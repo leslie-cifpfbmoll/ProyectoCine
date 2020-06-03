@@ -6,7 +6,7 @@
     <body>
         <div class="d-flex justify-content-center" >
             <div class="container">
-               @include('includes.header')
+                @include('includes.header')
                 <div class="row">
 
                     <div id="carousel-example-2" class="carousel slide carousel-fade col-md-12" data-ride="carousel">
@@ -68,70 +68,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="card col-md-12" id="cartelera">
-
-                        <h5 class="card-header">LOS ESTRENOS MÁS ESPERADOS</h5>
-                        <div class="card-body">
-
-                            <!--Accordion wrapper-->
-                            <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
-                                @foreach($estrenos as $estreno)
-                                <!-- Accordion card -->
-                                <div class="card">
-
-                                    <!-- Card header -->
-                                    <div class="card-header" role="tab" id="headingTwo{{$loop->index}}">
-                                        @if ($loop->index == 0)
-                                        <a  data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo{{$loop->index}}"
-                                            aria-expanded="true" aria-controls="collapseTwo{{$loop->index}}">
-                                            @else
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo{{$loop->index}}"
-                                               aria-expanded="false" aria-controls="collapseTwo{{$loop->index}}">
-                                                @endif
-                                                <h5 class="mb-0">
-                                                    {{ $estreno->nombre }} <i class="fas fa-angle-down rotate-icon"></i>
-                                                </h5>
-                                            </a>
-                                    </div>
-
-                                    <!-- Card body -->
-
-                                    @if ($loop->index == 0)
-                                    <div id="collapseTwo{{$loop->index}}" class="collapse show" role="tabpanel" aria-labelledby="headingTwo{{$loop->index}}"
-                                         data-parent="#accordionEx1"> @else
-                                        <div id="collapseTwo{{$loop->index}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo{{$loop->index}}"
-                                             data-parent="#accordionEx1">
-                                            @endif
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-2 col-sm-6 col-12">
-                                                        <img src="{{url('uploads/'.$estreno->filename)}}" alt="Avatar" class="image" style="width:100%">
-                                                    </div>
-                                                    <div class="col-md-5 col-sm-6 col-12 d-flex justify-content-center">
-                                                        {{$estreno->sinopsis}}
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!-- Accordion card -->
-                                    @endforeach
-
-                                </div>
-                                <!-- Accordion wrapper -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                    </div>
-                </div>
+                </div>             
             </div>
+        </div>
     </body>
     <footer>
         @include('includes.footer')

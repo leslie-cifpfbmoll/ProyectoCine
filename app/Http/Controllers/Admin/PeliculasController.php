@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+
 class PeliculasController extends Controller {
 
-    public function index() {
-        $peliculas = Peliculas::paginate(5);
+    public function index(Request $request) {
+        $nombre = $request->input('buscar');
+        $peliculas = Peliculas::where('nombre', 'like', '%' . $nombre . '%')->orderBy('estreno')->paginate(5);
         return view('admin.peliculas.index')->with('peliculas', $peliculas);
     }
 
@@ -29,7 +31,7 @@ class PeliculasController extends Controller {
         $generos = Generos::all();
         $directores = Directores::all();
         $peliculas = Peliculas::all();
-        if (!$request->director || !$request->nombre || !$request->estreno || !$request->duracion || !$request->sinopsis) {
+        if (!$request->director || !$request->nombre || !$request->estreno || !$request->duracion || !$request->trailer || !$request->sinopsis) {
 
             $request->session()->flash('error', 'Rellena todos los campos.');
 
@@ -43,6 +45,7 @@ class PeliculasController extends Controller {
                     'nombre' => $request->nombre,
                     'estreno' => $request->estreno,
                     'duracion' => $request->duracion,
+                    'trailer' => $request->trailer,
                     'sinopsis' => $request->sinopsis,
                     'mime' => $cover->getClientMimeType(),
                     'original_filename' => $cover->getClientOriginalName(),
@@ -63,6 +66,13 @@ class PeliculasController extends Controller {
         return view('admin.peliculas.edit')->with(['generos' => $generos])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
     }
 
+    public function show($id) {
+        $generos = Generos::all();
+        $directores = Directores::all();
+        $pelicula = Peliculas::find($id);
+        return view('admin.peliculas.show')->with(['generos' => $generos])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
+    }
+
     public function update(Request $request, $id) {
         $generos = Generos::all();
         $directores = Directores::all();
@@ -80,7 +90,7 @@ class PeliculasController extends Controller {
         $pelicula->estreno = $request->estreno;
         $pelicula->duracion = $request->duracion;
         $pelicula->sinopsis = $request->sinopsis;
-
+        $pelicula->trailer = $request->trailer;
         $pelicula->generos()->sync($request->generos);
         $pelicula->directores()->sync($request->director);
 

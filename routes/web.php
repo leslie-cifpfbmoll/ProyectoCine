@@ -35,7 +35,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
    
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
-Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
+Route::resource('peliculas', 'PeliculasController');
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);

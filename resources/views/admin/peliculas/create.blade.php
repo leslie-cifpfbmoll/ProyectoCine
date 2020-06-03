@@ -29,12 +29,19 @@
                             </div>  
                         </div> 
                         <div class="form-group row">
+                            <label for="ftrailer" class="col-sm-3 col-md-2 col-form-label">Tráiler</label>
+                            <div class="col-sm-9 col-md-10">
+                                <input class="form-control" id="ftrailer" type="text" name="trailer"  value="{{old('trailer')}}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="fsinopsis" class="col-sm-3 col-md-2 col-form-label">Sinópsis</label>
                             <div class="col-sm-9 col-md-10">
                                 <textarea class="form-control" id="fsinopsis" type="text" name="sinopsis" class="form-control" value="{{old('sinpsis')}}" rows="3" required ></textarea>
-                            
+
                             </div>
                         </div>
+                        
                         <div class="form-group row">
                             <label class="col-sm-3 col-md-2 col-form-label" for="fgenero">Géneros</label><br>
                             <div class="col-sm-9 col-md-10">
