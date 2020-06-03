@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        @include('includes.head')
-    </head>
-    <body>
-        <div class="d-flex justify-content-center" >
-            <div class="container">
-                @include('includes.header')
+@extends('layouts.layout')
 
+@section('content')
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-12">
@@ -98,11 +91,4 @@
                 </div>
             </div>
         </div>
-
-        <footer>
-            @include('includes.footer')
-
-        </footer>
-
-        <!-- Footer -->
-</html>
+@endsection

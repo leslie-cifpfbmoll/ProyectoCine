@@ -88,7 +88,7 @@ class CartelerasController extends Controller {
         $cartelera->precio = $request->precio;
         $cartelera->peliculas()->sync($request->pelicula);
         $cartelera->salas()->sync($request->sala_id);
-        $cartelera->horarios()->sync($request->horarios);
+        $cartelera->horario()->sync($request->horarios);
         if ($cartelera->save()) {
             $request->session()->flash('success', 'Cartelera actualizado correctamente.');
         } else {

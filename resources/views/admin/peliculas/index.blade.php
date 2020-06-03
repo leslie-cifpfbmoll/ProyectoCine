@@ -1,8 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-
-@include('includes.head')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -31,8 +29,10 @@
                                     <p class="card-text">Estreno: {{ $pelicula->estreno }}</p>
                                     <p class="card-text">Duración: {{ $pelicula->duracion }}(min.)</p>
                                     <p class="card-text">Sinopsis: {{ $pelicula->sinopsis }}</p>
+				   @can('administrar')
                                     <p class="card-text"><small class="text-muted">Last updated: {{ $pelicula->updated_at }}</small></p>
-                                </div>
+	                           @endcan        
+				</div>
                             </div>
                         </div>
                     </div>

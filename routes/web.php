@@ -22,7 +22,7 @@ Route::get('/', 'welcomeController@index')->name('welcome');
 Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
     Route::resource('users', 'UserController', ['except' => ['show']]);
     Route::resource('generos', 'GenerosController', ['except' => ['show']]);
-    Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
+    
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
     Route::resource('administrar', 'AdministrarController', ['only' => ['index']]);
@@ -35,6 +35,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
+Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);

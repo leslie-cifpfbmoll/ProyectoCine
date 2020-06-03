@@ -88,6 +88,7 @@
                                                     <th scope="col">Título</th>
                                                     <th scope="col">Sala</th>
                                                     <th scope="col">Horarios</th>
+ 						    <th scope="col">Precio</th>
                                                     <th scope="col">Actions</th>
 
                                                 </tr>
@@ -102,6 +103,10 @@
                                                         {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</td>
                                                     <td>
                                                         {{ implode(', ', $cartelera->horario()->get()->pluck('hora')->toArray()) }} </td>
+
+                                                     <td> 
+							{{$cartelera->precio }} euros </td>
+
                                                     <td>
                                                         <a href="{{route('admin.carteleras.edit', $cartelera->id) }}" class="float-left" >
                                                             <button type="button" class="btn btn-primary btn-sm">Edit</button>

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\File;
 class UserController extends Controller {
 
     /**
@@ -106,7 +106,7 @@ class UserController extends Controller {
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename= time() . '.' . $avatar->getClientOriginalName();
-            Image::make($avatar)->resize(300,300)->save( public_path('http://3.22.174.23/uploads/avatars/' . $filename));
+            Image::make($avatar)->resize(300,300)->save(public_path('uploads/avatars/' . $filename));
             $user->avatar = $filename;
             $user->save();
         }

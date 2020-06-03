@@ -29,21 +29,16 @@
                         <div class="form-group row">
                             <label for="fpelicula" class="col-sm-2 col-form-label">Pelicula:</label>
                             <div class="col-sm-10">
-                                <select class="custom-select" name="pelicula" id="fpelicula" >
-                                    <option selected="selected" value="{{implode(', ', $carteleras->peliculas()->get()->pluck('id')->toArray())}}">
-                                        {{ implode(', ', $carteleras->peliculas()->get()->pluck('nombre')->toArray()) }}
-                                    </option>
-                                </select>
+                              {{ implode(', ', $carteleras->peliculas()->get()->pluck('nombre')->toArray()) }}
+			<input type="hidden" name="pelicula" value="{{implode(', ', $carteleras->peliculas()->get()->pluck('id')->toArray())}}"></input>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fsala" class="col-sm-2 col-form-label">Sala:</label>
                             <div class="col-sm-10">
-                                <select  class="custom-select" name="sala_id" id="fsala">
-                                    <option  id="sselect" selected="selected">
-                                        {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
-                                    </option>
-                                </select>
+                                                                      {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
+				<input type="hidden" name="sala_id" value="{{implode(', ', $carteleras->salas()->get()->pluck('id')->toArray())}}"></input>
                             </div>
                               <input  id="fecha"  name="fecha" type="hidden"  value="{{$carteleras->fecha}}" >
                         </div>
@@ -67,13 +62,31 @@
                          </div>                         
                         </div>
                         
-                        <div class="form-group row">
-                            <label for="precio" class="col-sm-2 col-form-label">Precio</label>
-                             <div class="col-sm-10">
-                            <input id="precio" type="number" name="precio" value="{{$carteleras->precio}}">
+                       <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-2 pt-0">Precio</legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="precio" id="precio" value="5"  @if($carteleras->precio==5) checked @endif>
+                                               <label class="form-check-label" for="precio">
+                                            5
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio"  name="precio" id="precio" value="7" @if($carteleras->precio==7) checked @endif>
+                                               <label class="form-check-label" for="precio">
+                                            7
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="precio" id="precio" value="10" @if($carteleras->precio==10) checked @endif>
+                                               <label class="form-check-label" for="precio">
+                                            10
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <button type="submite" class="btn btn-primary">
+                        </fieldset>                        <button type="submite" class="btn btn-primary">
                             Edit
                         </button>
                     </form>
