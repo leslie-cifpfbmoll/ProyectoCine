@@ -73,9 +73,9 @@
 
 @section('script')
 <script>
-//var ajaxurl = "http://127.0.0.1:8000/admin/reservas/";
+var ajaxurl = "http://127.0.0.1:8000/admin/reservas/";
 //var ajaxurl = "http://3.22.174.23/admin/reservas/";
- var ajaxurl= "http://localhost/ProyectoCine/public/admin/reservas/";
+// var ajaxurl= "http://localhost/ProyectoCine/public/admin/reservas/";
 
 
 

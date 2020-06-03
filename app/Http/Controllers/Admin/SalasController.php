@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use \App\Salas;
+use App\Carteleras;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalasController extends Controller {
 
@@ -43,7 +45,7 @@ class SalasController extends Controller {
         $sala->numSala = $request->numSala;
         $sala->aforo = $request->aforo;
         if ($sala->save()) {
-            $request->session()->flash('success', 'Sala actualizado correctamente.');
+            $request->session()->flash('success', 'Sala actualizada correctamente.');
         } else {
             $request->session()->flash('error', 'No ha sido posible actualizar la sala.');
         }return redirect()->route('admin.administrar.getSalas');
@@ -51,12 +53,20 @@ class SalasController extends Controller {
 
     public function destroy(Request $request, $id) {
         $sala = Salas::find($id);
-        if ($sala->delete()) {
-            $request->session()->flash('success', 'Sala borrada correctamente.');
-        } else {
-            $request->session()->flash('error', 'No ha sido posible borrar la sala.');
+        $cartelera_id = DB::select(DB::raw("SELECT c.id as id, s.numSala as sala FROM cartelera c, sala S, carteleras_salas cs WHERE s.id='$id' AND cs.salas_id=s.id AND cs.carteleras_id=c.id"));
+         
+         
+        
+        if (!$cartelera_id){
+            $sala->delete();
+            $request->session()->flash('success', 'Sala ' . $sala->numSala . ' borrada correctamente.');
+            
+        }else{
+            $request->session()->flash('error', 'No ha sido posible borrar la sala ' . $cartelera_id[0]->sala . '. Hay carteleras programadas para esta sala. ');  
+            
+            
         }
-
+      
         return redirect()->route('admin.administrar.getSalas');
     }
 
