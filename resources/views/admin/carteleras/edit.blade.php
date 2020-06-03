@@ -41,7 +41,7 @@
                             <div class="col-sm-10">
                                 <select  class="custom-select" name="sala_id" id="fsala">
                                     <option  id="sselect" selected="selected">
-                                        {{ implode(', ', $carteleras->salas()->get()->pluck('id')->toArray()) }}
+                                        {{ implode(', ', $carteleras->salas()->get()->pluck('numSala')->toArray()) }}
                                     </option>
                                 </select>
                             </div>

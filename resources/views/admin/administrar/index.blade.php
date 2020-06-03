@@ -103,12 +103,12 @@
                                                     <td>
                                                         {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</td>
                                                     <td>
-                                                        {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</td>
+                                                        {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }}</td>
                                                     <td>
-                                                        {{ implode(', ', $cartelera->horario()->get()->pluck('hora')->toArray()) }} </td>
+                                                        {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }} </td>
 
                                                      <td> 
-							{{$cartelera->precio }} euros </td>
+							{{ implode(', ', $cartelera->precios()->get()->pluck('precio')->toArray()) }} euros </td>
 
                                                     <td>
                                                         <a href="{{route('admin.carteleras.edit', $cartelera->id) }}" class="float-left" >

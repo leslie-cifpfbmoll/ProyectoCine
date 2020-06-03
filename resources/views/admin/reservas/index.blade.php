@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -30,10 +30,10 @@
                         {{method_field('POST')}}
                         <ul class="list-group">
                             <li class="list-group-item">Película: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
-                            <li class="list-group-item">Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</li>
+                            <li class="list-group-item">Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }}</li>
                             <li class="list-group-item">
                                 <label for="precio">Elige hora: </label>
-                                @php $horarios = $cartelera->horario()->get() @endphp
+                                @php $horarios = $cartelera->horarios()->get() @endphp
 
                                 <select class="form-control" name="horario">
                                     @foreach($horarios as $horario)

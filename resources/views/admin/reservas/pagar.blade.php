@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
@@ -36,10 +36,10 @@
 
                     <div class="span12 col-md-6">
 
-                        
+              
                             <fieldset>
 
-                                <legend>Total a pagar: {{$total}}€ por {{$cantidad}} entradas. </legend>
+                                <legend>Total a pagar: {{$total}} € por {{$cantidad}} entradas. </legend>
 
                                 <div class="control-group">
                                     <label class="control-label">Titular de la tarjeta</label>

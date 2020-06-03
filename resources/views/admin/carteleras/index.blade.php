@@ -63,14 +63,14 @@
                                             <div class="overlay">
                                                 <h2>{{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</h2>
 
-                                                <p class="card-title"> Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}</p>
+                                                <p class="card-title"> Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }}</p>
                                                 <p class="card-text"> Duración: {{ implode(', ', $cartelera->peliculas()->get()->pluck('duracion')->toArray()) }} min. </p>
 
-                                                <p class="card-text">Horarios: {{ implode(', ', $cartelera->horario()->get()->pluck('hora')->toArray()) }}</p>
+                                                <p class="card-text">Horarios: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</p>
 
                                                 <p> <div class="row">   
                                                     <div class="col">
-                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id, $cartelera->horario()->get()->pluck('id')]) }}" method="POST">
+                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id, $cartelera->horarios()->get()->pluck('id')]) }}" method="POST">
                                                             @csrf
                                                             {{method_field('POST')}}
                                                             <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
