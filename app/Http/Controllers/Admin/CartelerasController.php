@@ -36,7 +36,6 @@ class CartelerasController extends Controller {
 
 
         return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras])->with(['precios' => $precios]);
-
     }
 
     public function getHorarios(Request $request) {
@@ -117,6 +116,23 @@ class CartelerasController extends Controller {
             $request->session()->flash('error', 'No ha sido posible borrar la proyección.');
         }
         return redirect()->route('admin.administrar.index');
+    }
+
+    public function getAforo(Request $request) {
+        $horario_id = $request->horario_id;
+        $cartelera_id = $request->cartelera_id;
+        $numTotal = DB::select(DB::raw("SELECT aforo as sitios FROM sala where id LIKE (SELECT salas_id FROM carteleras_salas where carteleras_id LIKE '$cartelera_id')"));
+        $numReservado = DB::select(DB::raw("SELECT SUM(r.cantidad) as sitios FROM sala s, reserva r, horarios h, cartelera c, carteleras_salas cs, carteleras_reservas cr, horarios_reservas hr, carteleras_horarios ch where 
+        hr.horarios_id = h.id AND hr.reservas_id = r.id AND h.id = '$horario_id' AND 
+        cs.salas_id = s.id AND cs.carteleras_id=c.id AND c.id='$cartelera_id' AND
+        cr.reservas_id = r.id AND cr.carteleras_id = c.id AND
+        ch.horarios_id = h.id AND ch.carteleras_id = c.id"));
+
+        $sitio = ($numTotal[0]->sitios - $numReservado[0]->sitios);
+
+
+
+        return $sitio;
     }
 
 }

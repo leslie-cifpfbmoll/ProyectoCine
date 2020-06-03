@@ -22,7 +22,6 @@ Route::get('/', 'welcomeController@index')->name('welcome');
 Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
     Route::resource('users', 'UserController', ['except' => ['show']]);
     Route::resource('generos', 'GenerosController', ['except' => ['show']]);
-    
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
     Route::resource('precios', 'PreciosController', ['except' => ['show']]);
@@ -33,7 +32,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::get('administrar/salas', 'AdministrarController@getSalas')->name('administrar.getSalas');
     Route::get('carteleras/get-horarios', 'CartelerasController@getHorarios')->name('carteleras.getHorarios');
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
-    Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
+   
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
@@ -44,6 +43,8 @@ Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     Route::post('/reservas/reservar/{id}/{cantidad}/{horario}', 'ReservasController@reservar')->name('reservas.reservar');
+    Route::get('carteleras/get-aforo', 'CartelerasController@getAforo')->name('carteleras.getAforo');
+     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
 });
 
 

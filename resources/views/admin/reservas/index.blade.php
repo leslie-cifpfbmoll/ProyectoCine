@@ -24,20 +24,22 @@
                     </nav>
 
                 </div>
+
                 <div class="card-body">
                     <form action="{{ route('admin.reservas.pagar', $cartelera->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{method_field('POST')}}
                         <ul class="list-group">
                             <li class="list-group-item">Película: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
-                            <li class="list-group-item">Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }}</li>
+                            <li class="list-group-item " >Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }}</li>
+
                             <li class="list-group-item">
                                 <label for="precio">Elige hora: </label>
                                 @php $horarios = $cartelera->horarios()->get() @endphp
 
-                                <select class="form-control" name="horario">
+                                <select  class="form-control" id='horario' name="horario">
                                     @foreach($horarios as $horario)
-                                   
+
                                     <option value="{{$horario->id}}"> {{ $horario->hora }}</option>
                                     @endforeach
 
@@ -49,11 +51,12 @@
                             <li class="list-group-item">Día: {{ $cartelera->fecha }}</li>
                             <li class="list-group-item">Precio: {{ implode(', ', $cartelera->precios()->get()->pluck('precio')->toArray()) }} €</li>
                         </ul>
-
+                        <input type="hidden" id="sala_id" value="{{$cartelera->salas()->get()->pluck('id')}}">
+                        <input type="hidden" id="cartelera_id" value="{{$cartelera->id}}">
 
                         <div class="form-group">
                             <label for="precio">Elige cantidad: </label>
-                            <input id="cantidad" type="number" min="1" max="{{$sitio[0]->sitios}}" name="cantidad" value="1">
+                            <input id="cantidad" type="number" min="1" max="100" name="cantidad" value="1">
                         </div>
                         <button type="submite" class="btn btn-primary">
                             Pagar
@@ -66,4 +69,35 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    var ajaxurl = "http://127.0.0.1:8000/admin/reservas/";
+//var ajaxurl = "http://3.22.174.23/admin/reservas/";
+
+
+
+    $(document).ready(function () {
+        aforo_sala();
+        $('select#horario').change(aforo_sala);
+    });
+    function aforo_sala() {
+        var horario_id = $('#horario').val();
+        var cartelera_id = $('#cartelera_id').val();
+        var cantidad = document.querySelector("#cantidad");
+
+        $.get(ajaxurl + "get-aforo?horario_id=" + horario_id + "&cartelera_id=" + cartelera_id, function (respuesta, status) {
+
+            if (status == 'success') {
+                cantidad.setAttribute("max", respuesta);
+            }
+
+
+        });
+
+
+    }
+
+</script>
 @endsection
