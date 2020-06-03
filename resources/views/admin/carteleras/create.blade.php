@@ -28,7 +28,7 @@
                         <form action="{{ route('admin.carteleras.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="fpelicula" class="col-sm-2 col-md-1 col-form-label">Película:</label>
+                                <label for="fpelicula" class="col-sm-2 col-md-1 col-form-label">Película: {{$fecha}}</label>
                                 <div class="col-sm-10 col-md-11">
                                     <select name="pelicula" id="fpelicula" class="custom-select" required>
                                          <option value="" id="pselect" selected disabled>Select</option>

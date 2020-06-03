@@ -32,7 +32,7 @@ class CartelerasController extends Controller {
         $peliculas= DB::select('select * from peliculas where peliculas.estreno <= "'.$fecha.'"' );
         $salas = Salas::all();
 
-        return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras]);
+        return view('admin.carteleras.create', compact('fecha'))->with(['peliculas' => $peliculas])->with(['salas' => $salas])->with(['carteleras' => $carteleras])->with(['fecha' => $fecha]);
 
     }
     public function getHorarios(Request $request){

@@ -10,10 +10,10 @@
                                     <div class="row justify-content-center">
                                         <div class="col-10">
                                         @php
-                                        $mañana=date("d/m/Y", strtotime("+1 days"));
-                                        $day3=date("d/m/Y", strtotime("+2 days"));
-                                        $day4=date("d/m/Y", strtotime("+3 days"));
-                                        $day5=date("d/m/Y", strtotime("+4 days"));
+                                        $mañana=date("Y/m/d", strtotime("+1 days"));
+                                        $day3=date("Y/m/d", strtotime("+2 days"));
+                                        $day4=date("Y/m/d", strtotime("+3 days"));
+                                        $day5=date("Y/m/d", strtotime("+4 days"));
                                         @endphp
                                         
                                         <form  action="{{ route('admin.carteleras.index') }}" method="GET">
@@ -21,7 +21,7 @@
                                                 <!-- onchange="this.form.submit()" -->
                                                
                                                 <select name="dias" class="form-control" id="fecha" > 
-                                                    <option type="submit" value={{date("d/m/Y")}}>{{date("d/m/Y")}}</option>
+                                                    <option type="submit" value={{date("Y/m/d")}}>{{date("Y/m/d")}}</option>
                                                     <option type="submit" value={{$mañana}} @if(isset($fecha) && $fecha==$mañana){{"selected"}} @endif >{{$mañana}}</option>
                                                     <option type="submit" value={{$day3}} @if(isset($fecha) && $fecha==$day3){{"selected"}} @endif >{{$day3}}</option>
                                                     <option type="submit" value={{$day4}} @if(isset($fecha) && $fecha==$day4){{"selected"}} @endif>{{$day4}}</option>
