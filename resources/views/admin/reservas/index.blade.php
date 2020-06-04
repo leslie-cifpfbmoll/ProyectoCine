@@ -17,7 +17,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/admin/carteleras">Cartelera</a></li>
+                            <li class="breadcrumb-item"><a href="/carteleras">Cartelera</a></li>
 
                             <li class="breadcrumb-item active" aria-current="page">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
                         </ol>
@@ -73,9 +73,9 @@
 
 @section('script')
 <script>
-var ajaxurl = "http://127.0.0.1:8000/admin/reservas/";
-//var ajaxurl = "http://3.22.174.23/admin/reservas/";
-// var ajaxurl= "http://localhost/ProyectoCine/public/admin/reservas/";
+var ajaxurl = "http://127.0.0.1:8000/reservas/";
+//var ajaxurl = "http://3.22.174.23/reservas/";
+// var ajaxurl= "http://localhost/ProyectoCine/public/reservas/";
 
 
 
@@ -84,12 +84,12 @@ var ajaxurl = "http://127.0.0.1:8000/admin/reservas/";
         $('select#horario').change(aforo_sala);
     });
     function aforo_sala() {
+       
         var horario_id = $('#horario').val();
         var cartelera_id = $('#cartelera_id').val();
         var cantidad = document.querySelector("#cantidad");
 
         $.get(ajaxurl + "get-aforo?horario_id=" + horario_id + "&cartelera_id=" + cartelera_id, function (respuesta, status) {
-
             if (status == 'success') {
                 cantidad.setAttribute("max", respuesta);
             }

@@ -28,10 +28,7 @@ class ReservasController extends Controller {
     }
 
     public function pagar(Request $request, $id) {
-        $carteleras = Carteleras::all();
-
-
-        return view('admin.carteleras.index', compact('fecha'))->with(['carteleras' => $carteleras]);
+        $cartelera = Carteleras::find($id);
         $precio = DB::select(DB::raw("SELECT p.precio FROM precios p, cartelera c, carteleras_precios cp where c.id LIKE '$id' AND cp.carteleras_id LIKE c.id AND cp.precios_id LIKE p.id"));
         $horario = $request->horario;
         $cantidad = $request->cantidad;

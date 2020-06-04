@@ -3,72 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/SalasController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/DirectoresController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_05_11_093150_create_horarios_carteleras_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/administrar/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/administrar/usuarios.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/GenerosTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/storage/framework/views/e6d4e86ba581b6f8edaa9caaffee510a35d08f39.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/AdministrarController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/uploads/php17D5.tmp.jpg</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_05_07_090143_create_role_user_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Reservas.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/administrar/salas.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/PeliculasController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/storage/framework/views/34944ffa58e85737de2f99a2dbd7aab05ee59707.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_04_16_000006_create_cartelera_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/perfil/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/welcome.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/salas/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/reservas/pagar.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/uploads/mulan_c.png</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/includes/header.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Role.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/js/jquery.js</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/uploads/php902F.tmp.jpg</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/DirectoresTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/PreciosTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Carteleras.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/js/bootstrap.js</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_04_17_000005_create_users_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/CartelerasController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/PerfilController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/uploads/tp_gun_c.png</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Generos.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_04_16_000005_create_horarios_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Directores.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/storage/framework/views/a63cfa5db146256aeb15e56a0e64c452791b7108.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_04_16_000003_create_sala_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/SalasTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/ReservasTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/GenerosController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/UserTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/HorariosTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/reservas/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/uploads/ww_c.png</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_05_20_115629_create_reservas_user_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/administrar/peliculas.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/UserController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/uploads/php3A00.tmp.jpg</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/ReservasController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/User.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/create.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Salas.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/public/js/miapp.js</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/PeliculasTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/RolesTableSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/storage/framework/views/c690635ac57710e4a4d04645ee4083035c6d5394.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/seeds/DatabaseSeeder.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/database/migrations/2020_05_08_150739_create_generos_peliculas_table.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Horarios.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/css/app.css</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/includes/head.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/reservas/index.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/CartelerasController.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/create.blade.php</file>
         </group>
     </open-files>
 </project-private>
