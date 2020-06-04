@@ -9,7 +9,8 @@
 
                                     <div class="row">   
                                         <div class="col-md-3 col-4 card border-light"> 
-                                            <img src="http://3.22.174.23/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">
+                                            <!--<img src="http://3.22.174.23/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">-->
+                                            <img src="http://http://127.0.0.1:8000/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">
 
                                         </div>
 

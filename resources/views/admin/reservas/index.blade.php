@@ -18,7 +18,6 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route ('welcome')}}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route ('admin.carteleras.index')}}">Cartelera</a></li>
-
                             <li class="breadcrumb-item active" aria-current="page">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
                         </ol>
                     </nav>
@@ -73,9 +72,9 @@
 
 @section('script')
 <script>
-//var ajaxurl = "http://127.0.0.1:8000/admin/reservas/";
-//var ajaxurl = "http://3.22.174.23/admin/reservas/";
- var ajaxurl= "http://localhost/ProyectoCine/public/admin/reservas/";
+var ajaxurl = "http://127.0.0.1:8000/reservas/";
+//var ajaxurl = "http://3.22.174.23/reservas/";
+// var ajaxurl= "http://localhost/ProyectoCine/public/reservas/";
 
 
 
@@ -84,12 +83,12 @@
         $('select#horario').change(aforo_sala);
     });
     function aforo_sala() {
+       
         var horario_id = $('#horario').val();
         var cartelera_id = $('#cartelera_id').val();
         var cantidad = document.querySelector("#cantidad");
 
         $.get(ajaxurl + "get-aforo?horario_id=" + horario_id + "&cartelera_id=" + cartelera_id, function (respuesta, status) {
-
             if (status == 'success') {
                 cantidad.setAttribute("max", respuesta);
             }

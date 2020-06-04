@@ -47,9 +47,9 @@
     <div class="col-md-12">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{ route ('welcome')}}">
-                <!---    <img src="http://127.0.0.1:8000/uploads/logo.png" alt="logo" height="40px">-->
+                <img src="http://127.0.0.1:8000/uploads/logo.png" alt="logo" height="40px">
                 <!--<img src="http://3.22.174.23/uploads/logo.png" alt="logo" height="40px">-->
-                <img src="http://localhost/ProyectoCine/public/uploads/logo.png" alt="logo" height="40px">
+                <!--<img src="http://localhost/ProyectoCine/public/uploads/logo.png" alt="logo" height="40px">-->
 
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

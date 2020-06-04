@@ -16,7 +16,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item"><a href="/admin/carteleras">Cartelera</a></li>
+                                <li class="breadcrumb-item"><a href="/carteleras">Cartelera</a></li>
                                 <li class="breadcrumb-item ">
                                     <form action="{{ route('admin.reservas.index', [$cartelera->id, $horario]) }}" method="POST">
                                         @csrf

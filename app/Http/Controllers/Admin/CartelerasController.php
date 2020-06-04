@@ -94,7 +94,7 @@ class CartelerasController extends Controller {
         $salas = Salas::all();
         $precios = Precios::all();
         $horarios = Horarios::all();
-        return view('admin.carteleras.edit')->with(['peliculas' => $peliculas])->with(['precios' => $precios])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['carteleras' => $cartelera]);
+        return view('admin.carteleras.edit')->with(['peliculas' => $peliculas])->with(['precios' => $precios])->with(['horarios' => $horarios])->with(['salas' => $salas])->with(['cartelera' => $cartelera]);
     }
 
     public function update(Request $request, $id) {

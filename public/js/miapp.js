@@ -4,9 +4,10 @@ var fecha = $("#fecha").val();
 var selectedSala;
 var horafin;
 var checkbox;
-//var ajaxurl = "http://127.0.0.1:8000/admin/carteleras/";
-//var ajaxurl = "http://3.22.174.23/admin/carteleras/";
-var ajaxurl = "http://localhost/ProyectoCine/public/admin/carteleras/";
+var ajaxurl = "http://127.0.0.1:8000/carteleras/";
+//var ajaxurl = "http://3.22.174.23/carteleras/";
+//var ajaxurl= "http://localhost/ProyectoCine/public/carteleras/";
+
 var id_ocupados = [];
 var carteleraId = "";
 window.onload = cartelera();
@@ -30,8 +31,7 @@ function cartelera() {
                     horas.push(cart[i].hora);
                 }
             }
-          
-            tabla($sala, horas,$carteleraId);
+           tabla($sala, horas,$carteleraId);
         }
     });
 }
@@ -49,6 +49,7 @@ function link(id){
         location.href = url;
 }
 function duracion_pelicula() {
+    
     var id = $("#fpelicula").val();
     if (selectedSala) {
         document.getElementById("sselect").selected = "true";
@@ -61,6 +62,7 @@ function duracion_pelicula() {
 }
 //sala seleccionada y sus horarios disponibles
 function horarios_sala() {
+   
     if (duracion = "undefined") {
         duracion_pelicula();
     }
@@ -80,6 +82,7 @@ function horarios_sala() {
 }
 
 function horarios_libres(idhora, hora) {
+    
     var hidecheck;
     var hidelavel;
     checkbox = document.getElementById(idhora);

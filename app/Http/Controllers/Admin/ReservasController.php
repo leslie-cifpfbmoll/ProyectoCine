@@ -12,10 +12,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservasController extends Controller {
 
-    public function index($id, $horario_id) {
+    public function index(Request $request, $id) {
         $cartelera = Carteleras::find($id);
+        
 
-        return view('admin.reservas.index')->with('cartelera', $cartelera);
+        $user = Auth::check();
+        if ($user) {
+           return view('admin.reservas.index')->with('cartelera', $cartelera);
+        } else {
+            $request->session()->flash('error', 'Inicia sesión para hacer una reserva.');
+            return redirect()->route('admin.carteleras.index');
+            
+        }
+        
     }
 
     public function pagar(Request $request, $id) {
@@ -55,7 +64,5 @@ class ReservasController extends Controller {
         }
         return redirect()->route('admin.perfil.index')->with('reservas', $reservas, 'user', $user);
     }
-
-   
 
 }

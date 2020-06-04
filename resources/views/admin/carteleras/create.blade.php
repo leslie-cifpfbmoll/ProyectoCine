@@ -46,7 +46,7 @@
                                     <select name="sala_id" id="fsala" class="custom-select" required>
                                        <option value="" id="sselect" selected disabled>Select</option>
                                         @foreach($salas as $sala)
-                                        <option id="sala" value="{{$sala->id}}">{{$sala->id}} </option>                                                  
+                                        <option id="sala" value="{{$sala->id}}">{{$sala->numSala}} </option>                                                  
                                         @endforeach
 
                                 </select>

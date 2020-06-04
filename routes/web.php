@@ -19,7 +19,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'welcomeController@index')->name('welcome');
 
-Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
+Route::namespace('Admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
     Route::resource('users', 'UserController', ['except' => ['show']]);
     Route::resource('generos', 'GenerosController', ['except' => ['show']]);
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
@@ -33,10 +33,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::get('carteleras/get-horarios', 'CartelerasController@getHorarios')->name('carteleras.getHorarios');
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
     Route::get('carteleras/get-cartelera', 'CartelerasController@getCartelera')->name('carteleras.getCartelera');
-   
 });
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
-Route::resource('peliculas', 'PeliculasController');
+Route::namespace('Admin')->name('admin.')->group(function() {
+    Route::resource('peliculas', 'PeliculasController');
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
@@ -44,8 +43,13 @@ Route::resource('peliculas', 'PeliculasController');
     Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     Route::post('/reservas/reservar/{id}/{cantidad}/{horario}', 'ReservasController@reservar')->name('reservas.reservar');
-    Route::get('carteleras/get-aforo', 'CartelerasController@getAforo')->name('carteleras.getAforo');
-     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
+    Route::get('/carteleras/get-aforo', 'CartelerasController@getAforo')->name('carteleras.getAforo');
+    Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
+});
+Route::namespace('Admin')->middleware(['can:loged'])->name('admin.')->group(function() {
+   // Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
+    //Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
+    //Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
 });
 
 
