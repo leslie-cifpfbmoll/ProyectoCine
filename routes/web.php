@@ -32,6 +32,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['can:administrar'])->nam
     Route::get('administrar/salas', 'AdministrarController@getSalas')->name('administrar.getSalas');
     Route::get('carteleras/get-horarios', 'CartelerasController@getHorarios')->name('carteleras.getHorarios');
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
+    Route::get('carteleras/get-cartelera', 'CartelerasController@getCartelera')->name('carteleras.getCartelera');
    
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {

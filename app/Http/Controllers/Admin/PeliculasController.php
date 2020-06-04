@@ -9,6 +9,7 @@ use App\Generos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -67,10 +68,17 @@ class PeliculasController extends Controller {
     }
 
     public function show($id) {
+        $fecha = date("Y-m-d");
         $generos = Generos::all();
         $directores = Directores::all();
         $pelicula = Peliculas::find($id);
-        return view('admin.peliculas.show')->with(['generos' => $generos])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
+        $fechas = DB::select(DB::raw("select DISTINCT c.id,c.fecha from cartelera c 
+            inner join carteleras_salas cs on cs.carteleras_id=c.id 
+            INNER join carteleras_horarios ch on ch.carteleras_id=c.id 
+            inner join carteleras_peliculas cp on cp.carteleras_id=c.id,horarios h,peliculas p 
+            where h.id=ch.horarios_id and p.id=cp.peliculas_id and c.fecha>='$fecha' and p.id='$id'"));
+        
+        return view('admin.peliculas.show')->with(['generos' => $generos])->with(['directores' => $directores])->with(['pelicula' => $pelicula])->with(['fechas' => $fechas]);
     }
 
     public function update(Request $request, $id) {
