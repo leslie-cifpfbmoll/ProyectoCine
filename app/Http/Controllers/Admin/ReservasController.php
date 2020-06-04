@@ -12,14 +12,26 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservasController extends Controller {
 
-    public function index($id, $horario_id) {
+    public function index(Request $request, $id) {
         $cartelera = Carteleras::find($id);
+        
 
-        return view('admin.reservas.index')->with('cartelera', $cartelera);
+        $user = Auth::check();
+        if ($user) {
+           return view('admin.reservas.index')->with('cartelera', $cartelera);
+        } else {
+            $request->session()->flash('error', 'Inicia sesión para hacer una reserva.');
+            return redirect()->route('admin.carteleras.index');
+            
+        }
+        
     }
 
     public function pagar(Request $request, $id) {
-        $cartelera = Carteleras::find($id);
+        $carteleras = Carteleras::all();
+
+
+        return view('admin.carteleras.index', compact('fecha'))->with(['carteleras' => $carteleras]);
         $precio = DB::select(DB::raw("SELECT p.precio FROM precios p, cartelera c, carteleras_precios cp where c.id LIKE '$id' AND cp.carteleras_id LIKE c.id AND cp.precios_id LIKE p.id"));
         $horario = $request->horario;
         $cantidad = $request->cantidad;
@@ -55,7 +67,5 @@ class ReservasController extends Controller {
         }
         return redirect()->route('admin.perfil.index')->with('reservas', $reservas, 'user', $user);
     }
-
-   
 
 }

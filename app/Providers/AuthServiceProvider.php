@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Support\Facades\Auth;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -27,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('administrar', function($user){
            return $user->hasAnyRole('admin'); 
+        });
+        Gate::define('loged', function(){
+           $user = Auth::check();
+           if($user){
+               return true;}
+           else{ return false;}
         });
     }
 }

@@ -48,7 +48,7 @@
 
                                 <div class="row justify-content-around"> 
                                     @php $contador = 0; @endphp
-                                    @foreach($carteleras as $cartelera)
+                                    @foreach($carteleras ?? '' as $cartelera)
                                     @php $contador++; @endphp
                                     @if($contador == 5 )
                                     @php $contador = 1; @endphp
