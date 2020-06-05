@@ -30,15 +30,20 @@
                             <p class="card-text"><small class="text-muted">Last updated: {{ $pelicula->updated_at }}</small></p>
                             @endcan        
                         </div>
-                        
+                        @if (isset($carteleras))
                         <select id="cartelera">
                             @foreach($carteleras as $cartelera)
                             @php 
-                            $cartelera["horarios_id"] = implode(', ', $cartelera->horarios()->get()->pluck('id')->toArray()); @endphp
+                            date_default_timezone_set('Europe/Madrid');
+                            setlocale(LC_TIME, 'es_ES.UTF-8');
                             
-                            @if($cartelera->fecha >= $today)   
+                            $cartelera["horarios_id"] = implode(', ', $cartelera->horarios()->get()->pluck('id')->toArray()); @endphp
+
+                            @if($cartelera->fecha >= $today)  
+                           @php  $fecha = utf8_decode(strtotime($cartelera->fecha)); @endphp
                             <option data-value="{{$cartelera}}">
-                                {{$cartelera->fecha}}
+                                
+                                {{strftime("%A, %d de %B ", $fecha)}} {{implode(' o ', $cartelera->horarios()->get()->pluck('hora')->toArray())}}
                             </option>
                             @endif
                             @endforeach
@@ -49,7 +54,9 @@
                             {{method_field('POST')}}
                             <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
                         </form>
+                        @else RESERVA NO DISPONIBLE
 
+                        @endif
 
 
 
@@ -72,9 +79,8 @@
     $('#dynamic_form').submit(function () {
         var cartelera_id = $("#cartelera").find(":selected").data("value").id;
         var horarios_id = $("#cartelera").find(":selected").data("value").horarios_id;
-        var url = "{{ route("admin.reservas.index", ["cartelera_id","horarios_id"])}}";
+        var url = "{{ route("admin.reservas.index", ["cartelera_id"])}}";
         var url_view = url;
-        url_view = url_view.replace("horarios_id", horarios_id);
         url_view = url_view.replace("cartelera_id", cartelera_id);
         $(this).attr('action', url_view);
 

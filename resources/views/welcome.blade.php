@@ -53,10 +53,17 @@
                                     @foreach($carteleras as $cartelera) 
                                     <div class="col-xl-2 col-md-3 col-sm-6 col-12">
                                         <div class="container_img">
-                                            <img src="{{url('uploads/'.(implode(', ', $cartelera->peliculas()->get()->pluck('filename')->toArray())))}}" alt="Avatar" class="image" style="width:100%">
-                                            <div class="middle">
-                                                <div class="text">{{ implode(' ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</div>
-                                            </div>
+
+
+
+                                            <form action="{{ route('admin.peliculas.show', $cartelera->peliculas()->get()->pluck('id')->first()) }}" method="POST">
+                                                @csrf
+                                                {{method_field('POST')}}
+                                                <input type="image" width="184px" height="250px" name="cartelera" value="cartelera" alt="cartelera" src="{{url('uploads/'.(implode(', ', $cartelera->peliculas()->get()->pluck('filename')->toArray())))}}">
+                                                <div class="middle">
+                                                    <div class="text">{{ implode(' ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</div>
+                                                </div>
+                                            </form>
                                             @if ($loop->index == 4) 
                                             <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
                                         </div>

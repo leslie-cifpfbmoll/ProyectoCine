@@ -32,7 +32,7 @@
                                 <form id="myform" method="post" action="{{route('admin.peliculas.show', $pelicula->id) }}">
                                     @csrf
                                     {{method_field('POST')}}
-                                    <input type="image" height="300px" name="color" value="blue" alt="blue" src="{{url('uploads/'.$pelicula->filename)}}">
+                                    <input type="image" height="300px" name="cartelera" value="cartelera" alt="cartelera" src="{{url('uploads/'.$pelicula->filename)}}">
 
                                 </form>
 

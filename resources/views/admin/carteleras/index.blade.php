@@ -49,7 +49,7 @@
                                 <div class="row justify-content-around"> 
                                     
                                     @php $contador = 0; @endphp
-                                    @foreach($carteleras ?? '' as $cartelera)
+                                    @foreach($carteleras as $cartelera)
                                     @php $contador++; @endphp
                                     @if($contador == 5 )
                                     @php $contador = 1; @endphp
@@ -71,7 +71,7 @@
 
                                                 <p> <div class="row">   
                                                     <div class="col">
-                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id, $cartelera->horarios()->get()->pluck('id')]) }}" method="POST">
+                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id]) }}" method="POST">
                                                             @csrf
                                                             {{method_field('POST')}}
                                                             <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>

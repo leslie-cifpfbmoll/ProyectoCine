@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Auth::routes(['verify' => true]);
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'welcomeController@index')->name('welcome');
 
 Route::namespace('Admin')->middleware(['can:administrar'])->name('admin.')->group(function() {
@@ -34,7 +33,7 @@ Route::namespace('Admin')->middleware(['can:administrar'])->name('admin.')->grou
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
 });
 Route::namespace('Admin')->name('admin.')->group(function() {
-    Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
+    Route::post('/reservas/index/{id}', 'ReservasController@index')->name('reservas.index');
     Route::post('/peliculas/{id}', 'PeliculasController@show')->name('peliculas.show');
     Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
