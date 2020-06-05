@@ -51,27 +51,20 @@
                                 <div class="row justify-content-between">
                                     @foreach($carteleras as $cartelera) 
                                     <div class="col-xl-2 col-md-3 col-sm-6 col-12">
-                                        <div class="hovereffect">
-                                            <img class="img-fluid" src="{{url('uploads/'.(implode(', ', $cartelera->peliculas()->get()->pluck('filename')->toArray())))}}" alt="">
-                                            
-                                            <div class="overlay">
-                                                <h2>{{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</h2>
+                                        <div class="container_img">
 
-                                                <p class="card-title"> Sala: {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }}</p>
-                                              
-                                                <p class="card-text">Horarios: {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</p>
 
-                                                <p> <div class="row">   
-                                                    <div class="col">
-                                                        <form action="{{ route('admin.reservas.index', [$cartelera->id, $cartelera->horarios()->get()->pluck('id')]) }}" method="POST">
-                                                            @csrf
-                                                            {{method_field('POST')}}
-                                                            <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
-                                                        </form>
-                                                    </div>
+
+                                            <form action="{{ route('admin.peliculas.show', $cartelera->peliculas()->get()->pluck('id')->first()) }}" method="POST">
+                                                @csrf
+                                                {{method_field('POST')}}
+                                                <input type="image" width="184px" height="250px" name="cartelera" value="cartelera" alt="cartelera" src="{{url('uploads/'.(implode(', ', $cartelera->peliculas()->get()->pluck('filename')->toArray())))}}">
+                                                <div class="middle">
+                                                    <div class="text">{{ implode(' ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }}</div>
                                                 </div>
-                                                </p>
-                                            </div>
+                                            </form>
+                                            @if ($loop->index == 4) 
+                                            <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
                                         </div>
                                         @if ($loop->index == 4) 
                                             <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif

@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 
-
 class PeliculasController extends Controller {
 
     public function index(Request $request) {
@@ -68,22 +67,27 @@ class PeliculasController extends Controller {
         $generos = Generos::all();
         $directores = Directores::all();
         $pelicula = Peliculas::find($id);
-       
+
         return view('admin.peliculas.edit')->with(['generos' => $generos])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
     }
 
     public function show($id) {
-        $fecha = date("Y-m-d");
+        $today = date("Y-m-d");
         $generos = Generos::all();
         $directores = Directores::all();
         $data = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$id' AND c.id= cp.carteleras_id"));
-        $pelicula = Peliculas::find($data[0]->pelicula);
-        for($i=0; $i < count($data); $i++){         
-            $carteleras[$i] = Carteleras::find($data[$i]->cartelera);
+        if (!empty($data)) {
+            $pelicula = Peliculas::find($data[0]->pelicula);
+            for ($i = 0; $i < count($data); $i++) {
+                $carteleras[$i] = Carteleras::find($data[$i]->cartelera);
+            }
+            return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
         }
-       
+        else{
+            $pelicula = Peliculas::find($id);
+            return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
+        }
         
-    return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today'=>$today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula'=>$pelicula]);
     }
 
     public function update(Request $request, $id) {
