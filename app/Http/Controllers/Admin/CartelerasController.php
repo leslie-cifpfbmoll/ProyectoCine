@@ -60,6 +60,12 @@ class CartelerasController extends Controller {
         $salas = Salas::all();
         $precios = Precios::all();
         $carteleras = Carteleras::all();
+        if (!$request->pelicula|| !$request->sala_id || !$request->horarios || !$request->precio) {
+
+            $request->session()->flash('error', 'Rellena todos los campos.');
+
+            return back()->withInput($request->all);
+        }
         $cartelera = Carteleras::create([
                     'fecha' => $request->fecha,
         ]);

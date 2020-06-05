@@ -47,7 +47,6 @@
                     <div class="card col-md-12" id="cartelera">
                         <h5 class="card-header">CARTELERA</h5>
                         <div class="card-body">
-
                             <div class="container">
                                 <div class="row justify-content-between">
                                     @foreach($carteleras as $cartelera) 
@@ -67,11 +66,12 @@
                                             @if ($loop->index == 4) 
                                             <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
                                         </div>
+                                        @if ($loop->index == 4) 
+                                            <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
                                     </div>
                                     @if ($loop->index == 4) @break @endif
                                     @endforeach
                                 </div>
-
                             </div>
                         </div>
                     </div>

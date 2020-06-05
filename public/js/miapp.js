@@ -4,10 +4,9 @@ var fecha = $("#fecha").val();
 var selectedSala;
 var horafin;
 var checkbox;
-var ajaxurl = "http://127.0.0.1:8000/carteleras/";
+//var ajaxurl = "http://127.0.0.1:8000/carteleras/";
 //var ajaxurl = "http://3.22.174.23/carteleras/";
-//var ajaxurl= "http://localhost/ProyectoCine/public/carteleras/";
-var id_ocupados = [];
+var ajaxurl = "http://localhost/ProyectoCine/public/carteleras/";
 
 $(document).ready(function () {
     $("select#fpelicula").change(duracion_pelicula);
@@ -16,7 +15,7 @@ $(document).ready(function () {
 });
 //duración de la película seleccionada
 function duracion_pelicula() {
-    
+
     var id = $("#fpelicula").val();
     if (selectedSala) {
         document.getElementById("sselect").selected = "true";
@@ -29,19 +28,24 @@ function duracion_pelicula() {
 }
 //sala seleccionada y sus horarios disponibles
 function horarios_sala() {
-   
-    if (duracion = "undefined") {
+     alert(duracion);
+    if (duracion == "undefined") {
+        alert();
         duracion_pelicula();
     }
     selectedSala = $("#fsala").val();
     $("#disponibles").empty();
-    
+    var horarios = 0;
     $.get(ajaxurl + "get-horarios?fecha=" + fecha, function (res, status) {
         if (status == 'success') {
             for (var i = 0; i < res.length; i++) {
                 if (res[i].id == selectedSala) {
+                    horarios++;
                     $("#disponibles").append('<input type="checkbox" id="' + res[i].horario_id + '" onclick=horarios_libres(' + res[i].horario_id + ',"' + res[i].hora + '") name="horarios[]" value="' + res[i].horario_id + '"> <label id="' + res[i].horario_id + 'lavel"> ' + res[i].hora + '</label> ');
                 }
+            }
+            if (horarios == 0) {
+                $("#disponibles").append('No se han encontrado horarios disponibles ');
             }
         }
         $("#horarios").show();
@@ -49,7 +53,7 @@ function horarios_sala() {
 }
 
 function horarios_libres(idhora, hora) {
-    
+
     var hidecheck;
     var hidelavel;
     checkbox = document.getElementById(idhora);

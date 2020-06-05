@@ -53,7 +53,7 @@
                                 <input  id="fecha"  name="fecha" type="hidden" value={{$fecha}}>
                             </div>
                         </div>
-                        <div class="form-group row" id="horarios">
+                        <div class="form-group row align-items-center" id="horarios">
                             <label class="col-sm-2 col-md-1 col-form-label">Horarios:</label>
                             <div class="col-sm-10 col-md-11">
                                 <div id="disponibles">
