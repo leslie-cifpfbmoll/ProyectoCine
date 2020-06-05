@@ -8,13 +8,46 @@ var ajaxurl = "http://127.0.0.1:8000/carteleras/";
 //var ajaxurl = "http://3.22.174.23/carteleras/";
 //var ajaxurl= "http://localhost/ProyectoCine/public/carteleras/";
 var id_ocupados = [];
-
+var carteleraId = "";
+window.onload = cartelera();
 $(document).ready(function () {
     $("select#fpelicula").change(duracion_pelicula);
     $("select#fsala").change(horarios_sala);
+    $("select#ffecha").change(cartelera);
     $("#horarios").hide();
 });
 //duración de la película seleccionada
+function cartelera() {
+    var sala;
+    $carteleraId = $("#ffecha").val();
+    $("#cartelera-fecha").empty();
+    $.get(ajaxurl + "get-cartelera?id=" + $carteleraId, function (cart, status) {
+        if (status == 'success') {
+            var horas = [];
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].id == $carteleraId) {
+                    $sala = cart[i].numSala;
+                    horas.push(cart[i].hora);
+                }
+            }
+          
+            tabla($sala, horas,$carteleraId);
+        }
+    });
+}
+function tabla(sala, horas,id) {
+    $text = '<table class="table"><tr><td> Sala ' + sala + '</td>';
+    for (var i = 0; i < horas.length; i++) {
+        $text += '<td>' + horas[i] + '</td>';
+    }
+    
+    $text += " <td><form action=http://localhost/ProyectoCine/public/admin/reservas/index/"+id+" method='POST'><button type='sumbite' class='btn btn-primary btn-sm'>Reservar</button></form></td></tr> </tbody></table>";
+    $("#cartelera-fecha").append($text);
+}
+function link(id){
+    var url = "http://localhost/ProyectoCine/public/admin/reservas/index/"+id;
+        location.href = url;
+}
 function duracion_pelicula() {
     
     var id = $("#fpelicula").val();
@@ -35,7 +68,7 @@ function horarios_sala() {
     }
     selectedSala = $("#fsala").val();
     $("#disponibles").empty();
-    
+
     $.get(ajaxurl + "get-horarios?fecha=" + fecha, function (res, status) {
         if (status == 'success') {
             for (var i = 0; i < res.length; i++) {

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container" id="show-pelicula">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="container">
@@ -56,11 +56,32 @@
                     </div>
 
                 </div>
+                <div class="row no-gutters  ">
+
+                    <div class="col-sm-6 m-3">
+                        <select name="fecha" id="ffecha" class="custom-select " required>
+                           <!-- <option value="" id="ffecha" selected disabled>Cartelera</option>-->
+                            @php
+                            date_default_timezone_set('Europe/Madrid');
+                            setlocale(LC_TIME, 'spanish');
+                            @endphp
+                            @foreach($fechas as $fecha)
+                            <option value="{{$fecha->id}}" @if ($loop->index == 0) selected @endif >{{strftime("%A, %d de %B ", strtotime($fecha->fecha))}} </option>                                                  
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row no-gutters  ">
+                    <div id="cartelera-fecha" class="col-sm-6 m-3">
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
 @section ('script_reserva')
 <script>

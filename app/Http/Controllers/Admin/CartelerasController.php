@@ -54,6 +54,16 @@ class CartelerasController extends Controller {
         return response()->json($duracion);
     }
 
+    public function getCartelera(Request $request) {
+        $id = $request->id;
+        $cartelera = DB::select('select c.id,s.numSala,h.hora from cartelera c 
+            inner join carteleras_salas cs on cs.carteleras_id=c.id 
+            INNER join carteleras_horarios ch on ch.carteleras_id=c.id 
+            inner join carteleras_peliculas cp on cp.carteleras_id=c.id,horarios h,peliculas p,sala s 
+            where h.id=ch.horarios_id and p.id=cp.peliculas_id AND cs.salas_id=s.id and c.id=:id', ['id' => $id]);
+        return response()->json($cartelera);
+    }
+
     public function store(Request $request) {
         $horarios = Horarios::all();
         $peliculas = Peliculas::all();

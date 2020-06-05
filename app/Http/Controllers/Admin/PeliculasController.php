@@ -11,6 +11,7 @@ use App\Carteleras;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -71,8 +72,8 @@ class PeliculasController extends Controller {
         return view('admin.peliculas.edit')->with(['generos' => $generos])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
     }
 
-    public function show($id) { 
-        $today = date("Y-m-d");
+    public function show($id) {
+        $fecha = date("Y-m-d");
         $generos = Generos::all();
         $directores = Directores::all();
         $data = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$id' AND c.id= cp.carteleras_id"));

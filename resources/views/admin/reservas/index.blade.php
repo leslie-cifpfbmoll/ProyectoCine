@@ -16,8 +16,8 @@
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/carteleras">Cartelera</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route ('welcome')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route ('admin.carteleras.index')}}">Cartelera</a></li>
 
                             <li class="breadcrumb-item active" aria-current="page">Reservar: {{ implode(', ', $cartelera->peliculas()->get()->pluck('nombre')->toArray()) }}</li>
                         </ol>
