@@ -6,51 +6,16 @@ var horafin;
 var checkbox;
 //var ajaxurl = "http://127.0.0.1:8000/carteleras/";
 //var ajaxurl = "http://3.22.174.23/carteleras/";
-var ajaxurl= "http://localhost/ProyectoCine/public/carteleras/";
+var ajaxurl = "http://localhost/ProyectoCine/public/carteleras/";
 
-var id_ocupados = [];
-var carteleraId = "";
-window.onload = cartelera();
 $(document).ready(function () {
     $("select#fpelicula").change(duracion_pelicula);
     $("select#fsala").change(horarios_sala);
-    $("select#ffecha").change(cartelera);
     $("#horarios").hide();
 });
 //duración de la película seleccionada
-function cartelera() {
-    var sala;
-    $carteleraId = $("#ffecha").val();
-    $("#cartelera-fecha").empty();
-    $.get(ajaxurl + "get-cartelera?id=" + $carteleraId, function (cart, status) {
-        if (status == 'success') {
-            var horas = [];
-            for (var i = 0; i < cart.length; i++) {
-                if (cart[i].id == $carteleraId) {
-                    $sala = cart[i].numSala;
-                    horas.push(cart[i].hora);
-                }
-            }
-          
-            tabla($sala, horas,$carteleraId);
-        }
-    });
-}
-function tabla(sala, horas,id) {
-    $text = '<table class="table"><tr><td> Sala ' + sala + '</td>';
-    for (var i = 0; i < horas.length; i++) {
-        $text += '<td>' + horas[i] + '</td>';
-    }
-    
-    $text += " <td><form action=http://localhost/ProyectoCine/public/admin/reservas/index/"+id+" method='POST'><button type='sumbite' class='btn btn-primary btn-sm'>Reservar</button></form></td></tr> </tbody></table>";
-    $("#cartelera-fecha").append($text);
-}
-function link(id){
-    var url = "http://localhost/ProyectoCine/public/admin/reservas/index/"+id;
-        location.href = url;
-}
 function duracion_pelicula() {
-    
+
     var id = $("#fpelicula").val();
     if (selectedSala) {
         document.getElementById("sselect").selected = "true";
@@ -63,19 +28,24 @@ function duracion_pelicula() {
 }
 //sala seleccionada y sus horarios disponibles
 function horarios_sala() {
-   
-    if (duracion = "undefined") {
+     alert(duracion);
+    if (duracion == "undefined") {
+        alert();
         duracion_pelicula();
     }
     selectedSala = $("#fsala").val();
     $("#disponibles").empty();
-
+    var horarios = 0;
     $.get(ajaxurl + "get-horarios?fecha=" + fecha, function (res, status) {
         if (status == 'success') {
             for (var i = 0; i < res.length; i++) {
                 if (res[i].id == selectedSala) {
+                    horarios++;
                     $("#disponibles").append('<input type="checkbox" id="' + res[i].horario_id + '" onclick=horarios_libres(' + res[i].horario_id + ',"' + res[i].hora + '") name="horarios[]" value="' + res[i].horario_id + '"> <label id="' + res[i].horario_id + 'lavel"> ' + res[i].hora + '</label> ');
                 }
+            }
+            if (horarios == 0) {
+                $("#disponibles").append('No se han encontrado horarios disponibles ');
             }
         }
         $("#horarios").show();
@@ -83,7 +53,7 @@ function horarios_sala() {
 }
 
 function horarios_libres(idhora, hora) {
-    
+
     var hidecheck;
     var hidelavel;
     checkbox = document.getElementById(idhora);
