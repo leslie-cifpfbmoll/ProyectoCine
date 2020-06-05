@@ -17,6 +17,7 @@
         </div>
         @yield('script')
         @yield('script_horarios')
+        @yield('script_reserva')
     </body>   
     <footer>
         @include('includes.footer')

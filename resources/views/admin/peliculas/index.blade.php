@@ -23,14 +23,21 @@
                 </div>
 
                 <div class="card-body">
+
                     @foreach($peliculas as $pelicula)
 
                     <div class="card">
                         <div class="row no-gutters">
                             <div class="col-md-3 "> 
-                                <a href="{{route('admin.peliculas.show', $pelicula->id) }}"> 
-                                    <img  height="300px" src="{{url('uploads/'.$pelicula->filename)}}" alt="Card image cap" role="img"></img>
-                                </a>
+                                <form id="myform" method="post" action="{{route('admin.peliculas.show', $pelicula->id) }}">
+                                    @csrf
+                                    {{method_field('POST')}}
+                                    <input type="image" height="300px" name="color" value="blue" alt="blue" src="{{url('uploads/'.$pelicula->filename)}}">
+
+                                </form>
+
+
+
 
 
                             </div>

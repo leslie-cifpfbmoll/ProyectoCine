@@ -47,6 +47,7 @@
                             <div class="card-body">
 
                                 <div class="row justify-content-around"> 
+                                    
                                     @php $contador = 0; @endphp
                                     @foreach($carteleras ?? '' as $cartelera)
                                     @php $contador++; @endphp

@@ -34,12 +34,14 @@ Route::namespace('Admin')->middleware(['can:administrar'])->name('admin.')->grou
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
 });
 Route::namespace('Admin')->name('admin.')->group(function() {
-    Route::resource('peliculas', 'PeliculasController');
+    Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
+    Route::post('/peliculas/{id}', 'PeliculasController@show')->name('peliculas.show');
+    Route::resource('peliculas', 'PeliculasController', ['except' => ['show']]);
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
     Route::post('perfil', 'UserController@update_avatar');
-    Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
+   
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     Route::post('/reservas/reservar/{id}/{cantidad}/{horario}', 'ReservasController@reservar')->name('reservas.reservar');
     Route::get('/carteleras/get-aforo', 'CartelerasController@getAforo')->name('carteleras.getAforo');
