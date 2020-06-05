@@ -40,14 +40,15 @@ Route::namespace('Admin')->name('admin.')->group(function() {
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
     Route::post('perfil', 'UserController@update_avatar');
-   
+
+    Route::get('/peliculas/estrenos', 'peliculasController@estrenos')->name('peliculas.estrenos');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     Route::post('/reservas/reservar/{id}/{cantidad}/{horario}', 'ReservasController@reservar')->name('reservas.reservar');
     Route::get('/carteleras/get-aforo', 'CartelerasController@getAforo')->name('carteleras.getAforo');
     Route::resource('carteleras', 'CartelerasController', ['except' => ['show']]);
 });
 Route::namespace('Admin')->middleware(['can:loged'])->name('admin.')->group(function() {
-   // Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
+    // Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
     //Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     //Route::post('/reservas/index/{id}/{horario_id}', 'ReservasController@index')->name('reservas.index');
 });

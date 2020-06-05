@@ -27,7 +27,10 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                       <!--<img src="http://127.0.0.1:8000/uploads/logo.png" alt="logo" height="40px">-->
+                <!--<img src="http://3.22.174.23/uploads/logo.png" alt="logo" height="40px">-->
+                        <img src="http://localhost/ProyectoCine/public/uploads/logo.png" alt="logo" height="40px">
+
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>

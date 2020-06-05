@@ -30,9 +30,9 @@
                 <div class="row no-gutters  row align-items-center">
 
                     <div class="col-sm-6 m-3">
-                          @if (isset($carteleras))
+                        @if (isset($carteleras))
                         <select name="fecha" id="cartelera" class="custom-select " required>
-                             @foreach($carteleras as $cartelera)
+                            @foreach($carteleras as $cartelera)
                             <!-- <option value="" id="ffecha" selected disabled>Cartelera</option>-->
                             @php
                             date_default_timezone_set('Europe/Madrid');
@@ -49,8 +49,8 @@
                             @endif
                             @endforeach
                         </select>
-                           
-                       
+
+
                     </div>
                     <div class="col-sm-5">
                         <form id="dynamic_form" action="" method="POST">
@@ -58,12 +58,15 @@
                             {{method_field('POST')}}
                             <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
                         </form>
-                         @else RESERVA NO DISPONIBLE
+                        @else 
+                        <div class="alert alert-danger" role="alert">
+                            RESERVA NO DISPONIBLE
+                        </div>
 
                         @endif
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

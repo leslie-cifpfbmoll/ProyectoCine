@@ -18,9 +18,27 @@ use Illuminate\Support\Facades\Redirect;
 class PeliculasController extends Controller {
 
     public function index(Request $request) {
+        $fecha = date("Y-m-d");
         $nombre = $request->input('buscar');
-        $peliculas = Peliculas::where('nombre', 'like', '%' . $nombre . '%')->orderBy('estreno')->paginate(5);
+        if (!empty($nombre)) {
+            $peliculas = Peliculas::where('nombre', 'like', '%' . $nombre . '%')->orderBy('estreno')->paginate(5);
+        } else {
+            $peliculas = Peliculas::where('estreno', '<=', $fecha)->orderBy('estreno')->paginate(5);
+        }
+
         return view('admin.peliculas.index')->with('peliculas', $peliculas);
+    }
+
+    public function estrenos(Request $request) {
+        $fecha = date("Y-m-d");
+        $nombre = $request->input('buscar');
+        if (!empty($nombre)) {
+            $peliculas = Peliculas::where('nombre', 'like', '%' . $nombre . '%')->orderBy('estreno')->paginate(5);
+        } else {
+            $peliculas = Peliculas::where('estreno', '>', $fecha)->orderBy('estreno')->paginate(5);
+        }
+
+        return view('admin.peliculas.estrenos')->with('peliculas', $peliculas);
     }
 
     public function create() {
@@ -81,12 +99,10 @@ class PeliculasController extends Controller {
                 $carteleras[$i] = Carteleras::find($data[$i]->cartelera);
             }
             return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
-        }
-        else{
+        } else {
             $pelicula = Peliculas::find($id);
             return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
         }
-        
     }
 
     public function update(Request $request, $id) {

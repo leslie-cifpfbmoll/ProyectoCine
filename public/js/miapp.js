@@ -30,7 +30,6 @@ function duracion_pelicula() {
 function horarios_sala() {
      alert(duracion);
     if (duracion == "undefined") {
-        alert();
         duracion_pelicula();
     }
     selectedSala = $("#fsala").val();
