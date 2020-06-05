@@ -3,16 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/show.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/SalasController.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/DirectoresController.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/AdministrarController.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/welcome.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/sass/app.scss</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/public/css/app.css</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/includes/header.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/welcomeController.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/public/js/miapp.js</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/includes/head.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/show.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/reservas/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/administrar/directores.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/public/css/app.css</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/CartelerasController.php</file>
-            <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/create.blade.php</file>
-
         </group>
     </open-files>
 </project-private>

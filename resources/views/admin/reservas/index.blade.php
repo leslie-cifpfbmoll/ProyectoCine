@@ -7,13 +7,7 @@
             <div class="card">
 
                 <div class="card-header ">
-                    <div class="card-columns">
-                        <div class="card border-light"> 
-                            <a class="card-body">Reservar</a>
-                        </div>
-
-
-                    </div>
+                   
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route ('welcome')}}">Home</a></li>

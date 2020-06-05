@@ -38,7 +38,7 @@ class AdministrarController extends Controller {
 
     public function getDirectores(Request $request) {
         $nombre = $request->input('buscar');
-        $directores = Directores::where('nombre', 'like', '%' . $nombre . '%')->orderBy('apellido')->paginate(10);
+        $directores = Directores::where('nombre', 'like', '%' . $nombre . '%')->orWhere('apellido', 'like', '%' . $nombre . '%')->orderBy('apellido')->paginate(10);
         return view('admin.administrar.directores')->with('directores', $directores);
     }
 
@@ -50,14 +50,14 @@ class AdministrarController extends Controller {
     }
 
     public function getSalas(Request $request) {
-         if ($request->has('buscar') && !empty($request->input('buscar'))) {
+        if ($request->has('buscar') && !empty($request->input('buscar'))) {
             $idsala = $request->input('buscar');
-              $salas = Salas::where('id', '=', $idsala)->paginate(10);
+            $salas = Salas::where('id', '=', $idsala)->paginate(10);
         } else {
-             $salas = Salas::paginate(10);
+            $salas = Salas::paginate(10);
         }
-        
-      
+
+
         return view('admin.administrar.salas')->with('salas', $salas);
     }
 

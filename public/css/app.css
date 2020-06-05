@@ -11026,6 +11026,16 @@ body {
   width: 184px;
 }
 
+#cartelera .hovereffect img {
+  height: 250px;
+  width: 184px;
+}
+
+#cartelera .hovereffect {
+  height: 250px;
+  width: 184px;
+}
+
 #cartelera .image {
   display: block;
   height: 100%;
