@@ -33,25 +33,19 @@
 
                                 <select  class="form-control" id='horario' name="horario">
                                     @foreach($horarios as $horario)
-
                                     <option value="{{$horario->id}}"> {{ $horario->hora }}</option>
                                     @endforeach
-
                                 </select>
-
-
-
                             </li>
                             <li class="list-group-item">Día: {{ $cartelera->fecha }}</li>
                             <li class="list-group-item">Precio: {{ implode(', ', $cartelera->precios()->get()->pluck('precio')->toArray()) }} €</li>
+                            <li class="list-group-item"> <label for="precio">Elige cantidad: </label> 
+                                <input id="cantidad"  class="form-control" type="number" min="1" max="100" name="cantidad" value="1"></li>
                         </ul>
                         <input type="hidden" id="sala_id" value="{{$cartelera->salas()->get()->pluck('id')}}">
                         <input type="hidden" id="cartelera_id" value="{{$cartelera->id}}">
 
-                        <div class="form-group">
-                            <label for="precio">Elige cantidad: </label>
-                            <input id="cantidad" type="number" min="1" max="100" name="cantidad" value="1">
-                        </div>
+                        
                         <button type="submite" class="btn btn-primary">
                             Pagar
                         </button>

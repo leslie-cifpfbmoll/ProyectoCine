@@ -10947,6 +10947,10 @@ body {
   justify-content: center;
 }
 
+#pagar-container {
+  padding-bottom: 40px;
+}
+
 .links > a {
   color: #636b6f;
   padding: 0 25px;
@@ -10996,6 +11000,15 @@ body {
 
 #admpeliculas .card-body {
   padding-bottom: 0px !important;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  margin: 0px;
+}
+
+.breadcrumb > li {
+  display: flex !important;
 }
 
 #cartelera {

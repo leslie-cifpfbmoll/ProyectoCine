@@ -52,9 +52,6 @@
                                     @foreach($carteleras as $cartelera) 
                                     <div class="col-xl-2 col-md-3 col-sm-6 col-12">
                                         <div class="container_img">
-
-
-
                                             <form action="{{ route('admin.peliculas.show', $cartelera->peliculas()->get()->pluck('id')->first()) }}" method="POST">
                                                 @csrf
                                                 {{method_field('POST')}}
