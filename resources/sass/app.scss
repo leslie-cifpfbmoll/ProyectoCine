@@ -94,6 +94,15 @@ body {
         height: 250px;
         width: 184px;
     }
+      .hovereffect img {
+        height: 250px;
+        width: 184px;
+    }
+
+    .hovereffect {
+        height: 250px;
+        width: 184px;
+    } 
     .image {
         display: block;
         height: 100%;
@@ -115,6 +124,7 @@ body {
     .container_img:hover .text {
         opacity: 1;
     }
+
 }
 #perfil{
     .card-header {
