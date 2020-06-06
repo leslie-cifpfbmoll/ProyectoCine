@@ -60,7 +60,7 @@ class CartelerasController extends Controller {
         $salas = Salas::all();
         $precios = Precios::all();
         $carteleras = Carteleras::all();
-        if (!$request->pelicula|| !$request->sala_id || !$request->horarios || !$request->precio) {
+        if (!$request->pelicula || !$request->sala_id || !$request->horarios || !$request->precio) {
 
             $request->session()->flash('error', 'Rellena todos los campos.');
 
@@ -85,8 +85,9 @@ class CartelerasController extends Controller {
     }
 
     public function edit($id) {
+        $fecha = date("Y-m-d");
         $cartelera = Carteleras::find($id);
-        $peliculas = Peliculas::all();
+        $peliculas = DB::select('select * from peliculas where peliculas.estreno <= "' . $fecha . '"');
         $salas = Salas::all();
         $precios = Precios::all();
         $horarios = Horarios::all();
