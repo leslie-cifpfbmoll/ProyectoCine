@@ -10,6 +10,7 @@
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/edit.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/CartelerasController.php</file>
         </group>
     </open-files>
 </project-private>
