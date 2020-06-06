@@ -26,5 +26,8 @@ class Peliculas extends Model {
     public function carteleras() {
         return $this->belongsTo('\App\Carteleras');
     }
+     public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 
 }

@@ -40,7 +40,12 @@ Route::namespace('Admin')->name('admin.')->group(function() {
     Route::resource('reservas', 'ReservasController', ['except' => ['show', 'index']]);
     Route::resource('perfil', 'PerfilController', ['except' => ['show']]);
     Route::post('perfil', 'UserController@update_avatar');
-
+    
+    Route::post('comments/{pelicula_id}/{user_id}', 'CommentsController@store')->name('comments.store');
+    Route::post('comments/destroy/{pelicula_id}/{comment_id}', 'CommentsController@destroy')->name('comments.destroy');
+    Route::resource('comments', 'CommentsController', ['except'=>['store','destroy']]);
+    
+    
     Route::get('/peliculas/estrenos', 'peliculasController@estrenos')->name('peliculas.estrenos');
     Route::post('/reservas/pagar/{id}', 'ReservasController@pagar')->name('reservas.pagar');
     Route::post('/reservas/reservar/{id}/{cantidad}/{horario}', 'ReservasController@reservar')->name('reservas.reservar');

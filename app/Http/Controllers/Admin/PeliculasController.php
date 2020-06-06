@@ -8,6 +8,7 @@ use App\Directores;
 use App\Generos;
 use App\Horarios;
 use App\Carteleras;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -89,19 +90,44 @@ class PeliculasController extends Controller {
     }
 
     public function show($id) {
+
+        $user = Auth::user();
         $today = date("Y-m-d");
         $generos = Generos::all();
         $directores = Directores::all();
-        $data = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$id' AND c.id= cp.carteleras_id"));
-        if (!empty($data)) {
-            $pelicula = Peliculas::find($data[0]->pelicula);
-            for ($i = 0; $i < count($data); $i++) {
-                $carteleras[$i] = Carteleras::find($data[$i]->cartelera);
+
+        $data_comentarios = DB::select(DB::raw("SELECT c.id id, c.comment comentario, c.user_id user_id, c.name nombre, u.avatar FROM comments c, peliculas p, users u WHERE c.pelicula_id = '$id' AND c.pelicula_id = p.id AND u.id = c.user_id"));
+        $data_pelicula = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$id' AND c.id= cp.carteleras_id"));
+
+        if (!empty($data_pelicula)) {
+            $pelicula = Peliculas::find($data_pelicula[0]->pelicula);
+            
+            for ($i = 0; $i < count($data_pelicula); $i++) {
+                $carteleras[$i] = Carteleras::find($data_pelicula[$i]->cartelera);
             }
-            return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+            for ($i = 0; $i < count($data_comentarios); $i++) {
+                $comentarios[$i] = $data_comentarios[$i];
+            }
+           
+            if (!empty($data_comentarios)) {
+                return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+            } else {
+                return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+            }
+            
+            
         } else {
             $pelicula = Peliculas::find($id);
-            return view('admin.peliculas.show')->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
+
+            for ($i = 0; $i < count($data_comentarios); $i++) {
+                $comentarios[$i] = $data_comentarios[$i];
+            }
+
+            if (!empty($data_comentarios)) {
+                return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
+            } else {
+                return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+            }
         }
     }
 

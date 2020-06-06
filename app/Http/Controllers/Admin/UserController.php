@@ -106,7 +106,8 @@ class UserController extends Controller {
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename= time() . '.' . $avatar->getClientOriginalName();
-            Image::make($avatar)->resize(300,300)->save(public_path('uploads/avatars/' . $filename));
+            Image::make($avatar)->resize(300,300)->save( public_path('http://localhost/ProyectoCine/public/uploads/avatars/' . $filename));
+            //Image::make($avatar)->resize(300,300)->save(public_path('uploads/avatars/' . $filename));
             $user->avatar = $filename;
             $user->save();
         }

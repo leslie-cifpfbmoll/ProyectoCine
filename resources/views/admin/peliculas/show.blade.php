@@ -41,10 +41,15 @@
                             $cartelera["horarios_id"] = implode(', ', $cartelera->horarios()->get()->pluck('id')->toArray()); @endphp
 
                             @if($cartelera->fecha >= $today)  
-                            @php  $fecha = utf8_decode(strtotime($cartelera->fecha)); @endphp
-                            <option data-value="{{$cartelera}}">
 
-                                {{strftime("%A, %d de %B ", $fecha)}} {{implode(' o ', $cartelera->horarios()->get()->pluck('hora')->toArray())}}
+                            <option data-value="{{$cartelera}}">
+                                @php
+                                setlocale(LC_TIME, "spanish");
+                                $fecha = $cartelera->fecha;
+                                $fecha = str_replace("/", "-", $fecha);			
+                                $newDate = date("Y-m-d", strtotime($fecha));				
+                                $mesDesc = strftime("%d de %B ", strtotime($newDate)); @endphp
+                                {{$mesDesc}} {{implode(' o ', $cartelera->horarios()->get()->pluck('hora')->toArray())}}
                             </option>
                             @endif
                             @endforeach
@@ -56,7 +61,7 @@
                         <form id="dynamic_form" action="" method="POST">
                             @csrf
                             {{method_field('POST')}}
-                            <button type="sumbite" class="btn btn-primary btn-sm">Reservar</button>
+                            <button type="sumbit" class="btn btn-primary btn-sm">Reservar</button>
                         </form>
                         @else 
                         <div class="alert alert-danger" role="alert">
@@ -70,7 +75,79 @@
             </div>
         </div>
     </div>
+    <div class="row mt-5">
+        <div class="col-5"></div>
+        <div class="col-5"> <h1>COMENTARIOS</h1></div>
+       
+    </div>
+   
+    <div class="row">
+        
+        
+        <div id="comment-form" class="col-12">
+            @if(isset($user->id))
+            <form action="{{ route('admin.comments.store', [$pelicula->id, $user->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                {{method_field('POST')}}
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$user->avatar}}" style="width: 50px; height: 50px; border-radius: 50%; float:left;">
+                        <!--<img src="http://http://127.0.0.1:8000/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">-->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row-cols-3">
+                            <strong>{{$user->name}}</strong></div>
+                        <div class="row-cols-9">
+
+                            <textarea id="comment" minlength="5" placeholder="Añade un comentario público"  class="form-control" name="comentario"  rows="4" cols="70" required></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-3 mt-5">  
+                        <button type="sumbit" class="btn btn-primary btn-sm">Comentar</button> 
+                    </div>
+
+
+
+
+
+
+                </div>
+
+            </form>
+            @endif
+            @if (isset($comentarios))
+            @foreach($comentarios as $comentario)
+            <div class="row mt-3 mb-3">
+            <!--<img src="http://http://127.0.0.1:8000/uploads/avatars/{{$comentario->avatar}}" style="width: 50px; height: 50px; border-radius: 50%; float:left;">-->
+                <div class="col-md-1">
+                    <img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$comentario->avatar}}" style="width: 50px; height: 50px; border-radius: 50%; float:left;">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <strong>{{$comentario->nombre}}</strong></div>
+                    <div class="row">
+                        {{$comentario->comentario}}</div>
+                </div>
+                @if(isset($user->id))
+                @if($user->id == $comentario->user_id )
+                <form action="{{ route('admin.comments.destroy', [$pelicula->id, $comentario->id]) }}" method="POST">
+                    @csrf
+                    {{method_field('POST')}}
+                    <button type="sumbite" class="btn btn-danger btn-sm">Borrar comentario</button>
+                </form>
+
+                @endif
+                @endif
+            </div>
+            @endforeach
+            @endif
+        </div>
+
+    </div>
 </div>
+
 
 @endsection
 @section ('script_reserva')

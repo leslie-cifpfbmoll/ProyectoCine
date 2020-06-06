@@ -47,7 +47,13 @@ class User extends Authenticatable
     public function hasAnyRole($role){
         return null !== $this->roles()->where('name', $role)->first();
     }
+       public function isUser($user){
+        return null !== $this->where('id', [$user])->first();
+    }
      public function reservas(){
         return $this->belongsTo('\App\Reservas');
+    }
+    public function comments(){
+        return $this->hasMany('App\Comment');
     }
 }
