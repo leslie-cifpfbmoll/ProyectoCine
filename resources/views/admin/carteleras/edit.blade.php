@@ -73,7 +73,7 @@
                             <div class="col-sm-10" >
                                 @foreach($horarios as $horario)
                                 @if($cartelera->horarios->pluck('id')->contains($horario->id))
-                                <input type="checkbox" name="horarios[]" id="{{ $horario->id }}" class="marcado" value="{{ $horario->id }}"
+                                <input type="checkbox" name="horarios[]" class="marcado" value="{{ $horario->id }}"
                                        @if($cartelera->horarios->pluck('id')->contains($horario->id)) checked @endif>
                                        <label>{{$horario->hora}} </label>    
                                 @endif
