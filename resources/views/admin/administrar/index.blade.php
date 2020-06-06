@@ -66,7 +66,7 @@
                                         <form action="{{ route('admin.administrar.index') }}" method="GET">
                                             <div class='input-group pull-left w-30-pct'>
                                                 <!-- onchange="this.form.submit()" -->
-                                                <select name="dias" class="form-control" id="fecha" > 
+                                                <select name="dias" onchange="this.form.submit()" class="form-control" id="fecha" > 
                                                     <option value={{date("Y/m/d")}}>{{date("Y/m/d")}}</option>
                                                     <option value={{$mañana}} @if(isset($fecha) && $fecha==$mañana){{"selected"}} @endif >{{$mañana}}</option>
                                                     <option value={{$day3}} @if(isset($fecha) && $fecha==$day3){{"selected"}} @endif >{{$day3}}</option>

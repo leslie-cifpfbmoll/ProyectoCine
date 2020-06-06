@@ -48,6 +48,7 @@
                         <div class="form-group row">
                             <label for="fsala" class="col-sm-2 col-form-label">Sala:</label>
                             <div class="col-sm-10">
+                                <input type="hidden" id="salaupdate" value="{{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }}">
                                 <select  class="custom-select" name="sala_id" id="fsala">
                                     <option  id="sselect" selected="selected" value="{{ implode(', ', $cartelera->salas()->get()->pluck('id')->toArray()) }} ">
                                         {{ implode(', ', $cartelera->salas()->get()->pluck('numSala')->toArray()) }} 
@@ -67,26 +68,17 @@
                             </div>
                             <input  id="fecha"  name="fecha" type="hidden"  value="{{$cartelera->fecha}}" >
                         </div>
-                        
-                      
-                        
-                        
-                        
-                        
-                        
-                        <div class="form-group row">
+                        <div class="form-group row" id="horariosDisponibles">
                             <label for="fhorario"  class="col-sm-2 col-form-label">Horarios: </label>
-
                             <div class="col-sm-10" >
                                 @foreach($horarios as $horario)
                                 @if($cartelera->horarios->pluck('id')->contains($horario->id))
-                                <input type="checkbox" name="horarios[]" id="{{ $horario->id }}"  value="{{ $horario->id }}"
+                                <input type="checkbox" name="horarios[]" id="{{ $horario->id }}" class="marcado" value="{{ $horario->id }}"
                                        @if($cartelera->horarios->pluck('id')->contains($horario->id)) checked @endif>
-                                <label>{{$horario->hora}} </label>    
+                                       <label>{{$horario->hora}} </label>    
                                 @endif
                                 @endforeach
                             </div>
-
                         </div> 
                         <div class="form-group row">
                             <label for="fhorario"  class="col-sm-2 col-form-label">Horarios Disponibles: </label>
@@ -100,7 +92,7 @@
                                     <div class="form-check">
                                         @foreach($precios as $precio)
                                         <input class="form-check-input" name="precio" type="radio" id="precio" value="{{$precio->id}}"   @if($cartelera->precios->pluck('id')->contains($precio->id)) checked @endif>
-                                        <label class="form-check-label" for="precio">
+                                               <label class="form-check-label" for="precio">
                                             {{$precio->precio}}€
                                         </label><br>
                                         @endforeach
