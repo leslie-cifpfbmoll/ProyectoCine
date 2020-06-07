@@ -29,5 +29,8 @@ class Peliculas extends Model {
      public function comments(){
         return $this->hasMany('App\Comment');
     }
+    public function carrousel() {
+        return $this->belongsTo('\App\Carrousel');
+    }
 
 }

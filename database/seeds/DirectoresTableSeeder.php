@@ -29,5 +29,17 @@ class DirectoresTableSeeder extends Seeder
            'nombre' => 'Joseph',
            'apellido' => 'Kosinski'
         ]);
+        Directores::create([
+           'nombre' => 'Patty',
+           'apellido' => 'Jenkins'
+        ]);
+        Directores::create([
+           'nombre' => 'Patty',
+           'apellido' => 'Jenkins'
+        ]);
+         Directores::create([
+           'nombre' => 'Niki',
+           'apellido' => 'Caro'
+        ]);
     }
 }

@@ -34,6 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('admin.precios.index') }}" aria-selected="true">Precios</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.carrousel.index') }}" aria-selected="false">Carrousel</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.col-md-4 -->
@@ -75,7 +78,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Tipo</th>
-                                                     <th scope="col">Precio</th>
+                                                    <th scope="col">Precio</th>
                                                     <th scope="col">Actions</th>
 
 
@@ -87,8 +90,8 @@
                                                 <tr>
                                                     <td>
                                                         {{ $precio-> tipo }}</td>
-                                                    
-                                                     <td>   {{ $precio->precio }}</td>
+
+                                                    <td>   {{ $precio->precio }}</td>
                                                     <td>
                                                         <a href="{{route('admin.precios.edit', $precio->id) }}" class="float-left">
                                                             <button type="button" class="btn btn-primary btn-sm">Edit</button>
