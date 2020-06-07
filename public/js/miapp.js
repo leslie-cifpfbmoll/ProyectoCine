@@ -5,9 +5,8 @@ var horafin;
 var checkbox;
 var ajaxurl = "http://127.0.0.1:8000/carteleras/";
 //var ajaxurl = "http://3.22.174.23/carteleras/";
+//var ajaxurl = "http://localhost/ProyectoCine/public/carteleras/";
 
-
-var ajaxurl = "http://localhost/ProyectoCine/public/carteleras/";
 var id_ocupados = [];
 
 
