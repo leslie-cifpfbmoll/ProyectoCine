@@ -97,7 +97,7 @@ class PeliculasController extends Controller {
         $directores = Directores::all();
 
         $data_comentarios = DB::select(DB::raw("SELECT c.id id, c.comment comentario, c.user_id user_id, c.name nombre, u.avatar FROM comments c, peliculas p, users u WHERE c.pelicula_id = '$id' AND c.pelicula_id = p.id AND u.id = c.user_id"));
-        $data_pelicula = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$id' AND c.id= cp.carteleras_id"));
+        $data_pelicula = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$id' AND c.id= cp.carteleras_id AND c.fecha >= '$today'"));
 
         if (!empty($data_pelicula)) {
             $pelicula = Peliculas::find($data_pelicula[0]->pelicula);
@@ -126,7 +126,7 @@ class PeliculasController extends Controller {
             if (!empty($data_comentarios)) {
                 return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
             } else {
-                return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+                return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
             }
         }
     }

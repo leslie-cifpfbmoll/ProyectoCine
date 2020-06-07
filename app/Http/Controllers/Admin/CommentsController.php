@@ -57,6 +57,7 @@ class CommentsController extends Controller {
         $comment->user()->associate($user);
         $comment->save();
 
+
         $data_comentarios = DB::select(DB::raw("SELECT c.id id, c.comment comentario, c.user_id user_id, c.name nombre, u.avatar FROM comments c, peliculas p, users u WHERE c.pelicula_id = '$pelicula_id' AND c.pelicula_id = p.id AND u.id = c.user_id"));
         $data_pelicula = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$pelicula_id' AND c.id= cp.carteleras_id"));
 
@@ -75,7 +76,19 @@ class CommentsController extends Controller {
             } else {
                 return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
             }
-        }
+        }else {
+                $pelicula = Peliculas::find($pelicula_id);
+
+                for ($i = 0; $i < count($data_comentarios); $i++) {
+                    $comentarios[$i] = $data_comentarios[$i];
+                }
+
+                if (!empty($data_comentarios)) {
+                    return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
+                } else {
+                    return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+                }
+            }
     }
 
     /**
@@ -126,7 +139,7 @@ class CommentsController extends Controller {
 
         if ($comentario->delete()) {
             $data_comentarios = DB::select(DB::raw("SELECT c.id id, c.comment comentario, c.user_id user_id, c.name nombre, u.avatar FROM comments c, peliculas p, users u WHERE c.pelicula_id = '$pelicula_id' AND c.pelicula_id = p.id AND u.id = c.user_id"));
-            $data_pelicula = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$pelicula_id' AND c.id= cp.carteleras_id"));
+            $data_pelicula = DB::select(DB::raw("select c.id cartelera, cp.peliculas_id pelicula FROM cartelera c, carteleras_peliculas cp WHERE cp.peliculas_id='$pelicula_id' AND c.id= cp.carteleras_id AND c.fecha >= '$today'"));
 
             $request->session()->flash('success', 'Comentario borrado correctamente.');
             if (!empty($data_pelicula)) {
@@ -141,6 +154,18 @@ class CommentsController extends Controller {
 
                 if (!empty($data_comentarios)) {
                     return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+                } else {
+                    return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+                }
+            } else {
+                $pelicula = Peliculas::find($pelicula_id);
+
+                for ($i = 0; $i < count($data_comentarios); $i++) {
+                    $comentarios[$i] = $data_comentarios[$i];
+                }
+
+                if (!empty($data_comentarios)) {
+                    return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
                 } else {
                     return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
                 }

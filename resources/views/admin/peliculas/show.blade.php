@@ -65,7 +65,7 @@
                         </form>
                         @else 
                         <div class="alert alert-danger" role="alert">
-                            RESERVA NO DISPONIBLE
+                            No hay proyección programada próximamente.
                         </div>
 
                         @endif
@@ -90,7 +90,7 @@
                 @csrf
                 {{method_field('POST')}}
 
-                <div class="row">
+                <div class="row mb-4">
                     <div class="col-md-1">
                         <img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$user->avatar}}" style="width: 50px; height: 50px; border-radius: 50%; float:left;">
                         <!--<img src="http://http://127.0.0.1:8000/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">-->
