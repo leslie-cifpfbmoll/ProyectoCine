@@ -6,7 +6,9 @@
             <file>file:/C:/xampp/htdocs/ProyectoCine/public/js/miapp.js</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/administrar/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/show.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/index.blade.php</file>
+            <file>file:/C:/xampp/htdocs/ProyectoCine/app/Http/Controllers/Admin/PeliculasController.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/peliculas/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/edit.blade.php</file>
             <file>file:/C:/xampp/htdocs/ProyectoCine/resources/views/admin/carteleras/create.blade.php</file>

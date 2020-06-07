@@ -126,7 +126,7 @@ class PeliculasController extends Controller {
             if (!empty($data_comentarios)) {
                 return view('admin.peliculas.show')->with(['comentarios' => $comentarios])->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
             } else {
-                return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['carteleras' => $carteleras])->with(['pelicula' => $pelicula]);
+                return view('admin.peliculas.show')->with(['user' => $user])->with(['generos' => $generos])->with(['today' => $today])->with(['directores' => $directores])->with(['pelicula' => $pelicula]);
             }
         }
     }
