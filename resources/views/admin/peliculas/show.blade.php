@@ -77,7 +77,7 @@
     </div>
     <div class="row mt-5">
         <div class="col-5"></div>
-        <div class="col-5"> <h1>COMENTARIOS</h1></div>
+        <div class="col-5"> <h2>COMENTARIOS</h2></div>
        
     </div>
    
