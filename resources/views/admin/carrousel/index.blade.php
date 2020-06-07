@@ -29,13 +29,10 @@
                             <a class="nav-link"  href="{{route('admin.administrar.getUsuarios') }}" aria-selected="false">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{route('admin.administrar.getSalas') }}" aria-selected="true">Salas</a>
+                            <a class="nav-link " href="{{route('admin.administrar.getSalas') }}" aria-selected="false">Salas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.precios.index') }}" aria-selected="false">Precios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.carrousel.index') }}" aria-selected="false">Carrousel</a>
+                            <a class="nav-link active" href="{{route('admin.precios.index') }}" aria-selected="true">Precios</a>
                         </li>
                     </ul>
                 </div>
@@ -47,56 +44,38 @@
 
                                 <div class="row justify-content-between">
                                     <div class="col-6">
-                                        <h2>Salas</h2>
+                                        <h2>Carrousel</h2>
                                     </div>
                                     <div class="col-1">
-                                        <a  href="{{route('admin.salas.create') }}">
+                                        <a  href="{{route('admin.carrousel.create') }}">
                                             <button type="button" class="btn btn-primary btn-sm">Add</button>
                                         </a>  
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form action="{{ route('admin.administrar.getSalas') }}" method="GET">
-                                            <div class='input-group pull-left w-30-pct'>
-                                                <!-- onchange="this.form.submit()" -->
-                                                <input name="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar por id" aria-label="Search">
 
-                                                <span class='input-group-btn'>
-                                                    <button type='submit' class='btn btn-default' type='button'>
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </span>
-
-                                            </div>
-                                        </form>  
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <table class="table table-dark">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Número de Sala</th>
-                                                    <th scope="col">Asientos</th>
-                                                    <th scope="col">Actions</th>
-
-
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Película</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                @foreach($salas as $sala)
+                                                @foreach($carrousel as $foto)
                                                 <tr>
                                                     <td>
-                                                        {{ $sala-> numSala }}</td>
-
-                                                    <td>   {{ $sala->aforo }}</td>
+                                                        {{ $foto-> filename }}</td>
                                                     <td>
-                                                        <a href="{{route('admin.salas.edit', $sala->id) }}" class="float-left">
+                                                        {{ implode(', ', $foto->peliculas()->get()->pluck('nombre')->toArray()) }}</td>
+
+                                                    <td>
+                                                        <a href="{{route('admin.carrousel.edit', $foto->id) }}" class="float-left">
                                                             <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                                         </a>  
-                                                        <form action="{{ route('admin.salas.destroy', ['sala' => $sala->id]) }}" method="POST">
+                                                        <form action="{{ route('admin.carrousel.destroy', ['carrousel' => $foto->id]) }}" method="POST">
                                                             @csrf
                                                             {{method_field('DELETE')}}
                                                             <button type="sumbite" class="btn btn-danger btn-sm">Remove</button>
@@ -108,7 +87,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        {{$salas->links()}}
+                                        {{$carrousel->links()}}
                                     </div>
                                 </div>
                             </div>

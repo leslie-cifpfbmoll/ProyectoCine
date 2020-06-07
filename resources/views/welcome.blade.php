@@ -22,7 +22,13 @@
                             @foreach($carousel as $foto)               
                             <div class="carousel-item @if(($loop->index) == 0) active @endif">
                                 <div class="view">
-                                    <img src="{{url('uploads/'.$foto->filename)}}" alt="{{$foto->filename}}" class="img-responsive">
+                                    <form action="{{ route('admin.peliculas.show', implode(', ', $foto->peliculas()->get()->pluck('id')->toArray()) ) }}" method="POST">
+                                        @csrf
+                                        {{method_field('POST')}}
+                                        <input type="image"  class="img-responsive" name="cartelera" value="cartelera" alt="cartelera" src="{{url('uploads/'.$foto->filename)}}">
+                                        
+                                    </form>
+                                    
                                     <div class="mask rgba-black-light"></div>
                                 </div>
                             </div>
@@ -64,7 +70,7 @@
                                             <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
                                         </div>
                                         @if ($loop->index == 4) 
-                                            <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
+                                        <button type="button" class="btn btn-default btn-circle" ><a href="{{ route ('admin.carteleras.index')}}"><i class="fa fa-plus"></i></a> @endif
                                     </div>
                                     @if ($loop->index == 4) @break @endif
                                     @endforeach

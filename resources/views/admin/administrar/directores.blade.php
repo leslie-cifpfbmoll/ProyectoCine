@@ -34,6 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.precios.index') }}" aria-selected="false">Precios</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.carrousel.index') }}" aria-selected="false">Carrousel</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.col-md-4 -->

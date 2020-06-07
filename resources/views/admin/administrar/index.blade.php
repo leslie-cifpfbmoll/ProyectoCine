@@ -31,8 +31,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.administrar.getSalas') }}" aria-selected="false">Salas</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.precios.index') }}" aria-selected="false">Precios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.carrousel.index') }}" aria-selected="false">Carrousel</a>
                         </li>
                     </ul>
                 </div>
@@ -91,7 +94,7 @@
                                                     <th scope="col">Título</th>
                                                     <th scope="col">Sala</th>
                                                     <th scope="col">Horarios</th>
- 						    <th scope="col">Precio</th>
+                                                    <th scope="col">Precio</th>
                                                     <th scope="col">Actions</th>
 
                                                 </tr>
@@ -107,8 +110,8 @@
                                                     <td>
                                                         {{ implode(', ', $cartelera->horarios()->get()->pluck('hora')->toArray()) }} </td>
 
-                                                     <td> 
-							{{ implode(', ', $cartelera->precios()->get()->pluck('precio')->toArray()) }} euros </td>
+                                                    <td> 
+                                                        {{ implode(', ', $cartelera->precios()->get()->pluck('precio')->toArray()) }} euros </td>
 
                                                     <td>
                                                         <a href="{{route('admin.carteleras.edit', $cartelera->id) }}" class="float-left" >

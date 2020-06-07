@@ -26,6 +26,8 @@ class PeliculasTableSeeder extends Seeder {
         $directorDos = Directores::where('nombre', 'Steven')->first();
         $directorTres = Directores::where('nombre', 'Joseph')->first();
         $directorCuatro = Directores::where('nombre', 'Cate')->first();
+        $directorCinco = Directores::where('nombre', 'Patty')->first();
+        $directorSeis = Directores::where('nombre', 'Niki')->first();
 
         $peliculaUno = Peliculas::create([
                     'nombre' => 'Parque Jurásico',
@@ -67,7 +69,26 @@ class PeliculasTableSeeder extends Seeder {
                     'mime' => 'image/jpeg',
                     'original_filename' => 'null',
         ]);
-
+        $peliculaCinco = Peliculas::create([
+                    'nombre' => 'Wonder Woman 1984',
+                    'estreno' => '2020-08-14',
+                    'duracion' => '140',
+                    'trailer' => 'https://www.youtube.com/embed/V2HccMkmQdk',
+                    'sinopsis' => 'En este nuevo capítulo, la princesa de Themyscira entablará amistad con Barbara Ann Minerva, una arqueóloga que trabaja para Max Lord, megalómano empeñado en recopilar artefactos antiguos con la creencia de que estos le harán tan poderosos como un Dios.',
+                    'filename' => 'ww.jpg',
+                    'mime' => 'image/jpeg',
+                    'original_filename' => 'null',
+        ]);
+        $peliculaSeis = Peliculas::create([
+                    'nombre' => 'Mulán',
+                    'estreno' => '2020-07-27',
+                    'duracion' => '90',
+                    'trailer' => 'https://www.youtube.com/embed/0ATJYBoogHI',
+                    'sinopsis' => 'El Emperador de China emite un decreto para reclutar a un varón por cada familia que deberá servir en el Ejército Imperial para defender al país de los invasores del Norte. Hua Mulán, hija única de un condecorado guerrero, se presenta para evitar que su anciano padre sea llamado a filas.',
+                    'filename' => 'mulan.jpg',
+                    'mime' => 'image/jpeg',
+                    'original_filename' => 'null',
+        ]);
         $peliculaUno->generos()->attach($aventuraGen);
         $peliculaUno->directores()->attach($directorDos);
         $peliculaDos->generos()->attach($documentalGen);
@@ -76,6 +97,10 @@ class PeliculasTableSeeder extends Seeder {
         $peliculaTres->directores()->attach($directorTres);
         $peliculaCuatro->generos()->attach($aventuraGen);
         $peliculaCuatro->directores()->attach($directorCuatro);
+        $peliculaCinco->generos()->attach($aventuraGen);
+        $peliculaCinco->directores()->attach($directorCinco);
+        $peliculaSeis->generos()->attach($aventuraGen);
+        $peliculaSeis->directores()->attach($directorSeis);
     }
 
 }

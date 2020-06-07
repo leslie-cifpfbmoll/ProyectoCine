@@ -24,10 +24,12 @@ Route::namespace('Admin')->middleware(['can:administrar'])->name('admin.')->grou
     Route::resource('salas', 'SalasController', ['except' => ['show']]);
     Route::resource('directores', 'DirectoresController', ['except' => ['show']]);
     Route::resource('precios', 'PreciosController', ['except' => ['show']]);
+     Route::resource('carrousel', 'CarrouselController', ['except' => ['show']]);
     Route::resource('administrar', 'AdministrarController', ['only' => ['index']]);
     Route::get('administrar/usuarios', 'AdministrarController@getUsuarios')->name('administrar.getUsuarios');
     Route::get('administrar/peliculas', 'AdministrarController@getPeliculas')->name('administrar.getPeliculas');
     Route::get('administrar/directores', 'AdministrarController@getDirectores')->name('administrar.getDirectores');
+    Route::get('administrar/carrousel', 'AdministrarController@getCarrousel')->name('administrar.getCarrousel');
     Route::get('administrar/salas', 'AdministrarController@getSalas')->name('administrar.getSalas');
     Route::get('carteleras/get-horarios', 'CartelerasController@getHorarios')->name('carteleras.getHorarios');
     Route::get('carteleras/get-duracion', 'CartelerasController@getDuracion')->name('carteleras.getDuracion');
