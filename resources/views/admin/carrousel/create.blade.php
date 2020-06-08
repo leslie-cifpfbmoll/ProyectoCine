@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="imagen" class="col-sm-2 col-md-1 col-form-label">Image</label>
+                            <label for="imagen" class="col-sm-2 col-md-1 col-form-label">Imagen</label>
                             <div class="col-sm-10 col-md-11">
                                 <input type="file" class="form-control" name="imagen" required>
                             </div>

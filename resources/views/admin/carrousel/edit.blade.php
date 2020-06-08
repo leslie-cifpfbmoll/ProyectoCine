@@ -8,7 +8,7 @@
                 <div class="card-header"><h5>Editar Foto</h5></div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.carrousel.update', ['carrousel' => $foto->id]) }}" method="POST">
+                    <form action="{{ route('admin.carrousel.update', ['carrousel' => $foto->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{method_field('PUT')}}
 
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="imagen" class="col-sm-3 col-md-2 col-form-label">Foto</label>
+                            <label for="imagen" class="col-sm-3 col-md-2 col-form-label">Imagen</label>
                             <div class="col-sm-9 col-md-10">
                                 <input type="file" class="form-control" name="imagen" value="{{$foto->filename}}">
                             </div>

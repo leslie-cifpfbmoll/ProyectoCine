@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="imagen" class="col-sm-3 col-md-2 col-form-label">Image</label>
+                            <label for="imagen" class="col-sm-3 col-md-2 col-form-label">Imagen</label>
                             <div class="col-sm-9 col-md-10">
                                 <input type="file" class="form-control" name="imagen" value="{{$pelicula->filename}}">
                             </div>

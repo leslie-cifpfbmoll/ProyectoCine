@@ -36,7 +36,7 @@ class CarrouselController extends Controller {
         $carrousel = Carrousel::create([
                     'mime' => $cover->getFilename(),
                     'original_filename' => $cover->getClientOriginalName(),
-                    'filename' => $cover->getFilename()
+                    'filename' => $cover->getFilename() . '.' . $extension
         ]);
         $carrousel->peliculas()->sync($request->pelicula);
         $request->session()->flash('success', 'Foto añadida correctamente.');
