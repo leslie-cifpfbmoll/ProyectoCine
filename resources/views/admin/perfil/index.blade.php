@@ -9,9 +9,9 @@
 
                                     <div class="row">   
                                         <div class="col-md-3 col-4 card border-light"> 
-                                            <!--<img src="http://3.22.174.23/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">-->
+                                           <img src="http://3.22.174.23/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">
                                             <!--<img src="http://http://127.0.0.1:8000/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">-->
-                                            <img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">
+                                             <!--<img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$user->avatar}}" style="width: 150px; height: 150px; border-radius: 50%; float:left;">-->
                                         </div>
 
                                         <div class="col-md-4 col-8">
@@ -145,8 +145,8 @@
                                             <div id="menu3" class="container tab-pane fade">
                                                 <div class="card-body">
                                                     <form enctype="multipart/form-data" action="/admin/perfil" method="POST">
-                                                        <img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$user->avatar}}" style="width:150px; height: 150px; float:bottom; border-radius: 50%;margin-right: 25px;">
-                                                      <!--  <img src="http://3.22.174.23/uploads/avatars/{{$user->avatar}}" style="width:150px; height: 150px; float:bottom; border-radius: 50%;margin-right: 25px;">-->
+                                                         <!-- <img src="http://localhost/ProyectoCine/public/uploads/avatars/{{$user->avatar}}" style="width:150px; height: 150px; float:bottom; border-radius: 50%;margin-right: 25px;">-->
+                                                      <img src="http://3.22.174.23/uploads/avatars/{{$user->avatar}}" style="width:150px; height: 150px; float:bottom; border-radius: 50%;margin-right: 25px;">
                                                         <input type="file" name="avatar">
                                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                         <input type="submit" class="pull-right btn btn-sm btn-primary">
